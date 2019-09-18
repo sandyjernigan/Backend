@@ -203,6 +203,8 @@ describe('Server', () => {
 });
 ```
 
+# Auth
+
 ## Auth Router
 
 ### ./api/auth/auth-router.js
@@ -552,6 +554,8 @@ describe('Users Model', () => {
 
 });
 ```
+
+# Next
 
 ## Header 
 ### ./route
