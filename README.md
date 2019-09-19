@@ -1,61 +1,302 @@
-# Back End Project Week
+# Back End for Potluck Planner
 
-This week you will build a backend for a note taking app called "Lambda Notes".
+## Pitch: 
 
-You are to treat this week as if you are working at a company and the instructor is your client. The _Project Managers_ are acting as your company's project managers (duh!) and will be your main support throughout the week.
+If you have ever tried to organize a potluck through text messages, online to-do lists or spreadsheets you get why this app is important. In the world of social gatherings and potlucks the "Potluck Planner" is king. This is your place for all things pot luck. 
 
-The main objective of this week is to develop a backend to support the LambdaNotes app you built during the Front End project week, connect the two projects together, and add some additional features. You will use `Node.js`, `Express` and any other technologies you have learned to complete this assignment. 
+# Product Canvas
 
-## Trello Board [https://trello.com/b/qCvJzRWF/lambda-notesbackend-sandy-jernigan]
+## Proposal
 
-https://trello.com/b/qCvJzRWF/lambda-notesbackend-sandy-jernigan
+### What problem does your app solve?
 
-## Backend MVP Features:
+Client wants to have an application that allows the user to login and manage potlucks. 
 
-We recommend that you finish all the MVP features before trying to deploy.
+### Be as specific as possible; how does your app solve the problem?
 
-- Add data persistenc using a Relational Database. We suggest you start with `SQLite3`.
-- Create a Web API for the React application you built in the front-end project week.
-- Build endpoints for each of the following features:
-  - Display a list of notes.
-  - Create a note with a _title_ and _content_.
-  - View an existing note.
-  - Edit an existing note.
-  - Delete an existing note.
-  - Modify your front-end so that it uses your newly created Web API.
+This app will allow:
+- The user to login
+- Manage their own potluck event
+- Invite friends to attend the potluck event 
+- Adjust dates, location, and times of their own events
+- Has a list feature to add food items
+- Guests should be able to confirm they are going to the event
+- Guests should be able to select items to bring.
 
-Upon your first commit, please submit a Pull Request and add _both_ the **Trello Set Up** and **Backend MVP Features** Task lists to your first Pull Request comment.
+
+### What is the mission statement?
+
+Help organizers and attendees plan potluck scheduling and food items.
+
+## Features
+
+### What features are required for your minimum viable product?
+
+1. As an organizer I can create an upcoming potluck and invite my friends to attend.
+2. As an organizer I can adjust dates, times and locations of the potluck.
+3. As an organize I can use the list feature in my app to add food items that we'd like to see at the potluck.
+4. As a guest to a potluck I want to be able to confirm that I'm going to the upcoming event.
+5. As a guest I'd like to be able to select which items I'd like to be responsible for bringing.
+
+*NOTE:* All of the user stories above should only require a single user type. Users can create "potlucks" and add other users to them.
+
+### What features may you wish to put in a future release?
+
+- Any updates is emailed to anyone signed up on the event.
+- Ability to export the date and time to a calendar.
+- Admin can choose if guests can invite other guests
+- Interactive Online List
+- Reminder emails sent to participants 24 hours prior to date
+- Organizer Email Options. Receive alerts when items are booked or cancelled
+- Ability to list meal preferences and allergies
+- Printable list
+- Invitations via email, faceboook, twitter, and more
+- Organizer can book items for others
+- Optional donation fund add on
+
+### What do the top 3 similar apps do for their users?
+
+Reviewing: thingtobring.com, mealtrain.com/learn/potluck, and signupgenius.com
+
+- Track who is bringing what to the party
+- Email invites to friends
+- RSVP
+- Themes potlucks
+- Ability to list meal preferences and allergies.
+- Portion Calculator
+- Add multiple administrators to your account
+- Group messaging
+- Option for Prebuilt Potlucks or Custom Potlucks
+- Option to link recipes
+
+### Frameworks - Libraries
+
+What 3rd party frameworks/libraries are you considering using?
+
+- Styled-components
+- Formik
+- react-router-dom
+- npm
+- axios
+
+Do APIs require you to contact its maintainer to gain access?
+
+- Start out with no, may require token in future.
+
+Are you required to pay to use the API?
+- Have you considered using Apple Frameworks? (MapKit, Healthkit, ARKit?)
+
+### Target Audience
+
+- Who is your target audience? Be specific.
+
+Anyone who is planning or attending a potluck.
+
+- What feedback have you gotten from potential users?
+
+Past potlucks had people bringing mostly drinks and there was not enough food.
+Having people coming but not bring anything
+Waiting until the last minute to say they are coming and randomly bring something.
+Having people sign up others and say they are bringing something without the guest knowing about it.
+
+- Have you validated the problem and your solution with your target audience? How?
+
+Sign up list for items to bring
+List of Maximum amounts of items, have categories that have limits of the number of items that can be signup under the category
+RVSP date and time, emails guests to remind them to reply with “going”, “not going”, “don’t know”
+Guests can create a login to secure what they sign up for. 
+
+### Research
+
+- Research thoroughly before writing a single line of code. Solidify the features of your app conceptually before implementation. Spend the weekend researching so you can hit the ground running on Monday.
+Prototype Key Feature(s)
+
+- This is the “bread and butter” of the app, this is what makes your app yours. Calculate how long it takes to implement these features and triple the time estimated. That way you’ll have plenty of time to finish. It is preferred to drop features and spend more time working on your MVP features if needed.
+
+# Planning
+
+#### Group Trello Board [https://trello.com/b/LhtzQb6t/potluck-planner]
+#### Back end Trello Board [https://trello.com/b/qCvJzRWF/lambda-notesbackend-sandy-jernigan]
+
+# Development Back End
+
+### [Models](#models)
+
+[User](###User)
+[Event](###Event)
+[Food](###Foods)
+
+### [Endpoints](##endpoints)
+
+##### [User Endpoints](###User-Endpoints)
+
+- [Sign Up](#####Signup)
+- [Login](#####Login)
+- [Update User](#####Update-User)   // TODO
+- [Delete USer](#####Delete-User)   // TODO
+
+##### [Event Endpoints](###Event-Endpoints)
+
+- [Get All Events](#####Get-All)
+- [Get Event](#####Get-Event)       // TODO
+- [Add Event](#####Add-Event)       // TODO
+- [Update Event](#####Update-Event) // TODO
+- [Delete Event](#####Delete-Event) // TODO
+
+<span id="models"></span>
+## Models
 
 ---
 
-**Once you have completed the "Minimum Viable Product" requirements, message your project manager for approval**. If approved, you may continue to deploy and work on the Extra Features. Please add the Extra Features you implement to the list you added to the comment on your first PR.
+### User 
 
-## Deployment
+```javascript
+{
+    "userid": 1,
+    "username": "user",
+    "password": "examplepass",
+    "firstname": "Johnathan",
+    "lastname": "Doe",
+    "preferredname": "John",
+    "email": "user@email.com",
+    "groupname": "Developers"
+}
+```
 
-After your PM certifies that all MVP features are complente, it's time to work on deploying it online for the world to see. We recommend you deploy your server to [Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction), and your front end to [netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/). Both services provide free tiers and easy to use interfaces.
+#### Group
 
-Additionally, it is recommended that you keep your front end and backend codebases in separate GitHub repositories. This helps with deploying, since the different parts of your application will be deployed on different platforms.
+```javascript
+{
+    "groupid": 1,
+    "groupname": "Developers",
+    "description": "Description of the group"
+}
+```
 
-## Extra Features:
+### Event
 
-Once your MVP has been approved, you have been given a feature list that the client would love to have completed. Your goal would be to finish MVP as soon as you can and get working the list of extra features.
+```javascript
+{
+    "eventid": 1,
+    "eventname": "John's First Potluck",
+    "description": "Birthday Party Potluck for Jane.",
+    "eventdate": "8-23-2019",
+    "eventtime": "6:00 PM",
+    "location": "John's Backyard",
+    "foods": [
+      { 
+        "foodname": "Hamburgers",
+        "quantity": 24,
+        "description": "hamburger meat",
+        "category": "meat",
+        "vegetarian" : false,
+        "vegan" : false,
+        "gutenfree" : null,
+        "bringing": [
+          {
+          "guestname": "guest1", // this is marked as bringing
+          "quantity": 12 // qty guest plans to bring
+          },
+          {
+          "guestname": "guest2", // this is marked as bringing
+          "quantity": 12 // qty guest plans to bring
+          },
+        ]
+      },
+      { 
+        "foodname": "Hamburger Buns",
+        "quantity": 24,
+        "description": null,
+        "category": "bread",
+        "vegetarian" : true,
+        "vegan" : null,
+        "gutenfree" : false,
+        "bringing": null // if null no one is selected as bringing yet
+      },
+    ],
+    "guests": [ // array of guests 
+      "guest_id": 1,
+      "guest_id": 2
+    ]
+}
+```
 
-- Setup Auto-Deploy on Heroku
-- Provide documentation for how to interface with your api.
-- Add pagination for long lists of notes.
-- Create and display tags that can be added to notes and stored in the Database.
-- Allow users to clone notes.
-- Search functionality.
-- Create a Registration Page that allows users to create accounts for your app and sign in with email/password.
-- Allow users to sign in with a third party service (google, facebook, github, club penguin, etc...)
-- Allow users to create Lists and assign notes to a list.
-- Allow users to attach images to notes.
-- Allow multiple users to collaborate on notes.
-- Add Unit and Integration Tests.
+#### Locations
 
-## Super Duper Extra Credit Bonus Features
+```javascript
+{
+    "locationid": 1,
+    "location": "John's Backyard",
+    "description": "At John and Jane's house"
+}
+```
 
-- Add a payment form integrating with _Stripe_ that allows Users to buy a _"Premium"_ version of Lambda Notes.
-- Gate your favorite feature behind the _premium_ paywall
+### Foods
 
-You will notice that this repository does not have any starter code. This is on purpose. You are to start from scratch using any files you have built throughout your time here at Lambda School as reference.
+```javascript
+{
+  "foodid": 1,
+  "foodname": "Hamburger Buns",
+  "description": null,
+  "categoryid": 1
+  "vegetarian" : true,
+  "vegan" : null,
+  "gutenfree" : false,
+}
+```
+
+#### Categories
+
+```javascript
+{
+  "category_id": 1,
+  "category_name": "bread",
+  "category_description": "breads made from either flour, oats, rye, etc"
+}
+```
+
+### Guests
+
+```javascript
+{
+  "guest_id": 1,
+  "guestname": "guest1",
+  "guestemail": "jane@email.com",
+  "user_id": null
+}
+```
+
+## Endpoints
+
+### User-Endpoints
+
+---
+
+##### Signup
+
+**Endpoint:** `/api/auth/register`
+**Type:** `POST`
+**Description:**
+
+```
+  Sign up a new user
+```
+
+**Expected Input**
+
+```javascript
+{
+  // username and email must be unique
+  // username, password, firstname, lastname, and email are required
+
+  "username": "testuser",
+  "password": "password",
+  "email": "user@email.com",
+  "firstname": "Johnathan",
+  "lastname": "Doe",
+  "preferredname": "John",
+  "group_id": null
+}
+```
+
+---
