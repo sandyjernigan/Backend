@@ -3,8 +3,13 @@
 exports.up = function(knex) {
   return knex.schema.createTable('users', users => {
     users.increments();
-    users.string('username', 255).notNullable().unique();
-    users.string('password', 255).notNullable();
+    users.string('username').notNullable().unique();
+    users.string('password').notNullable();
+    users.string('firstname').notNullable();
+    users.string('lastname').notNullable();
+    users.string('preferredname');
+    users.string('email').notNullable().unique();
+    users.integer('group_id');
   });
 };
 

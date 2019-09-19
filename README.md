@@ -120,12 +120,11 @@ Prototype Key Feature(s)
 
 # Development Back End
 
-### [Models](##models)
+### [Models](#models)
 
-- [User](###User)
- - [Group](####Group)
-- [Event](###Event)
-- [Food](###Food)
+[User](###User)
+[Event](###Event)
+[Food](###Foods)
 
 ### [Endpoints](##endpoints)
 
@@ -144,11 +143,12 @@ Prototype Key Feature(s)
 - [Update Event](#####Update-Event) // TODO
 - [Delete Event](#####Delete-Event) // TODO
 
+<span id="models"></span>
 ## Models
 
 ---
 
-### User
+### User 
 
 ```javascript
 {
@@ -265,3 +265,38 @@ Prototype Key Feature(s)
   "user_id": null
 }
 ```
+
+## Endpoints
+
+### User-Endpoints
+
+---
+
+##### Signup
+
+**Endpoint:** `/api/auth/register`
+**Type:** `POST`
+**Description:**
+
+```
+  Sign up a new user
+```
+
+**Expected Input**
+
+```javascript
+{
+  // username and email must be unique
+  // username, password, firstname, lastname, and email are required
+
+  "username": "testuser",
+  "password": "password",
+  "email": "user@email.com",
+  "firstname": "Johnathan",
+  "lastname": "Doe",
+  "preferredname": "John",
+  "group_id": null
+}
+```
+
+---
