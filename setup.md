@@ -559,7 +559,8 @@ describe('Users Model', () => {
 
 ## users Table  
 
-Organizer - will need users table for login and information
+Organizer - will need users table for login and information  
+
 ------------------------------------------
 | id        | increments |
 | username  | string, notNullable, unique |
