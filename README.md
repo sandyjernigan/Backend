@@ -123,6 +123,7 @@ Prototype Key Feature(s)
 ### [Models](##models)
 
 - [User](###User)
+ - [Group](####Group)
 - [Event](###Event)
 - [Food](###Food)
 
