@@ -575,8 +575,8 @@ Organizer - will need users table for login and information
 
 multiple users can be in the same group or in no group
 
-| user_id    | integer |
 |---	|---	|
+| id        | increments | 
 | groupname  | string, notNullable, unique |
 | description | string |
 
