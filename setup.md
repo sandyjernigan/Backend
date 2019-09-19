@@ -561,10 +561,8 @@ describe('Users Model', () => {
 
 Organizer - will need users table for login and information  
 
-------------------------------------------
-|   	|   	|
-|---	|---	|
 | id        | increments |  
+|---	|---	|
 | username  | string, notNullable, unique |  
 | password  | string, notNullable |  
 | firstname | string, notNullable |  
@@ -578,6 +576,7 @@ Organizer - will need users table for login and information
 multiple users can be in the same group or in no group
 
 | user_id    | integer |
+|---	|---	|
 | groupname  | string, notNullable, unique |
 | description | string |
 
