@@ -115,8 +115,8 @@ Prototype Key Feature(s)
 
 # Planning
 
-## Group Trello Board [https://trello.com/b/LhtzQb6t/potluck-planner]
-## Back end Trello Board [https://trello.com/b/qCvJzRWF/lambda-notesbackend-sandy-jernigan]
+#### Group Trello Board [https://trello.com/b/LhtzQb6t/potluck-planner]
+#### Back end Trello Board [https://trello.com/b/qCvJzRWF/lambda-notesbackend-sandy-jernigan]
 
 # Development Back End
 

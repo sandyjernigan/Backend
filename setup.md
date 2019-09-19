@@ -555,19 +555,9 @@ describe('Users Model', () => {
 });
 ```
 
-# Next
-
-## Header 
-### ./route
-
-```javascript
-// 
-```
-
-
 # Tables
 
-## users Table
+## users Table  
 
 Organizer - will need users table for login and information
 ------------------------------------------
@@ -687,3 +677,11 @@ multiple foods can be in different events, and Guests should be able to select i
 | guest_id  | integer, .unsigned().notNullable().references('id').inTable('guests') |
 | quantity  | integer, notNullable |
 tbl.primary(['guest_id', 'food_id', 'event_id']);
+
+# Next
+
+## Header 
+### ./route
+
+```javascript
+// 
