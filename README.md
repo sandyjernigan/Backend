@@ -120,7 +120,7 @@ Prototype Key Feature(s)
 
 # Development Back End
 
-### [Models](#models)
+### [Models](/#models)
 
 [User](###User)
 [Event](###Event)
@@ -144,6 +144,7 @@ Prototype Key Feature(s)
 - [Delete Event](#####Delete-Event) // TODO
 
 <span id="models"></span>
+
 ## Models
 
 ---
@@ -287,7 +288,7 @@ Prototype Key Feature(s)
 ```javascript
 {
   // username and email must be unique
-  // username, password, firstname, lastname, and email are required
+  // username, password, and email are required
 
   "username": "testuser",
   "password": "password",
@@ -297,6 +298,60 @@ Prototype Key Feature(s)
   "preferredname": "John",
   "group_id": null
 }
+```
+
+---
+
+##### Login
+
+**Endpoint:** `/api/auth/login`
+**Type:** `POST`
+**Description:**
+
+```
+    Gets authentication token for user with given credentials
+```
+
+**Expected Input**
+
+```javascript
+{
+    "username": "SomeUser",
+    "password": "TheirPassword"
+}
+```
+
+_sample request_
+
+```javascript
+const body = {
+  "username": "SomeUser",
+  "password": "TheirPassword"
+};
+
+axios.post(`${BASE_URL}/api/auth/login`, body);
+
+```
+
+**Expected Return**
+
+```javascript
+status = 200
+
+{
+  message: `Welcome SomeUser!`,
+  token
+}
+
+```
+
+**Expected Return if fails**
+
+```javascript
+status = 401
+
+{ message: 'Invalid Request. Please check the username and password submitted.' }
+
 ```
 
 ---

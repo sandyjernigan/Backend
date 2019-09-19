@@ -46,6 +46,11 @@ router.post('/login', (req, res) => {
     });
 });
 
+router.post('/logout', (req, res) => {
+  // implement logout
+  // Checking to see if possible to edit token, right now this does nothing
+});
+
 function generateToken(user) {
   const payload = {
     sub: 'user token',

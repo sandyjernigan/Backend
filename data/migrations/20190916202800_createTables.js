@@ -29,8 +29,8 @@ exports.up = function(knex) {
     tbl.increments();
     tbl.string('username').notNullable().unique();
     tbl.string('password').notNullable();
-    tbl.string('firstname').notNullable();
-    tbl.string('lastname').notNullable();
+    tbl.string('firstname');
+    tbl.string('lastname');
     tbl.string('preferredname');
     tbl.string('email').notNullable().unique();
     tbl.integer('group_id').unsigned().notNullable()
