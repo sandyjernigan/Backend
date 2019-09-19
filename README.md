@@ -123,4 +123,27 @@ Prototype Key Feature(s)
 ### [Models](##models)
 
 - [User](###User)
+- [Event](###Event)
+- [Food](###Food)
+
+### [Endpoints](##endpoints)
+
+##### [User Endpoints](###User-Endpoints)
+
+- [Sign Up](#####Signup)
+- [Login](#####Login)
+- [Update User](#####Update-User)   // TODO
+- [Delete USer](#####Delete-User)   // TODO
+
+##### [Event Endpoints](###Event-Endpoints)
+
+- [Get All Events](#####Get-All)
+- [Get Event](#####Get-Event)       // TODO
+- [Add Event](#####Add-Event)       // TODO
+- [Update Event](#####Update-Event) // TODO
+- [Delete Event](#####Delete-Event) // TODO
+
+
+
+
 
