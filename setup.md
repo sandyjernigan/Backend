@@ -563,3 +563,132 @@ describe('Users Model', () => {
 ```javascript
 // 
 ```
+
+
+# Tables
+
+## users Table
+
+Organizer - will need users table for login and information
+
+| id        | increments |
+| username  | string, notNullable, unique |
+| password  | string, notNullable |
+| firstname | string, notNullable |
+| lastname  | string, notNullable |
+| preferredname  | string, notNullable |
+| email     | string, notNullable, unique |
+| group_id  | link to a group |
+
+### groups Table
+
+multiple users can be in the same group or in no group
+
+| user_id    | integer |
+| groupname  | string, notNullable, unique |
+| description | string |
+
+### user_group Table
+
+| user_id        | integer, .unsigned().notNullable().references('id').inTable('users') |
+| group_id       | integer, .unsigned().notNullable().references('id').inTable('groups') |
+tbl.primary(['user_id', 'group_id']);
+
+## events Table
+
+Potluck events - will need events table for the individual events
+
+| id | increments |
+| eventname | string, notNullable |
+| description | string |
+| eventdate | date |
+| eventtime | time |
+| location_id | link to eventlocation table |
+
+### user_event Table
+
+table to connect users and the event they created
+
+| user_id        | integer, .unsigned().notNullable().references('id').inTable('users') |
+| event_id       | integer, .unsigned().notNullable().references('id').inTable('events') |
+tbl.primary(['user_id', 'event_id']);
+
+### locations Table
+
+Locations that events can occur
+
+| id | increments |
+| location | string, notNullable |
+| description | string |
+
+### event_location Table
+
+Locations may be reused - multiple events can have the same location
+
+| event_id        | integer, .unsigned().notNullable().references('id').inTable('events') |
+| location_id       | integer, .unsigned().notNullable().references('id').inTable('locations') |
+tbl.primary(['event_id', 'location_id']);
+
+
+## foods Table
+
+Potluck Food - will need a table for different foods, what category the food belongs to, is it vegetarian/vegan friendly, and is it guten free
+
+| id | increments |
+| food | string, notNullable |
+| description | string |
+| category_id | links to category table |
+| vegetarian | boolean |
+| vegan | boolean | 
+| gutenfree | boolean |
+
+## categories Table
+
+Potluck Food categories
+
+| id | increments |
+| category | string, notNullable |
+| description | string |
+
+### foods_category Table
+
+multiple foods can be in different categories
+
+| food_id        | integer, .unsigned().notNullable().references('id').inTable('foods') |
+| category_id       | integer, .unsigned().notNullable().references('id').inTable('categories') |
+tbl.primary(['food_id', 'category_id']);
+
+### foods_event Table
+
+multiple foods can be in different events
+
+| food_id        | integer, .unsigned().notNullable().references('id').inTable('foods') |
+| event_id       | integer, .unsigned().notNullable().references('id').inTable('events') |
+tbl.primary(['food_id', 'event_id']);
+
+## guests Table
+
+Guests may register and gain a username, however they do not have to register. Email required.
+
+| id | increments |
+| guestname | string, notNullable |
+| guestemail | string, notNullable |
+
+### guests_events
+
+Guests may attend multiple different events
+
+| event_id       | integer, .unsigned().notNullable().references('id').inTable('events') |
+| guest_id       | integer, .unsigned().notNullable().references('id').inTable('guests') |
+tbl.primary(['event_id', 'guest_id']);
+
+### guests_events
+
+Guests should be able to select items to bring to an event
+
+| guest_id       | integer, .unsigned().notNullable().references('id').inTable('guests') |
+| food_id       | integer, .unsigned().notNullable().references('id').inTable('foods') |
+| event_id       | integer, .unsigned().notNullable().references('id').inTable('events') |
+tbl.primary(['guest_id', 'food_id', 'event_id']);
+
+
