@@ -11,32 +11,27 @@ exports.up = function(knex) {
     users.string('lastname').notNullable();
     users.string('preferredname');
     users.string('email').notNullable().unique();
-    users.integer('group_id');
+    tbl.integer('group_id').unsigned().notNullable()
+      .references('id').inTable('groups')
+      .onDelete('CASCADE').onUpdate('CASCADE');
   });
 
-// groups
-  return knex.schema.createTable('users', users => {
-    users.increments();
-    users.string('username').notNullable().unique();
-    users.string('password').notNullable();
-    users.string('firstname').notNullable();
-    users.string('lastname').notNullable();
-    users.string('preferredname');
-    users.string('email').notNullable().unique();
-    users.integer('group_id');
+  // groups
+  return knex.schema.createTable('groups', tbl => {
+    tbl.increments();
+    tbl.string('groupname').notNullable().unique();
+    users.text('description');
   });
 
-// multiple users can be in the same group or in no group
-
-// | user_id    | integer |
-// | groupname  | string, notNullable, unique |
-// | description | string |
-
-// ### user_group Table
-
-// | user_id        | integer, .unsigned().notNullable().references('id').inTable('users') |
-// | group_id       | integer, .unsigned().notNullable().references('id').inTable('groups') |
-// tbl.primary(['user_id', 'group_id']);
+  // user_group
+    return knex.schema.createTable('user_group', tbl => {
+      tbl.integer('user_id').unsigned().notNullable()
+        .references('id').inTable('users')
+        .onDelete('CASCADE').onUpdate('CASCADE');
+      tbl.integer('group_id').unsigned().notNullable()
+        .references('id').inTable('groups')
+        .onDelete('CASCADE').onUpdate('CASCADE');
+    });
 
 // ## events Table
 
