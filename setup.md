@@ -666,13 +666,15 @@ Guests may register and gain a username, however they do not have to register. E
 | id | increments |
 | guestname | string, notNullable |
 | guestemail | string, notNullable |
+| user_id | link to user id optional |
 
 ### guests_events
 
-Guests may attend multiple different events
+Guests may attend multiple different events and if attending: "going", "not going", or "unknown" may be null
 
-| event_id       | integer, .unsigned().notNullable().references('id').inTable('events') |
-| guest_id       | integer, .unsigned().notNullable().references('id').inTable('guests') |
+| event_id    | integer, .unsigned().notNullable().references('id').inTable('events') |
+| guest_id    | integer, .unsigned().notNullable().references('id').inTable('guests') |
+| attending   | string | 
 tbl.primary(['event_id', 'guest_id']);
 
 ### guests_events
@@ -684,5 +686,3 @@ multiple foods can be in different events, and Guests should be able to select i
 | guest_id  | integer, .unsigned().notNullable().references('id').inTable('guests') |
 | quantity  | integer, notNullable |
 tbl.primary(['guest_id', 'food_id', 'event_id']);
-
-
