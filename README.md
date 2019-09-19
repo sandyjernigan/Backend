@@ -355,3 +355,19 @@ status = 401
 ```
 
 ---
+
+<!-- TODO  
+##### Logout
+
+**Endpoint:** `/api/auth/logout`
+**Type:** `GET`
+**Description:**
+
+```
+    Back end will kill any active tokens for user
+```
+
+---
+-->
+
+
