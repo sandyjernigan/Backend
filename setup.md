@@ -604,6 +604,7 @@ Potluck events - will need events table for the individual events
 | eventdate | date |
 | eventtime | time |
 | location_id | link to eventlocation table |
+| user_id | links to the user_id who created the event |
 
 ### user_event Table
 
@@ -635,7 +636,7 @@ tbl.primary(['event_id', 'location_id']);
 Potluck Food - will need a table for different foods, what category the food belongs to, is it vegetarian/vegan friendly, and is it guten free
 
 | id | increments |
-| food | string, notNullable |
+| foodname | string, notNullable |
 | description | string |
 | category_id | links to category table |
 | vegetarian | boolean |
@@ -658,14 +659,6 @@ multiple foods can be in different categories
 | category_id       | integer, .unsigned().notNullable().references('id').inTable('categories') |
 tbl.primary(['food_id', 'category_id']);
 
-### foods_event Table
-
-multiple foods can be in different events
-
-| food_id        | integer, .unsigned().notNullable().references('id').inTable('foods') |
-| event_id       | integer, .unsigned().notNullable().references('id').inTable('events') |
-tbl.primary(['food_id', 'event_id']);
-
 ## guests Table
 
 Guests may register and gain a username, however they do not have to register. Email required.
@@ -684,11 +677,12 @@ tbl.primary(['event_id', 'guest_id']);
 
 ### guests_events
 
-Guests should be able to select items to bring to an event
+multiple foods can be in different events, and Guests should be able to select items to bring to an event
 
-| guest_id       | integer, .unsigned().notNullable().references('id').inTable('guests') |
-| food_id       | integer, .unsigned().notNullable().references('id').inTable('foods') |
-| event_id       | integer, .unsigned().notNullable().references('id').inTable('events') |
+| food_id   | integer, .unsigned().notNullable().references('id').inTable('foods') |
+| event_id  | integer, .unsigned().notNullable().references('id').inTable('events') |
+| guest_id  | integer, .unsigned().notNullable().references('id').inTable('guests') |
+| quantity  | integer, notNullable |
 tbl.primary(['guest_id', 'food_id', 'event_id']);
 
 

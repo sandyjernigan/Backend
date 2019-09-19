@@ -143,7 +143,124 @@ Prototype Key Feature(s)
 - [Update Event](#####Update-Event) // TODO
 - [Delete Event](#####Delete-Event) // TODO
 
+## Models
 
+---
 
+### User
 
+```javascript
+{
+    "userid": 1,
+    "username": "user",
+    "password": "examplepass",
+    "firstname": "Johnathan",
+    "lastname": "Doe",
+    "preferredname": "John",
+    "email": "user@email.com",
+    "groupname": "Developers"
+}
+```
 
+#### Group
+
+```javascript
+{
+    "groupid": 1,
+    "groupname": "Developers",
+    "description": "Description of the group"
+}
+```
+
+### Event
+
+```javascript
+{
+    "eventid": 1,
+    "eventname": "John's First Potluck",
+    "description": "Birthday Party Potluck for Jane.",
+    "eventdate": "8-23-2019",
+    "eventtime": "6:00 PM",
+    "location": "John's Backyard",
+    "foods": [
+      { 
+        "foodname": "Hamburgers",
+        "quantity": 24,
+        "description": "hamburger meat",
+        "category": "meat",
+        "vegetarian" : false,
+        "vegan" : false,
+        "gutenfree" : null,
+        "bringing": [
+          {
+          "guestname": "guest1", // this is marked as bringing
+          "quantity": 12 // qty guest plans to bring
+          },
+          {
+          "guestname": "guest2", // this is marked as bringing
+          "quantity": 12 // qty guest plans to bring
+          },
+        ]
+      },
+      { 
+        "foodname": "Hamburger Buns",
+        "quantity": 24,
+        "description": null,
+        "category": "bread",
+        "vegetarian" : true,
+        "vegan" : null,
+        "gutenfree" : false,
+        "bringing": null // if null no one is selected as bringing yet
+      },
+    ],
+    "guests": [ // array of guests 
+      "guest_id": 1,
+      "guest_id": 2
+    ]
+}
+```
+
+#### Locations
+
+```javascript
+{
+    "locationid": 1,
+    "location": "John's Backyard",
+    "description": "At John and Jane's house"
+}
+```
+
+### Foods
+
+```javascript
+{
+  "foodid": 1,
+  "foodname": "Hamburger Buns",
+  "description": null,
+  "categoryid": 1
+  "vegetarian" : true,
+  "vegan" : null,
+  "gutenfree" : false,
+}
+```
+
+#### Categories
+
+```javascript
+{
+  "category_id": 1,
+  "category_name": "bread",
+  "category_description": "breads made from either flour, oats, rye, etc"
+}
+```
+
+### Guests
+
+```javascript
+{
+  "guest_id": 1,
+  "guestname": "guest1",
+  "guestemail": "jane@email.com",
+  "user_id": null
+}
+```
