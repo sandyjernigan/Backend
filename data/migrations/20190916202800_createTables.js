@@ -73,41 +73,12 @@ exports.up = function(knex) {
     tbl.string('guestemail').notNullable();
     tbl.integer('user_id').unsigned()
       .references('id').inTable('users');
-  })
-
-// Table relationships
-
-  // user_group
-  .createTable('user_group', tbl => {
-    tbl.integer('user_id').unsigned().notNullable()
-      .references('id').inTable('users')
-      .onDelete('CASCADE').onUpdate('CASCADE');
     tbl.integer('group_id').unsigned().notNullable()
       .references('id').inTable('groups')
       .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.primary(['user_id', 'group_id']);
   })
 
-  // event_location
-  .createTable('event_location', tbl => {
-    tbl.integer('event_id').unsigned().notNullable()
-      .references('id').inTable('events')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.integer('location_id').unsigned().notNullable()
-      .references('id').inTable('locations');
-    tbl.primary(['event_id', 'location_id']);
-  })
-
-  // user_event
-  .createTable('user_event', tbl => {
-    tbl.integer('user_id').unsigned().notNullable()
-      .references('id').inTable('users')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.integer('event_id').unsigned().notNullable()
-      .references('id').inTable('events')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.primary(['user_id', 'event_id']);
-  })
+// Table relationships
 
   // guests_events
   .createTable('guests_events', tbl => {
