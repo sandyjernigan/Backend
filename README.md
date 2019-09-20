@@ -1,5 +1,9 @@
 # Back End for Potluck Planner
 
+## Back End Deployed with Herokuapp
+
+[https://planthepotluck.herokuapp.com/](https://planthepotluck.herokuapp.com/)
+
 ## Pitch: 
 
 If you have ever tried to organize a potluck through text messages, online to-do lists or spreadsheets you get why this app is important. In the world of social gatherings and potlucks the "Potluck Planner" is king. This is your place for all things pot luck. 
