@@ -143,11 +143,10 @@ Prototype Key Feature(s)
 - [Update Event](#####Update-Event) // TODO
 - [Delete Event](#####Delete-Event) // TODO
 
-<span id="models"></span>
 
 ## Models
-
 ---
+<span id="models"></span>
 
 ### User 
 
@@ -356,7 +355,7 @@ status = 401
 
 ---
 
-<!-- TODO  
+<!-- TODO:  
 ##### Logout
 
 **Endpoint:** `/api/auth/logout`
@@ -368,6 +367,211 @@ status = 401
 ```
 
 ---
+
+##### Update-User
+
+**Endpoint:** `/api/auth/user/{id}`
+**Type:** `PUT`
+**Description:**
+
+```
+    Update user with given id
+```
+
+**Expected Input**
+
+```javascript
+{
+  "username": "testuser",
+  "password": "password",
+  "email": "user@email.com",
+  "firstname": "Johnathan",
+  "lastname": "Doe",
+  "preferredname": "John",
+  "group_id": null
+}
+```
+
+---
+
+##### Delete-User
+
+**Endpoint:** `/user/{id}`
+**Type:** `DELETE`
+**Description:**
+
+```
+    Delete user with given id
+```
+
+---
 -->
 
+### Event Endpoints
 
+##### Get-All
+
+**Endpoint:** `/events/`
+**Type:** `GET`
+**Description:**
+
+```
+    Get a list of all event objects
+```
+
+---
+
+##### Get-Event
+
+**Endpoint:** `/events/{id}`
+**Type:** `PUT`
+
+_will only fetch and event if it belongs to active user_
+
+**Description:**
+
+```
+    Update user with given id
+```
+
+---
+
+##### Add-Event
+
+**Endpoint:** `/events/new`
+**Type:** `POST`
+
+_keeps giving weird auth errors_
+
+**Description:**
+
+```
+    Update user with given id
+```
+
+**Expected Input**
+
+```javascript
+{
+        {
+        "name": "Big ole Fun Time",
+        "description": "We're gonna have a big ole funt ime",
+        "date": "8-23-2019",
+        "budget": "$10,000",
+        "companyname": "Company A",
+        "tasklist": [
+            {
+                "name": "Reservations",
+                "description": "Make Hotel Reservations",
+                "assigned": "John",
+                "completed": false,
+                "duedate": "8-1-2019",
+                "category": "Service",
+                "purchase": [
+                    {
+                        "description": "Reserve Hotel Rooms",
+                        "vendorname": "Mariott Hotel",
+                        "pointofcontact": "Judy",
+                        "email": "judyisawesome@email.com",
+                        "price": "$3,000",
+                        "qty": 0
+                    }
+                ]
+            },
+            {
+                "name": "RSVP",
+                "description": "Have all employees either RSVP or opt out",
+                "assigned": "Michelle",
+                "completed": false,
+                "duedate": "7-15-2019",
+                "category": "Task",
+                "purchase": []
+            }
+        ],
+        // This should be empty, currently logged in user will be set added to list
+        "userList": []
+    }
+}
+```
+
+---
+
+##### Update-Event
+
+**Endpoint:** `/events/edit/{id}`
+**Type:** `PUT`
+
+**Description:**
+
+```
+    Update event with given id.
+
+    Use this to access and update and sub categories like tasklist or userlist
+
+    if only given one field ex. "tasklist" it will read the data from that field and try to use it to update object
+```
+
+**Expected Input**
+
+```javascript
+{
+        {
+        "name": "Big ole Fun Time",
+        "description": "We're gonna have a big ole funt ime",
+        "date": "8-23-2019",
+        "budget": "$10,000",
+        "companyname": "Company A",
+        "tasklist": [
+            {
+                "name": "Reservations",
+                "description": "Make Hotel Reservations",
+                "assigned": "John",
+                "completed": false,
+                "duedate": "8-1-2019",
+                "category": "Service",
+                "purchase": [
+                    {
+                        "description": "Reserve Hotel Rooms",
+                        "vendorname": "Mariott Hotel",
+                        "pointofcontact": "Judy",
+                        "email": "judyisawesome@email.com",
+                        "price": "$3,000",
+                        "qty": 0
+                    }
+                ]
+            },
+            {
+                "name": "RSVP",
+                "description": "Have all employees either RSVP or opt out",
+                "assigned": "Michelle",
+                "completed": false,
+                "duedate": "7-15-2019",
+                "category": "Task",
+                "purchase": []
+            }
+        ],
+        "userList": [
+            {
+                "user" : {
+                    // user object
+                }
+            }
+        ]
+    }
+}
+```
+
+---
+
+**Endpoint:** `/events/delete/{eventid}`
+**Type:** `DELETE`
+
+_will only delete an event if it belongs to active user_
+
+**Description:**
+
+```
+    Deletes event with given ID
+```
+
+---
