@@ -6,6 +6,7 @@ const jwtSecret = process.env.JWT_SECRET || 'secret should be set in env';
 // User Models
 const Users = require('./users-model.js');
 
+// Register **Endpoint:** `/api/auth/register` 
 router.post('/register', (req, res) => {
   // implement registration
   let user = req.body;
@@ -23,8 +24,8 @@ router.post('/register', (req, res) => {
     });
 });
 
+// Login **Endpoint:** `/api/auth/login` 
 router.post('/login', (req, res) => {
-  // implement login
   let { username, password } = req.body;
 
   Users.findBy({ username })
@@ -44,6 +45,22 @@ router.post('/login', (req, res) => {
     .catch(error => {
       res.status(500).json(error);
     });
+});
+
+// Log Out **Endpoint:** `/api/auth/logout` 
+router.get('/logout', (req, res) => {
+  // TODO: implement logout
+  // Checking to see if possible to edit token, right now this does nothing
+});
+
+// Update User **Endpoint:** `/api/auth/user/{id}` 
+router.put('/user/{id}', (req, res) => {
+  // TODO: Add function to update user
+});
+
+// Delete User **Endpoint:** `/api/auth/user/{id}` 
+router.delete('/user/{id}', (req, res) => {
+  // TODO: Add function to delete user
 });
 
 function generateToken(user) {

@@ -29,8 +29,8 @@ exports.up = function(knex) {
     tbl.increments();
     tbl.string('username').notNullable().unique();
     tbl.string('password').notNullable();
-    tbl.string('firstname').notNullable();
-    tbl.string('lastname').notNullable();
+    tbl.string('firstname');
+    tbl.string('lastname');
     tbl.string('preferredname');
     tbl.string('email').notNullable().unique();
     tbl.integer('group_id').unsigned().notNullable()
@@ -77,38 +77,6 @@ exports.up = function(knex) {
 
 // Table relationships
 
-  // user_group
-  .createTable('user_group', tbl => {
-    tbl.integer('user_id').unsigned().notNullable()
-      .references('id').inTable('users')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.integer('group_id').unsigned().notNullable()
-      .references('id').inTable('groups')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.primary(['user_id', 'group_id']);
-  })
-
-  // event_location
-  .createTable('event_location', tbl => {
-    tbl.integer('event_id').unsigned().notNullable()
-      .references('id').inTable('events')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.integer('location_id').unsigned().notNullable()
-      .references('id').inTable('locations');
-    tbl.primary(['event_id', 'location_id']);
-  })
-
-  // user_event
-  .createTable('user_event', tbl => {
-    tbl.integer('user_id').unsigned().notNullable()
-      .references('id').inTable('users')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.integer('event_id').unsigned().notNullable()
-      .references('id').inTable('events')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.primary(['user_id', 'event_id']);
-  })
-
   // guests_events
   .createTable('guests_events', tbl => {
     tbl.integer('event_id').unsigned().notNullable()
@@ -120,38 +88,32 @@ exports.up = function(knex) {
     tbl.string('attending');
   })
 
-  // foods_category
-  .createTable('foods_category', tbl => {
-    tbl.integer('food_id').unsigned().notNullable()
-      .references('id').inTable('foods')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.integer('category_id').unsigned().notNullable()
-      .references('id').inTable('categories');
-    tbl.primary(['food_id', 'category_id']);
-  })
-
-  // food_events
-  .createTable('food_events', tbl => {
+  // food_needed
+  .createTable('food_needed', tbl => {
+    tbl.increments();
     tbl.integer('event_id').unsigned().notNullable()
-      .references('id').inTable('events')
-      .onDelete('CASCADE').onUpdate('CASCADE');
+      .references('id').inTable('events');
     tbl.integer('food_id').unsigned().notNullable()
       .references('id').inTable('foods');
+    tbl.integer('quantity_needed').notNullable();
+  })
+
+  // food_bringing
+  .createTable('food_bringing', tbl => {
+    tbl.increments();
+    tbl.integer('food_needed_id').unsigned().notNullable()
+      .references('id').inTable('food_needed');
     tbl.integer('guest_id').unsigned().notNullable()
       .references('id').inTable('guests');
-    tbl.primary(['event_id', 'food_id']);
     tbl.integer('quantity').notNullable();
   })
 };
 
 exports.down = function(knex, Promise) {
   return knex.schema
-    .dropTableIfExists('food_events')
-    .dropTableIfExists('foods_category')
+    .dropTableIfExists('food_bringing')
+    .dropTableIfExists('food_needed')
     .dropTableIfExists('guests_events')
-    .dropTableIfExists('user_event')
-    .dropTableIfExists('event_location')
-    .dropTableIfExists('user_group')
     .dropTableIfExists('guests')
     .dropTableIfExists('events')
     .dropTableIfExists('foods')
