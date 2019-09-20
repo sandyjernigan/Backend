@@ -73,9 +73,6 @@ exports.up = function(knex) {
     tbl.string('guestemail').notNullable();
     tbl.integer('user_id').unsigned()
       .references('id').inTable('users');
-    tbl.integer('group_id').unsigned().notNullable()
-      .references('id').inTable('groups')
-      .onDelete('CASCADE').onUpdate('CASCADE');
   })
 
 // Table relationships
@@ -91,38 +88,32 @@ exports.up = function(knex) {
     tbl.string('attending');
   })
 
-  // foods_category
-  .createTable('foods_category', tbl => {
-    tbl.integer('food_id').unsigned().notNullable()
-      .references('id').inTable('foods')
-      .onDelete('CASCADE').onUpdate('CASCADE');
-    tbl.integer('category_id').unsigned().notNullable()
-      .references('id').inTable('categories');
-    tbl.primary(['food_id', 'category_id']);
-  })
-
-  // food_events
-  .createTable('food_events', tbl => {
+  // food_needed
+  .createTable('food_needed', tbl => {
+    tbl.increments();
     tbl.integer('event_id').unsigned().notNullable()
-      .references('id').inTable('events')
-      .onDelete('CASCADE').onUpdate('CASCADE');
+      .references('id').inTable('events');
     tbl.integer('food_id').unsigned().notNullable()
       .references('id').inTable('foods');
+    tbl.integer('quantity_needed').notNullable();
+  })
+
+  // food_bringing
+  .createTable('food_bringing', tbl => {
+    tbl.increments();
+    tbl.integer('food_needed_id').unsigned().notNullable()
+      .references('id').inTable('food_needed');
     tbl.integer('guest_id').unsigned().notNullable()
       .references('id').inTable('guests');
-    tbl.primary(['event_id', 'food_id']);
     tbl.integer('quantity').notNullable();
   })
 };
 
 exports.down = function(knex, Promise) {
   return knex.schema
-    .dropTableIfExists('food_events')
-    .dropTableIfExists('foods_category')
+    .dropTableIfExists('food_bringing')
+    .dropTableIfExists('food_needed')
     .dropTableIfExists('guests_events')
-    .dropTableIfExists('user_event')
-    .dropTableIfExists('event_location')
-    .dropTableIfExists('user_group')
     .dropTableIfExists('guests')
     .dropTableIfExists('events')
     .dropTableIfExists('foods')

@@ -6,20 +6,15 @@ exports.seed = function(knex, Promise) {
     {
       guestname: "Jane",
       guestemail: "jane@email.com",
-      user_id: 3,
-      group_id: 2
+      user_id: 3
     },
     {
       guestname: "Jack",
-      guestemail: "jack@email.com",
-      user_id: null,
-      group_id: null
+      guestemail: "jack@email.com"
     },
     {
       guestname: "Jill",
-      guestemail: "jill@email.com",
-      user_id: null,
-      group_id: null
+      guestemail: "jill@email.com"
     }
   ]);
 
