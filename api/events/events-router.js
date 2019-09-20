@@ -17,3 +17,5 @@ router.get('/', async (req, res) => {
 });
 
 //#endregion
+
+module.exports = router;

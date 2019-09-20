@@ -5,6 +5,7 @@ const helmet = require('helmet');
 // require router files
 const authenticate = require('./auth/authenticate-middleware.js');
 const authRouter = require('./auth/auth-router.js');
+const eventsRouter = require('./events/events-router.js');
 
 const server = express();
 
@@ -22,5 +23,6 @@ server.get('/', (req, res) => {
 
 // Routes
 server.use('/api/auth', authRouter);
+server.use('/api/events', eventsRouter);
 
 module.exports = server;

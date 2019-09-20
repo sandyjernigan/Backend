@@ -1,4 +1,4 @@
-const db = require('../data/db-config.js');
+const db = require('../../data/dbConfig.js');
 
 
 module.exports = {
@@ -7,6 +7,5 @@ module.exports = {
 
 // getEvents() - return all events 
 async function getEvents() {
-  const results = await db('events');
-  return results
+  return db('events');
 }
