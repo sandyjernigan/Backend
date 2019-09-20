@@ -422,6 +422,8 @@ status = 401
 
 ---
 
+##### 
+<!-- TODO:  
 ##### Get-Event
 
 **Endpoint:** `/events/{id}`
@@ -574,5 +576,5 @@ _will only delete an event if it belongs to active user_
 ```
     Deletes event with given ID
 ```
-
+-->
 ---
