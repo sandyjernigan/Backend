@@ -79,4 +79,5 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-raw.md
+#Testing Files
+_testing/
