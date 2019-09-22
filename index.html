@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Potuluck Planner Backend</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <style>
+    body { 
+      background-color: #202020; 
+      color: #d4d4d4; 
+      margin: 30px 80px;
+    }
+    a {
+      color: #d4d4d4;
+    }
+    h1, h2, h3 {
+      position:relative;
+      cursor: pointer;
+    }
+    h1 {
+      left: -40px;
+    }
+    h2 {
+      left: -30px;
+    }
+    h3 {
+      left: -5px;
+      text-decoration: underline;
+    }
+    h4 {
+      left: 20px;
+    }
+    button {
+      background-color: #202020;
+      border: 2px darkgray solid;
+      color: white;
+      padding: 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 10px;
+      margin: 4px 2px;
+      cursor: pointer;
+      position:relative;
+      top: -5px;
+      left: -5px;
+    }
+    button:hover { background-color: darkgray; }
+    .show { display: block; }
+    .hid { display: none; } 
+    .moreInfo {
+      position:relative;
+      left: 5px;
+    }
+    .moreInfo:hover {
+      color: lightskyblue;
+    }
+    h2.moreInfo:hover {
+      text-decoration: underline wavy;
+    }
+    li.moreInfo {
+      position:relative;
+      left: -20px;
+      cursor: pointer;
+    }
+    #main {
+      max-width: 400px;
+    }
+    .moreContent {
+      position: absolute;
+      left: 500px;
+      top: 50px;
+    }
+    code {
+      color: lightsteelblue;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="main">
+  <h1 onclick="{showContent('pitch')}"><button>v</button> Pitch</h1>
+  <p id='pitch' class="hid">If you have ever tried to organize a potluck through text messages, online to-do lists or spreadsheets you get why this app is important. In the world of social gatherings and potlucks the "Potluck Planner" is king. This is your place for all things pot luck. </p>
+
+  <h1 onclick="{showContent('product_canvas')}"><button>v</button> Product Canvas</h1>
+    <div id="product_canvas" class="hid">
+    <h2 onclick="{showContent('proposal')}"><button>v</button> Proposal</h2>
+      <div id="proposal" class="hid">
+      <h3>What problem does your app solve?</h3>
+        <p>Client wants to have an application that allows the user to login and manage potlucks. </p>
+      <h3>Be as specific as possible; how does your app solve the problem?</h3>
+        <p>This app will allow:</p>
+        <ul>
+          <li>The user to login</li>
+          <li>Manage their own potluck event</li>
+          <li>Invite friends to attend the potluck event </li>
+          <li>Adjust dates, location, and times of their own events</li>
+          <li>Has a list feature to add food items</li>
+          <li>Guests should be able to confirm they are going to the event</li>
+          <li>Guests should be able to select items to bring.</li>
+        </ul>
+      </div>
+    </div>
+
+  <h1 onclick="{showContent('planning')}"><button>v</button> Planning</h1>
+    <div id="planning" class="hid">
+    <a href="https://trello.com/b/LhtzQb6t/potluck-planner">Group Trello Board</a>
+    </div>
+
+  <h1 onclick="{showContent('developmentBE')}"><button>v</button> Development Back End</h1>
+  <div id="developmentBE" class="show">
+    <h2 class="moreInfo" onclick="{showContent('models')}">Models</h2>
+    <div id="models" class="hid">
+      <ul>
+        <li class="moreInfo" onclick="{showContent('modelsUsers')}">User</li>
+        <li class="moreInfo" onclick="{showContent('modelsEvents')}">Event</li>
+        <li class="moreInfo" onclick="{showContent('modelsFood')}">Food</li>
+        <li class="moreInfo" onclick="{showContent('modelsGuests')}">Guests</li>
+      </ul>
+    </div>
+
+    <h2 class="moreInfo" onclick="{showContent('endpoints')}">Endpoints</h2>
+    <div id="endpoints" class="hid">
+
+      <h3 class="moreInfo" onclick="{showContent('userEndpoints')}">User Endpoints</h3>
+      <div id="userEndpoints" class="hid">
+      <ul>
+        <li class="moreInfo" onclick="{showContent('signup')}">Sign Up</li>
+        <li class="moreInfo" onclick="{showContent('login')}">Login</li>
+        <li class="moreInfo" onclick="{showContent('updateUser')}">Update User</li>
+        <li class="moreInfo" onclick="{showContent('deleteUser')}">Delete User</li>
+      </ul>
+      </div>
+
+      <h3 class="moreInfo" onclick="{showContent('eventEndpoints')}">Event Endpoints</h3>
+      <div id="eventEndpoints" class="hid">
+      <ul>
+        <li class="moreInfo" onclick="{showContent('getEvents')}">Get All Events - Simple</li>
+        <li class="moreInfo" onclick="{showContent('getAllEvents')}">Get All Events - Detailed</li>
+        <li class="moreInfo" onclick="{showContent('getEvent')}">Get Event</li>
+        <li class="moreInfo" onclick="{showContent('addEvent')}">Add Event</li>
+        <li class="moreInfo" onclick="{showContent('updateEvent')}">Update Event</li>
+        <li class="moreInfo" onclick="{showContent('deleteEvent')}">Delete Event</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Open to the Side -->
+<div id="#content" class="moreContent">
+
+<!-- Models --> 
+  <!-- User Model --> 
+  <div id="modelsUsers" class="hid">
+    <h3 onclick="{showContent('modelsUsers')}">User Model</h3>
+      <code>
+        {
+          "userid": 1, <br />
+          "username": "user", <br />
+          "password": "examplepass", <br />
+          "firstname": "Johnathan", <br />
+          "lastname": "Doe", <br />
+          "preferredname": "John", <br />
+          "email": "user@email.com", <br />
+          "groupname": "Developers" <br />
+        }
+      </code>
+
+    <h4>Group Model</h4>
+    <code>
+      {
+        "groupid": 1, <br />
+        "groupname": "Developers", <br />
+        "description": "Description of the group" <br />
+      }
+    </code>
+  </div>
+
+  <!-- Event Model --> 
+  <div id="modelsEvents" class="hid">
+    <h3 onclick="{showContent('modelsEvents')}">Event Model</h3>
+    <code>
+      {
+        "eventid": 1, <br />
+        "eventname": "John's First Potluck", <br />
+        "description": "Birthday Party Potluck for Jane.", <br />
+        "eventdate": "8-23-2019", <br />
+        "eventtime": "6:00 PM", <br />
+        "location": "John's Backyard", <br />
+        "foods": [ <br />
+          {  <br />
+            "foodname": "Hamburgers", <br />
+            "quantity": 24, <br />
+            "description": "hamburger meat", <br />
+            "category": "meat", <br />
+            "vegetarian" : false, <br />
+            "vegan" : false, <br />
+            "gutenfree" : null, <br />
+            "bringing": [ <br />
+              { <br />
+              "guestname": "guest1", // this is marked as bringing <br />
+              "quantity": 12 // qty guest plans to bring <br />
+              }, <br />
+              { <br />
+              "guestname": "guest2", // this is marked as bringing <br />
+              "quantity": 12 // qty guest plans to bring <br />
+              }, <br />
+            ] <br />
+          },
+          { 
+            "foodname": "Hamburger Buns",
+            "quantity": 24,
+            "description": null,
+            "category": "bread",
+            "vegetarian" : true,
+            "vegan" : null,
+            "gutenfree" : false,
+            "bringing": null // if null no one is selected as bringing yet
+          },
+        ],
+        "guests": [ // array of guests 
+          "guest_id": 1,
+          "guest_id": 2
+        ]
+      }
+    </code>
+
+    <h4>Locations Model</h4>
+    <code>
+      {
+        "locationid": 1, <br />
+        "location": "John's Backyard", <br />
+        "description": "At John and Jane's house" <br />
+      }
+    </code>
+  </div>
+
+  <!-- Food Model --> 
+  <div id="modelsFood" class="hid">
+    <h3 onclick="{showContent('modelsFood')}">Food Model</h3>
+      <code>
+        {
+          "foodid": 1, <br />
+          "foodname": "Hamburger Buns", <br />
+          "description": null, <br />
+          "categoryid": 1, <br />
+          "vegetarian" : true, <br />
+          "vegan" : null, <br />
+          "gutenfree" : false, <br />
+        }
+      </code>
+
+    <h4>Categories Model</h4>
+    <code>
+      {
+        "category_id": 1, <br />
+        "category_name": "bread", <br />
+        "category_description": "breads made from either flour, oats, rye, etc" <br />
+      }
+    </code>
+  </div>
+
+  <!-- Guest Model --> 
+  <div id="modelsGuests" class="hid">
+    <h3 onclick="{showContent('modelsGuests')}">Guests Model</h3>
+      <code>
+        {
+          "guest_id": 1, <br />
+          "guestname": "guest1", <br />
+          "guestemail": "jane@email.com", <br />
+          "user_id": null <br />
+        }
+      </code>
+  </div>
+
+<!-- Endpoints --> 
+  <!-- User Endpoint - SignUp --> 
+  <div id="signup" class="hid">
+    <h3 onclick="{showContent('signup')}">User Endpoints - Signup</h3>
+      <p><strong>Endpoint:</strong> `/api/auth/register`</p>
+      <p><strong>Type:</strong> `POST`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Sign up a new user
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+          // username and email must be unique <br />
+          // username, password, and email are required <br />
+          <br />
+          "username": "testuser", <br />
+          "password": "password", <br />
+          "email": "user@email.com", <br />
+          "firstname": "Johnathan", <br />
+          "lastname": "Doe", <br />
+          "preferredname": "John", <br />
+          "group_id": null <br />
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+          <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          <br />
+      </code>
+  </div>
+
+  <!-- User Endpoint - Login --> 
+  <div id="login" class="hid">
+    <h3 onclick="{showContent('login')}">User Endpoints - Login</h3>
+      <p><strong>Endpoint:</strong> `/api/auth/login`</p>
+      <p><strong>Type:</strong> `POST`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Gets authentication token for user with given credentials
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        "username": "SomeUser",  <br />
+        "password": "TheirPassword"  <br />
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        const body = {  <br />
+          "username": "SomeUser",  <br />
+          "password": "TheirPassword"  <br />
+        };  <br />
+        <br />
+        axios.post(`${BASE_URL}/api/auth/login`, body);
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        status = 200   <br />
+        <br />
+        {
+          message: `Welcome SomeUser!`,
+          token
+        }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        status = 401  <br />
+        <br />
+        { message: 'Invalid Request. Please check the username and password submitted.' }
+      </code>
+  </div>
+
+  <!-- User Endpoint - Update --> 
+  <div id="updateUser" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('updateUser')}">User Endpoints - Update User</h3>
+      <p><strong>Endpoint:</strong> `/api/auth/user/{id}`</p>
+      <p><strong>Type:</strong> `PUT`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+          Update user with given id
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        {
+          "username": "testuser", <br />
+          "password": "password", <br />
+          "email": "user@email.com", <br />
+          "firstname": "Johnathan", <br />
+          "lastname": "Doe", <br />
+          "preferredname": "John", <br />
+          "group_id": null <br />
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+          <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          <br />
+      </code>
+  </div>
+
+  <!-- User Endpoint - Delete --> 
+  <div id="deleteUser" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('deleteUser')}">User Endpoints - Delete User</h3>
+      <p><strong>Endpoint:</strong> `/api/auth/user/{id}`</p>
+      <p><strong>Type:</strong> `DELETE`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+          Delete user with given id
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        {
+          "id": 1 <br />
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+          <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          <br />
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Get All --> 
+  <div id="getEvents" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('getEvents')}">Event Endpoints - Get All Events - Simple</h3>
+      <p><strong>Endpoint:</strong> `/api/events/`</p>
+      <p><strong>Type:</strong> `GET`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Get a list of all event objects -simple return
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        <br />
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Get All - Detailed --> 
+  <div id="getAllEvents" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('getAllEvents')}">Event Endpoints - Get All Events - Detailed</h3>
+      <p><strong>Endpoint:</strong> `/api/events/all`</p>
+      <p><strong>Type:</strong> `GET`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Get a list of all event objects -detailed return
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        <br />
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Get Event --> 
+  <div id="getEvent" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('getEvent')}">Event Endpoints - Get Event</h3>
+      <p><strong>Endpoint:</strong> `/api/events/{id}`</p>
+      <p><strong>Type:</strong> `GET`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Get detailed information about an event
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        {
+          <br />
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        <br />
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Add Event --> 
+  <div id="addEvent" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Event</h3>
+      <p><strong>Endpoint:</strong> `/api/events/new`</p>
+      <p><strong>Type:</strong> `POST`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Add a new event to database
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        {
+          <br />
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        <br />
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Update Event --> 
+  <div id="updateEvent" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('updateEvent')}">Event Endpoints - Update Event</h3>
+      <p><strong>Endpoint:</strong> `/api/events/edit/{id}`</p>
+      <p><strong>Type:</strong> `PUT`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Update event with given id. <br />
+        Use this to access and update and sub categories like food list or guest list.
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        {
+          <br />
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        <br />
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Delete Event --> 
+  <div id="deleteEvent" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('deleteEvent')}">Event Endpoints - DELETE Event</h3>
+      <p><strong>Endpoint:</strong> `/api/events/edit/{id}`</p>
+      <p><strong>Type:</strong> `DELETE`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Deletes event with given ID
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        {
+          <br />
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+          <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          <br />
+      </code>
+  </div>
+
+</div>
+
+  <!-- replaceThis --> 
+  <!-- Sample
+  <div id="replaceThis" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('replaceThis')}">Event Endpoints - CreateReadUpdateDelete Event</h3>
+      <p><strong>Endpoint:</strong> `/api/auth/user/{id}`</p>
+      <p><strong>Type:</strong> `DELETE`</p> (GET, POST, PUT, DELETE)
+      <p><strong>Description:</strong> </p>
+      <code>
+          Description
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        {
+          <br />
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+          <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          <br />
+      </code>
+  </div>
+  --> 
+
+  <script>
+    function showContent(e) {
+      const select = document.getElementById(e);
+      select.classList.toggle("show");
+      select.classList.toggle("hid");
+    }
+  </script>
+</body>
+</html>

@@ -155,16 +155,7 @@ Prototype Key Feature(s)
 ### User 
 
 ```javascript
-{
-    "userid": 1,
-    "username": "user",
-    "password": "examplepass",
-    "firstname": "Johnathan",
-    "lastname": "Doe",
-    "preferredname": "John",
-    "email": "user@email.com",
-    "groupname": "Developers"
-}
+
 ```
 
 #### Group
@@ -242,7 +233,7 @@ Prototype Key Feature(s)
   "foodid": 1,
   "foodname": "Hamburger Buns",
   "description": null,
-  "categoryid": 1
+  "categoryid": 1,
   "vegetarian" : true,
   "vegan" : null,
   "gutenfree" : false,
@@ -275,6 +266,7 @@ Prototype Key Feature(s)
 ### User-Endpoints
 
 ---
+  <h1>Pitch  <button class="button" onclick="{showContent(document.getElementById('pitchinfo'))}">v</button></h1>
 
 ##### Signup
 
@@ -410,7 +402,6 @@ status = 401
 ```
 
 ---
--->
 
 ### Event Endpoints
 
@@ -429,14 +420,12 @@ status = 401
 ##### Get-Event
 
 **Endpoint:** `/events/{id}`
-**Type:** `PUT`
-
-_will only fetch and event if it belongs to active user_
+**Type:** `GET`
 
 **Description:**
 
 ```
-    Update user with given id
+    Get detailed information about an event
 ```
 
 ---
@@ -458,44 +447,6 @@ _keeps giving weird auth errors_
 
 ```javascript
 {
-        {
-        "name": "Big ole Fun Time",
-        "description": "We're gonna have a big ole funt ime",
-        "date": "8-23-2019",
-        "budget": "$10,000",
-        "companyname": "Company A",
-        "tasklist": [
-            {
-                "name": "Reservations",
-                "description": "Make Hotel Reservations",
-                "assigned": "John",
-                "completed": false,
-                "duedate": "8-1-2019",
-                "category": "Service",
-                "purchase": [
-                    {
-                        "description": "Reserve Hotel Rooms",
-                        "vendorname": "Mariott Hotel",
-                        "pointofcontact": "Judy",
-                        "email": "judyisawesome@email.com",
-                        "price": "$3,000",
-                        "qty": 0
-                    }
-                ]
-            },
-            {
-                "name": "RSVP",
-                "description": "Have all employees either RSVP or opt out",
-                "assigned": "Michelle",
-                "completed": false,
-                "duedate": "7-15-2019",
-                "category": "Task",
-                "purchase": []
-            }
-        ],
-        // This should be empty, currently logged in user will be set added to list
-        "userList": []
-    }
 }
 ```
 
@@ -580,3 +531,5 @@ _will only delete an event if it belongs to active user_
 ```
 
 ---
+
+-->

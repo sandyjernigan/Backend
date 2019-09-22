@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const path = require('path');
 
 // require router files
 const authenticate = require('./auth/authenticate-middleware.js');
@@ -15,10 +16,7 @@ server.use(express.json());
 
 // Base Route
 server.get('/', (req, res) => {
-  res.send("<div align=\'center\'>" + 
-    "<p>Hello World!</p>" + 
-    "<p>This is the Starting Page.</p>" +
-    "</div>");
+  res.sendFile(path.join(__dirname+'/../index.html'));
 });
 
 // Routes
