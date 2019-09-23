@@ -13,18 +13,19 @@ function getEvents() {
 
 // getAllEvents() - return all events - detailed return
 function getAllEvents() {
-  return db('events');
+  return db('events')
+  .join('locations', 'locations.id', 'events.location_id')
+  .join('users', 'users.id', 'events.user_id')
+  .select(
+    'events.id as eventid',
+    'events.eventname', 
+    'events.description', 
+    'events.eventdate', 
+    'events.eventtime',
+    'locations.location',
+    'users.username'
+  );
 }
-//.join('locations', 'locations.id', 'events.location_id')
-//.join('users', 'users.id', 'events.user_id')
-// .select(
-//   'events.eventname', 
-//   'events.description', 
-//   'events.eventdate', 
-//   'events.eventtime',
-  //'locations.location',
-  //'users.username'
-// );
 
 //   "foods": [
 //     { 
