@@ -3,6 +3,7 @@ const db = require('../../data/dbConfig.js');
 
 module.exports = {
   getEvents,
+  getAllEvents
 };
 
 // getEvents() - return all events 
@@ -13,17 +14,17 @@ function getEvents() {
 // getAllEvents() - return all events - detailed return
 function getAllEvents() {
   return db('events');
-    //.join('locations', 'locations.id', 'events.location_id')
-    //.join('users', 'users.id', 'events.user_id')
-    // .select(
-    //   'events.eventname', 
-    //   'events.description', 
-    //   'events.eventdate', 
-    //   'events.eventtime',
-      //'locations.location',
-      //'users.username'
-    // );
 }
+//.join('locations', 'locations.id', 'events.location_id')
+//.join('users', 'users.id', 'events.user_id')
+// .select(
+//   'events.eventname', 
+//   'events.description', 
+//   'events.eventdate', 
+//   'events.eventtime',
+  //'locations.location',
+  //'users.username'
+// );
 
 //   "foods": [
 //     { 
