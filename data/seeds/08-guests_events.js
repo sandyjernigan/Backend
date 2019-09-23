@@ -6,17 +6,17 @@ exports.seed = function(knex, Promise) {
     {
       event_id: 1,
       guest_id: 1,
-      attending: "going"
+      RSVP: "Yes"
     },
     {
       event_id: 1,
       guest_id: 2,
-      attending: "not going"
+      RSVP: "No"
     },
     {
       event_id: 1,
       guest_id: 3,
-      attending: null
+      RSVP: null
     },
   ]);
 

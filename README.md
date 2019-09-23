@@ -1,5 +1,9 @@
 # Back End for Potluck Planner
 
+## Back End Deployed with Herokuapp
+
+[https://planthepotluck.herokuapp.com/](https://planthepotluck.herokuapp.com/)
+
 ## Pitch: 
 
 If you have ever tried to organize a potluck through text messages, online to-do lists or spreadsheets you get why this app is important. In the world of social gatherings and potlucks the "Potluck Planner" is king. This is your place for all things pot luck. 
@@ -151,25 +155,24 @@ Prototype Key Feature(s)
 ### User 
 
 ```javascript
-{
-    "userid": 1,
-    "username": "user",
-    "password": "examplepass",
-    "firstname": "Johnathan",
-    "lastname": "Doe",
-    "preferredname": "John",
-    "email": "user@email.com",
-    "groupname": "Developers"
-}
+  "groupid": 1,
+  "username": "john",
+  "password": "examplepass",
+  "firstname": "Johnathan",
+  "lastname": "Doe",
+  "preferredname": "John",
+  "email": "john@email.com",
+  "group_id": 1
+
 ```
 
 #### Group
 
 ```javascript
 {
-    "groupid": 1,
-    "groupname": "Developers",
-    "description": "Description of the group"
+  "groupid": 1,
+  "groupname": "Developers",
+  "description": "Description of the group"
 }
 ```
 
@@ -177,47 +180,48 @@ Prototype Key Feature(s)
 
 ```javascript
 {
-    "eventid": 1,
-    "eventname": "John's First Potluck",
-    "description": "Birthday Party Potluck for Jane.",
-    "eventdate": "8-23-2019",
-    "eventtime": "6:00 PM",
-    "location": "John's Backyard",
-    "foods": [
-      { 
-        "foodname": "Hamburgers",
-        "quantity": 24,
-        "description": "hamburger meat",
-        "category": "meat",
-        "vegetarian" : false,
-        "vegan" : false,
-        "gutenfree" : null,
-        "bringing": [
-          {
-          "guestname": "guest1", // this is marked as bringing
-          "quantity": 12 // qty guest plans to bring
-          },
-          {
-          "guestname": "guest2", // this is marked as bringing
-          "quantity": 12 // qty guest plans to bring
-          },
-        ]
-      },
-      { 
-        "foodname": "Hamburger Buns",
-        "quantity": 24,
-        "description": null,
-        "category": "bread",
-        "vegetarian" : true,
-        "vegan" : null,
-        "gutenfree" : false,
-        "bringing": null // if null no one is selected as bringing yet
-      },
-    ],
-    "guests": [ // array of guests 
-      "guest_id": 1,
-      "guest_id": 2
-    ]
+  "eventid": 1,
+  "eventname": "John's First Potluck",
+  "description": "Birthday Party Potluck for Jane.",
+  "eventdate": "8-23-2019",
+  "eventtime": "6:00 PM",
+  "location": "John's Backyard",
+  "username": "john", // user that created the event
+  "foods": [
+    { 
+      "foodname": "Hamburgers",
+      "quantity": 24,
+      "description": "hamburger meat",
+      "category": "meat",
+      "vegetarian" : false,
+      "vegan" : false,
+      "gutenfree" : null,
+      "bringing": [
+        {
+        "guestname": "guest1", // this is marked as bringing
+        "quantity": 12 // qty guest plans to bring
+        },
+        {
+        "guestname": "guest2", // this is marked as bringing
+        "quantity": 12 // qty guest plans to bring
+        },
+      ]
+    },
+    { 
+      "foodname": "Hamburger Buns",
+      "quantity": 24,
+      "description": null,
+      "category": "bread",
+      "vegetarian" : true,
+      "vegan" : null,
+      "gutenfree" : false,
+      "bringing": null // if null no one is selected as bringing yet
+    },
+  ],
+  "guests": [ // array of guests 
+    "guest_id": 1,
+    "guest_id": 2
+  ]
 }
 ```
 
@@ -238,7 +242,7 @@ Prototype Key Feature(s)
   "foodid": 1,
   "foodname": "Hamburger Buns",
   "description": null,
-  "categoryid": 1
+  "categoryid": 1,
   "vegetarian" : true,
   "vegan" : null,
   "gutenfree" : false,
@@ -271,6 +275,7 @@ Prototype Key Feature(s)
 ### User-Endpoints
 
 ---
+  <h1>Pitch  <button class="button" onclick="{showContent(document.getElementById('pitchinfo'))}">v</button></h1>
 
 ##### Signup
 
@@ -406,7 +411,6 @@ status = 401
 ```
 
 ---
--->
 
 ### Event Endpoints
 
@@ -427,14 +431,12 @@ status = 401
 ##### Get-Event
 
 **Endpoint:** `/events/{id}`
-**Type:** `PUT`
-
-_will only fetch and event if it belongs to active user_
+**Type:** `GET`
 
 **Description:**
 
 ```
-    Update user with given id
+    Get detailed information about an event
 ```
 
 ---
@@ -456,44 +458,6 @@ _keeps giving weird auth errors_
 
 ```javascript
 {
-        {
-        "name": "Big ole Fun Time",
-        "description": "We're gonna have a big ole funt ime",
-        "date": "8-23-2019",
-        "budget": "$10,000",
-        "companyname": "Company A",
-        "tasklist": [
-            {
-                "name": "Reservations",
-                "description": "Make Hotel Reservations",
-                "assigned": "John",
-                "completed": false,
-                "duedate": "8-1-2019",
-                "category": "Service",
-                "purchase": [
-                    {
-                        "description": "Reserve Hotel Rooms",
-                        "vendorname": "Mariott Hotel",
-                        "pointofcontact": "Judy",
-                        "email": "judyisawesome@email.com",
-                        "price": "$3,000",
-                        "qty": 0
-                    }
-                ]
-            },
-            {
-                "name": "RSVP",
-                "description": "Have all employees either RSVP or opt out",
-                "assigned": "Michelle",
-                "completed": false,
-                "duedate": "7-15-2019",
-                "category": "Task",
-                "purchase": []
-            }
-        ],
-        // This should be empty, currently logged in user will be set added to list
-        "userList": []
-    }
 }
 ```
 
@@ -576,5 +540,6 @@ _will only delete an event if it belongs to active user_
 ```
     Deletes event with given ID
 ```
+
 -->
 ---
