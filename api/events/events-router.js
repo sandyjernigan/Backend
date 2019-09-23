@@ -9,7 +9,7 @@ const router = express.Router();
 // GET all  - simple
 router.get('/', async (req, res) => {
   try {
-    const results = await Events.getEvents();
+    const results = await Events.getAllEvents();
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
@@ -17,9 +17,9 @@ router.get('/', async (req, res) => {
 });
 
 // GET all events - detailed
-router.get('/', async (req, res) => {
+router.get('/all', async (req, res) => {
   try {
-    const results = await Events.getEvents();
+    const results = await Events.getAllEvents();
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });

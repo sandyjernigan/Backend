@@ -155,6 +155,14 @@ Prototype Key Feature(s)
 ### User 
 
 ```javascript
+  "groupid": 1,
+  "username": "john",
+  "password": "examplepass",
+  "firstname": "Johnathan",
+  "lastname": "Doe",
+  "preferredname": "John",
+  "email": "john@email.com",
+  "group_id": 1
 
 ```
 
@@ -162,9 +170,9 @@ Prototype Key Feature(s)
 
 ```javascript
 {
-    "groupid": 1,
-    "groupname": "Developers",
-    "description": "Description of the group"
+  "groupid": 1,
+  "groupname": "Developers",
+  "description": "Description of the group"
 }
 ```
 
@@ -172,47 +180,48 @@ Prototype Key Feature(s)
 
 ```javascript
 {
-    "eventid": 1,
-    "eventname": "John's First Potluck",
-    "description": "Birthday Party Potluck for Jane.",
-    "eventdate": "8-23-2019",
-    "eventtime": "6:00 PM",
-    "location": "John's Backyard",
-    "foods": [
-      { 
-        "foodname": "Hamburgers",
-        "quantity": 24,
-        "description": "hamburger meat",
-        "category": "meat",
-        "vegetarian" : false,
-        "vegan" : false,
-        "gutenfree" : null,
-        "bringing": [
-          {
-          "guestname": "guest1", // this is marked as bringing
-          "quantity": 12 // qty guest plans to bring
-          },
-          {
-          "guestname": "guest2", // this is marked as bringing
-          "quantity": 12 // qty guest plans to bring
-          },
-        ]
-      },
-      { 
-        "foodname": "Hamburger Buns",
-        "quantity": 24,
-        "description": null,
-        "category": "bread",
-        "vegetarian" : true,
-        "vegan" : null,
-        "gutenfree" : false,
-        "bringing": null // if null no one is selected as bringing yet
-      },
-    ],
-    "guests": [ // array of guests 
-      "guest_id": 1,
-      "guest_id": 2
-    ]
+  "eventid": 1,
+  "eventname": "John's First Potluck",
+  "description": "Birthday Party Potluck for Jane.",
+  "eventdate": "8-23-2019",
+  "eventtime": "6:00 PM",
+  "location": "John's Backyard",
+  "username": "john", // user that created the event
+  "foods": [
+    { 
+      "foodname": "Hamburgers",
+      "quantity": 24,
+      "description": "hamburger meat",
+      "category": "meat",
+      "vegetarian" : false,
+      "vegan" : false,
+      "gutenfree" : null,
+      "bringing": [
+        {
+        "guestname": "guest1", // this is marked as bringing
+        "quantity": 12 // qty guest plans to bring
+        },
+        {
+        "guestname": "guest2", // this is marked as bringing
+        "quantity": 12 // qty guest plans to bring
+        },
+      ]
+    },
+    { 
+      "foodname": "Hamburger Buns",
+      "quantity": 24,
+      "description": null,
+      "category": "bread",
+      "vegetarian" : true,
+      "vegan" : null,
+      "gutenfree" : false,
+      "bringing": null // if null no one is selected as bringing yet
+    },
+  ],
+  "guests": [ // array of guests 
+    "guest_id": 1,
+    "guest_id": 2
+  ]
 }
 ```
 
