@@ -182,6 +182,7 @@
   <!-- Event Model --> 
   <div id="modelsEvents" class="hid">
     <h3 onclick="{showContent('modelsEvents')}">Event Model</h3>
+    <p>This is what returns on a individual event request.</p>
     <code>
       {
         "eventid": 1, <br />
@@ -427,15 +428,24 @@
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
       <code>
-        Get a list of all event objects -simple return
+        Get a list of all event objects - simple return
       </code>
       <p><strong>Sample Request:</strong> </p>
       <code>
-        <br />
       </code>
       <p><strong>Expected Return:</strong> </p>
       <code>
-        <br />
+        [ <br />
+          { <br />
+            "id": 1, <br />
+            "eventname": "John's First Potluck", <br />
+            "description": "Birthday Party Potluck for Jane.", <br />
+            "eventdate": "8-23-2019", <br />
+            "eventtime": "6:00 PM", <br />
+            "location_id": 1, <br />
+            "user_id": 2 <br />
+          } <br />
+        ]
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
@@ -459,7 +469,8 @@
       </code>
       <p><strong>Expected Return:</strong> </p>
       <code>
-        <br />
+        status: 500 <br />
+        { message: 'Failed to get results.' }
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
