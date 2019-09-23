@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET all events - detailed
+// GET all events - detailed TODO: Working on this endpoint, need to add foreach loop
 router.get('/all', async (req, res) => {
   try {
     const results = await Events.getAllEvents();
@@ -26,6 +26,23 @@ router.get('/all', async (req, res) => {
   }
 });
 
+// GET event - detailed result
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const event = await Events.getEvent(id);
+    const foodforEvent = await Events.getFoodforEvent(id);
+
+    const results = { ...event, 
+      food: foodforEvent
+    }
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
+  }
+});
+
 //#endregion
 
-module.exports = router;
+module.exports = router; 
