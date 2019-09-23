@@ -42,18 +42,20 @@ function getEvent(id) {
     'events.eventtime',
     'locations.location',
     'users.username'
-  );
+  )
+  .where({ 'events.id': id }).first();
 }
 
 // getAllEvents() - return all events - detailed return
 function getFoodforEvent(id) {
   return db('food_needed')
   .join('foods', 'foods.id', 'food_needed.food_id')
+  .join('categories', 'categories.id', 'foods.category_id')
   .select(
     'foods.foodname', 
     'food_needed.quantity_needed',
     'foods.description', 
-    'foods.category_id', 
+    'categories.category', 
     'foods.vegetarian',
     'foods.vegan',
     'foods.gutenfree',

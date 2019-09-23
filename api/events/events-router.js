@@ -34,7 +34,13 @@ router.get('/:id', async (req, res) => {
     const event = await Events.getEvent(id);
     const foodforEvent = await Events.getFoodforEvent(id);
 
-    const results = { ...event, 
+    const results = { 
+      eventname: event.eventname, 
+      description: event.description,
+      eventdate: event.eventdate,
+      eventtime: event.eventtime,
+      location: event.location,
+      username: event.username,
       food: foodforEvent
     }
     res.json(results);
