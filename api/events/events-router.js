@@ -81,8 +81,21 @@ router.get('/:id/guests', async (req, res) => {
 
 //#endregion
 
+//#region - CREATE - POST endpoints
+
+// add Event
+router.post('/', async (req, res) => {
+  const input = req.body;
+
+  try {
+    const results = await Events.addEvent(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to create new project' });
+  }
+});
+
+//#endregion
+
 module.exports = router; 
 
-function getGuestbyID(id) {
-  return Events.getGuest(id);
-}

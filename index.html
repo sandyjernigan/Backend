@@ -648,8 +648,15 @@
       </code>
       <p><strong>Expected Input:</strong> </p>
       <code>
-        {
-          <br />
+        { <br />
+        <div class="ident1">
+          "eventname": "Autumn Bash", <br />
+          "description": "Company party for end of Summer, start of fall, and September birthdays!", <br />
+          "eventdate": "9-25-2019", <br />
+          "eventtime": "2:00 PM", <br />
+          "location_id": null, <span class="comment"> // may consider making this a dropdown </span><br />
+          "user_id": 1 <span class="comment"> // User_id should be the id of the user creating the event.</span> <br />
+        </div>
         }
       </code>
       <p><strong>Sample Request:</strong> </p>
@@ -658,11 +665,23 @@
       </code>
       <p><strong>Expected Return:</strong> </p>
       <code>
-        <br />
+        <span class="comment"> // should return the object added to database. </span> <br />
+        status code: 201 <br />
+        { <br />
+        <div class="ident1">
+          "eventname": "Autumn Bash", <br />
+          "description": "Company party for end of Summer, start of fall, and September birthdays!", <br />
+          "eventdate": "9-25-2019", <br />
+          "eventtime": "2:00 PM", <br />
+          "location_id": null, <br />
+          "user_id": 1 <br />
+        </div>
+        }
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
-        <br />
+        status code: 500 <br />
+        { message: 'Failed to get guests.' }
       </code>
   </div>
 

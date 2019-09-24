@@ -5,11 +5,13 @@ module.exports = {
   getEvents,
   getAllEvents,
   getEvent,
+  getjustEvent,
   getFoodforEvent,
   getBringingbyFood,
   getGuests,
   getGuest,
-  getGuestsbyEvent
+  getGuestsbyEvent,
+  addEvent
 };
 
 //#region READ - Get functions
@@ -50,6 +52,11 @@ function getEvent(id) {
     'users.username'
   )
   .where({ 'events.id': id }).first();
+}
+
+// getEvent(id) - return 1 event by id - simple only details from event table
+function getjustEvent(id) {
+  return db('events').where({ id }).first();
 }
 
 // getFoodforEvent() - return list of food by event id
@@ -107,5 +114,5 @@ function getGuestsbyEvent(id) {
 
 async function addEvent(input) {
   const results = await db('events').insert(input);
-  return getProjectByID(ids[0]);
+  return getjustEvent(results[0]);
 }
