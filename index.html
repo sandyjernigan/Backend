@@ -70,7 +70,7 @@
     .moreContent {
       position: absolute;
       left: 500px;
-      top: 50px;
+      top: 20px;
     }
     code {
       color: #d7eaf6;
@@ -125,7 +125,7 @@
     </div>
 
     <h2 class="moreInfo" onclick="{showContent('endpoints')}">Endpoints</h2>
-    <div id="endpoints" class="hid">
+    <div id="endpoints" class="show">
 
       <h3 class="moreInfo" onclick="{showContent('userEndpoints')}">User Endpoints</h3>
       <div id="userEndpoints" class="hid">
@@ -138,7 +138,7 @@
       </div>
 
       <h3 class="moreInfo" onclick="{showContent('eventEndpoints')}">Event Endpoints</h3>
-      <div id="eventEndpoints" class="hid">
+      <div id="eventEndpoints" class="show">
       <ul>
         <li class="moreInfo" onclick="{showContent('getEvents')}">Get All Events - Simple</li>
         <li class="moreInfo" onclick="{showContent('getAllEvents')}">Get All Events - Detailed</li>
@@ -154,6 +154,8 @@
 
 <!-- Open to the Side -->
 <div id="#content" class="moreContent">
+  <div style="color: lightgoldenrodyellow; text-align: center">Click on the list items to the left to open and close sections. <br />
+    Click on the Header below to close a section.</div>
 
 <!-- Models --> 
   <!-- User Model --> 
@@ -482,7 +484,7 @@
 
   <!-- Event Endpoint - Get Event --> 
   <div id="getEvent" class="show">
-    <h3 onclick="{showContent('getEvent')}">Event Endpoints - Get Event <span><small><-- Click header to hid.</small></span></h3>
+    <h3 onclick="{showContent('getEvent')}">Event Endpoints - Get Event </h3>
       <p><strong>Endpoint:</strong> `/api/events/{id}`</p>
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
@@ -569,7 +571,7 @@
 
   <!-- Event Endpoint - Add Event --> 
   <div id="addEvent" class="hid">
-    <h2>TODO: - this is not active yet</h2>
+    <h2>TODO: - Currently working on this endpoint</h2>
     <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Event</h3>
       <p><strong>Endpoint:</strong> `/api/events/new`</p>
       <p><strong>Type:</strong> `POST`</p>
