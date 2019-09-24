@@ -69,7 +69,7 @@ function getFoodforEvent(id) {
   .where({ 'food_needed.event_id': id });
 }
 
-// getFoodforEvent() - return list of food by event id
+// getBringingbyFood() - return list of guestname and quanity of food items guest is bringing
 function getBringingbyFood(id) {
   return db('food_needed')
   .join('food_bringing', 'food_needed.id', 'food_bringing.food_needed_id')
@@ -91,6 +91,7 @@ function getGuest(id) {
   return db('guests').where({ id });
 }
 
+// getGuestsbyEvent(id) - returns an array of guests for an event by event id
 function getGuestsbyEvent(id) {
   return db('guests_events')
     .join('guests', 'guests.id', 'guests_events.guest_id')
