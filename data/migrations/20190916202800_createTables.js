@@ -33,7 +33,7 @@ exports.up = function(knex) {
     tbl.string('lastname');
     tbl.string('preferredname');
     tbl.string('email').notNullable().unique();
-    tbl.integer('group_id').unsigned().notNullable()
+    tbl.integer('group_id').unsigned()
       .references('id').inTable('groups')
       .onDelete('CASCADE').onUpdate('CASCADE');
   })
