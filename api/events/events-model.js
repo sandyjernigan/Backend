@@ -12,6 +12,8 @@ module.exports = {
   getGuestsbyEvent
 };
 
+//#region READ - Get functions
+
 // getEvents() - return all events 
 function getEvents() {
   return db('events');
@@ -98,3 +100,7 @@ function getGuestsbyEvent(id) {
     .select( 'guests.guestname', 'guests.guestemail' )
     .where({ 'guests_events.event_id': id });
 }
+
+//#endregion - Get functions
+
+//#region - CREATE
