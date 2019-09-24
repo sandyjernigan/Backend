@@ -33,6 +33,7 @@ router.get('/:id', async (req, res) => {
   try {
     const event = await Events.getEvent(id);
     const food = await Events.getFoodforEvent(id);
+    const guests = await Events.getGuestsbyEvent(id);
 
     // This map function returns an array of Promises. 
     const foodbringing = food.map(async (x) => {
@@ -54,7 +55,8 @@ router.get('/:id', async (req, res) => {
         eventtime: event.eventtime,
         location: event.location,
         username: event.username,
-        food
+        food,
+        guests
       }
       res.json(results);
     });
@@ -64,21 +66,16 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-
-router.get('/:id/:foodid', async (req, res) => {
-  const { id, foodid } = req.params;
+// GET Guests by Event - returns an array of guests for an event by event id
+router.get('/:id/guests', async (req, res) => {
+  const { id } = req.params;
 
   try {
-    const food = await Events.getFoodforEvent(id);
-    //const foodAddBringing = food.map(bringingbyFood); 
-    const bringing = await Events.getBringingbyFood(foodid);
-    //console.log(foodAddBringing)
+    const guests = await Events.getGuestsbyEvent(id);
 
-    //const foodBringingbyFood = await Events.getBringingbyFood(id)
-  
-  res.json(bringing);
+    res.json(guests);
   } catch (err) {
-    res.status(500).json({ message: 'Failed to get results.' });
+    res.status(500).json({ message: 'Failed to get guests.' });
   }
 });
 

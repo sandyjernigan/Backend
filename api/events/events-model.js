@@ -8,7 +8,8 @@ module.exports = {
   getFoodforEvent,
   getBringingbyFood,
   getGuests,
-  getGuest
+  getGuest,
+  getGuestsbyEvent
 };
 
 // getEvents() - return all events 
@@ -90,34 +91,9 @@ function getGuest(id) {
   return db('guests').where({ id });
 }
 
-//   "foods": [
-//     { 
-//       "foodname": "Hamburgers",
-//       "quantity": 24,
-//       "description": "hamburger meat",
-//       "category": "meat",
-//       "vegetarian" : false,
-//       "vegan" : false,
-//       "gutenfree" : null,
-//         {
-//         "guestname": "guest2", // this is marked as bringing
-//         "quantity": 12 // qty guest plans to bring
-//         },
-//       ]
-//     },
-//     { 
-//       "foodname": "Hamburger Buns",
-//       "quantity": 24,
-//       "description": null,
-//       "category": "bread",
-//       "vegetarian" : true,
-//       "vegan" : null,
-//       "gutenfree" : false,
-//       "bringing": null // if null no one is selected as bringing yet
-//     },
-//   ],
-//   "guests": [ // array of guests 
-//     "guest_id": 1,
-//     "guest_id": 2
-//   ]
-// }
+function getGuestsbyEvent(id) {
+  return db('guests_events')
+    .join('guests', 'guests.id', 'guests_events.guest_id')
+    .select( 'guests.guestname', 'guests.guestemail' )
+    .where({ 'guests_events.event_id': id });
+}
