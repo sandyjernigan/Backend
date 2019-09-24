@@ -8,7 +8,7 @@
   <style>
     body { 
       background-color: #202020; 
-      color: #d4d4d4; 
+      color: #ebebeb; 
       margin: 30px 80px;
     }
     a {
@@ -73,7 +73,10 @@
       top: 50px;
     }
     code {
-      color: lightsteelblue;
+      color: #d7eaf6;
+    }
+    .ident1 {
+      padding-left: 20px;
     }
   </style>
 </head>
@@ -422,7 +425,6 @@
 
   <!-- Event Endpoint - Get All --> 
   <div id="getEvents" class="hid">
-    <h2>TODO - this is not active yet</h2>
     <h3 onclick="{showContent('getEvents')}">Event Endpoints - Get All Events - Simple</h3>
       <p><strong>Endpoint:</strong> `/api/events/`</p>
       <p><strong>Type:</strong> `GET`</p>
@@ -479,9 +481,8 @@
   </div>
 
   <!-- Event Endpoint - Get Event --> 
-  <div id="getEvent" class="hid">
-    <h2>TODO - this is not active yet</h2>
-    <h3 onclick="{showContent('getEvent')}">Event Endpoints - Get Event</h3>
+  <div id="getEvent" class="show">
+    <h3 onclick="{showContent('getEvent')}">Event Endpoints - Get Event <span><small><-- Click header to hid.</small></span></h3>
       <p><strong>Endpoint:</strong> `/api/events/{id}`</p>
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
@@ -490,9 +491,7 @@
       </code>
       <p><strong>Expected Input:</strong> </p>
       <code>
-        {
-          <br />
-        }
+        { id }
       </code>
       <p><strong>Sample Request:</strong> </p>
       <code>
@@ -500,7 +499,67 @@
       </code>
       <p><strong>Expected Return:</strong> </p>
       <code>
-        <br />
+        {<br /><div class="ident1">
+          "eventname": "John's First Potluck", <br />
+          "description": "Birthday Party Potluck for Jane.", <br />
+          "eventdate": "8-23-2019", <br />
+          "eventtime": "6:00 PM", <br />
+          "location": "John's Backyard", <br />
+          "username": "john", <br />
+          "food": [
+          <div class="ident1">{ <br />
+            "id": 1, <br />
+            "foodname": "Hamburgers", <br />
+            "food_needed_id": 1, <br />
+            "quantity_needed": 24, <br />
+            "description": "hamburger meat", <br />
+            "category": "meat", <br />
+            "vegetarian": "0", <br />
+            "vegan": "0", <br />
+            "gutenfree": null, <br />
+            "bringing": [ <br /> 
+            <div class="ident1">
+              { <br /> 
+                "guestname": "Jill", <br /> 
+                "quantity": 12 <br /> 
+              }, <br /> 
+              { <br /> 
+                "guestname": "Jack", <br /> 
+                "quantity": 12 <br /> 
+              }</div>
+            ] <br /> 
+          }, <br /> 
+          { <br /> 
+            "id": 2, <br /> 
+            "foodname": "Hamburger Buns", <br /> 
+            "food_needed_id": 2, <br /> 
+            "quantity_needed": 24, <br /> 
+            "description": null, <br /> 
+            "category": "bread", <br /> 
+            "vegetarian": "1", <br /> 
+            "vegan": null, <br /> 
+            "gutenfree": "0", <br /> 
+            "bringing": [] <br /> 
+          }</div>
+          ], <br /> 
+          "guests": [ <br /> 
+          <div class="ident1">
+            { <br /> 
+              "guestname": "Jane", <br /> 
+              "guestemail": "jane@email.com" <br /> 
+            }, <br /> 
+            { <br /> 
+              "guestname": "Jack", <br /> 
+              "guestemail": "jack@email.com" <br /> 
+            }, <br /> 
+            { <br /> 
+              "guestname": "Jill", <br /> 
+              "guestemail": "jill@email.com" <br /> 
+            } <br /> 
+          </div>
+          ] <br />
+        </div>
+        }
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
@@ -510,7 +569,7 @@
 
   <!-- Event Endpoint - Add Event --> 
   <div id="addEvent" class="hid">
-    <h2>TODO - this is not active yet</h2>
+    <h2>TODO: - this is not active yet</h2>
     <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Event</h3>
       <p><strong>Endpoint:</strong> `/api/events/new`</p>
       <p><strong>Type:</strong> `POST`</p>
@@ -540,7 +599,7 @@
 
   <!-- Event Endpoint - Update Event --> 
   <div id="updateEvent" class="hid">
-    <h2>TODO - this is not active yet</h2>
+    <h2>TODO: - this is not active yet</h2>
     <h3 onclick="{showContent('updateEvent')}">Event Endpoints - Update Event</h3>
       <p><strong>Endpoint:</strong> `/api/events/edit/{id}`</p>
       <p><strong>Type:</strong> `PUT`</p>

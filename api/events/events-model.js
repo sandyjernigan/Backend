@@ -5,7 +5,11 @@ module.exports = {
   getEvents,
   getAllEvents,
   getEvent,
-  getFoodforEvent
+  getFoodforEvent,
+  getBringingbyFood,
+  getGuests,
+  getGuest,
+  getGuestsbyEvent
 };
 
 // getEvents() - return all events 
@@ -46,13 +50,15 @@ function getEvent(id) {
   .where({ 'events.id': id }).first();
 }
 
-// getAllEvents() - return all events - detailed return
+// getFoodforEvent() - return list of food by event id
 function getFoodforEvent(id) {
   return db('food_needed')
   .join('foods', 'foods.id', 'food_needed.food_id')
   .join('categories', 'categories.id', 'foods.category_id')
   .select(
+    'foods.id',
     'foods.foodname', 
+    'food_needed.id as food_needed_id',
     'food_needed.quantity_needed',
     'foods.description', 
     'categories.category', 
@@ -63,39 +69,31 @@ function getFoodforEvent(id) {
   .where({ 'food_needed.event_id': id });
 }
 
-//   "foods": [
-//     { 
-//       "foodname": "Hamburgers",
-//       "quantity": 24,
-//       "description": "hamburger meat",
-//       "category": "meat",
-//       "vegetarian" : false,
-//       "vegan" : false,
-//       "gutenfree" : null,
-//       "bringing": [
-//         {
-//         "guestname": "guest1", // this is marked as bringing
-//         "quantity": 12 // qty guest plans to bring
-//         },
-//         {
-//         "guestname": "guest2", // this is marked as bringing
-//         "quantity": 12 // qty guest plans to bring
-//         },
-//       ]
-//     },
-//     { 
-//       "foodname": "Hamburger Buns",
-//       "quantity": 24,
-//       "description": null,
-//       "category": "bread",
-//       "vegetarian" : true,
-//       "vegan" : null,
-//       "gutenfree" : false,
-//       "bringing": null // if null no one is selected as bringing yet
-//     },
-//   ],
-//   "guests": [ // array of guests 
-//     "guest_id": 1,
-//     "guest_id": 2
-//   ]
-// }
+// getFoodforEvent() - return list of food by event id
+function getBringingbyFood(id) {
+  return db('food_needed')
+  .join('food_bringing', 'food_needed.id', 'food_bringing.food_needed_id')
+  .join('guests', 'guests.id', 'food_bringing.guest_id')
+  .select(
+    'guests.guestname',
+    'food_bringing.quantity'
+  )
+  .where({ 'food_needed.id': id });
+}
+
+// getGuests() - return a list of all guests
+function getGuests() {
+  return db('guests');
+}
+
+// getGuest(id) - return a guest by id
+function getGuest(id) {
+  return db('guests').where({ id });
+}
+
+function getGuestsbyEvent(id) {
+  return db('guests_events')
+    .join('guests', 'guests.id', 'guests_events.guest_id')
+    .select( 'guests.guestname', 'guests.guestemail' )
+    .where({ 'guests_events.event_id': id });
+}
