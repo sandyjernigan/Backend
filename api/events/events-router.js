@@ -32,7 +32,23 @@ router.get('/:id', async (req, res) => {
 
   try {
     const event = await Events.getEvent(id);
-    const foodforEvent = await Events.getFoodforEvent(id);
+    const food = await Events.getFoodforEvent(id);
+    const foodbringing = await food.map(async (x) => {
+      const bringing = await Events.getBringingbyFood(x.food_needed_id)
+      console.log(bringing);
+      if (bringing) {
+        if ( bringing.guestname || bringing.quantity ) {
+          const { guestname, quantity } = bringing;
+          console.log(guestname)
+          x.bringing = { guestname, quantity }  
+        } else {
+          console.log("guestname or quantity doesn't exist.")
+        }
+      } 
+      console.log(x.bringing);
+      return x
+    }); 
+    console.log(foodbringing)
 
     const results = { 
       eventname: event.eventname, 
@@ -41,9 +57,28 @@ router.get('/:id', async (req, res) => {
       eventtime: event.eventtime,
       location: event.location,
       username: event.username,
-      food: foodforEvent
+      food,
+      foodbringing
     }
     res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
+  }
+});
+
+
+router.get('/:id/:foodid', async (req, res) => {
+  const { id, foodid } = req.params;
+
+  try {
+    const food = await Events.getFoodforEvent(id);
+    //const foodAddBringing = food.map(bringingbyFood); 
+    const bringing = await Events.getBringingbyFood(foodid);
+    //console.log(foodAddBringing)
+
+    //const foodBringingbyFood = await Events.getBringingbyFood(id)
+  
+  res.json(bringing);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
   }
@@ -52,3 +87,7 @@ router.get('/:id', async (req, res) => {
 //#endregion
 
 module.exports = router; 
+
+function getGuestbyID(id) {
+  return Events.getGuest(id);
+}
