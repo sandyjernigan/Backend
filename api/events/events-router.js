@@ -33,34 +33,32 @@ router.get('/:id', async (req, res) => {
   try {
     const event = await Events.getEvent(id);
     const food = await Events.getFoodforEvent(id);
-    const foodbringing = await food.map(async (x) => {
-      const bringing = await Events.getBringingbyFood(x.food_needed_id)
-      console.log(bringing);
-      if (bringing) {
-        if ( bringing.guestname || bringing.quantity ) {
-          const { guestname, quantity } = bringing;
-          console.log(guestname)
-          x.bringing = { guestname, quantity }  
-        } else {
-          console.log("guestname or quantity doesn't exist.")
-        }
-      } 
-      console.log(x.bringing);
-      return x
-    }); 
-    console.log(foodbringing)
 
-    const results = { 
-      eventname: event.eventname, 
-      description: event.description,
-      eventdate: event.eventdate,
-      eventtime: event.eventtime,
-      location: event.location,
-      username: event.username,
-      food,
-      foodbringing
-    }
-    res.json(results);
+    // This map function returns an array of Promises. 
+    const foodbringing = food.map(async (x) => {
+      const foodid = x.food_needed_id;
+      try {
+        const bringing = await Events.getBringingbyFood(foodid);
+        x.bringing = bringing;
+        return x
+      } catch (err) {
+        console.log("No results.");
+      }
+    }); 
+
+    Promise.all(foodbringing).then((bringing) => {      
+      const results = { 
+        eventname: event.eventname, 
+        description: event.description,
+        eventdate: event.eventdate,
+        eventtime: event.eventtime,
+        location: event.location,
+        username: event.username,
+        food
+      }
+      res.json(results);
+    });
+
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
   }

@@ -77,7 +77,7 @@ function getBringingbyFood(id) {
     'guests.guestname',
     'food_bringing.quantity'
   )
-  .where({ 'food_needed.id': id }).first();
+  .where({ 'food_needed.id': id });
 }
 
 // getGuests() - return a list of all guests
