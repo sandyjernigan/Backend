@@ -147,6 +147,7 @@
         <li class="moreInfo" onclick="{showContent('getEvents')}">Get All Events - Simple</li>
         <li class="moreInfo" onclick="{showContent('getAllEvents')}">Get All Events - Detailed</li>
         <li class="moreInfo" onclick="{showContent('getEvent')}">Get Event</li>
+        <li class="moreInfo" onclick="{showContent('getGuestsbyEvent')}">Get Guests by Event</li>
         <li class="moreInfo" onclick="{showContent('addEvent')}">Add Event</li>
         <li class="moreInfo" onclick="{showContent('updateEvent')}">Update Event</li>
         <li class="moreInfo" onclick="{showContent('deleteEvent')}">Delete Event</li>
@@ -500,7 +501,8 @@
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
-        <br />
+        status code: 500<br />
+        { message: 'Failed to get results.' }
       </code>
   </div>
 
@@ -587,12 +589,55 @@
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
+        status code: 500<br />
+        { message: 'Failed to get results.' }
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Get Guests by Event --> 
+  <div id="getGuestsbyEvent" class="hid">
+    <h3 onclick="{showContent('getGuestsbyEvent')}">Event Endpoints - Get Guests by Event </h3>
+      <p><strong>Endpoint:</strong> `/api/events/{id}/guests`</p>
+      <p><strong>Type:</strong> `GET`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Get a list of guests for an event
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        { id }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
         <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        [<br /><div class="ident1">
+            { <br />
+              "guestname": "Jane", <br />
+              "guestemail": "jane@email.com" <br />
+            }, <br />
+            { <br />
+              "guestname": "Jack", <br />
+              "guestemail": "jack@email.com" <br />
+            }, <br />
+            { <br />
+              "guestname": "Jill", <br />
+              "guestemail": "jill@email.com" <br />
+            } <br />
+        </div>
+        ]
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to get guests.' }
       </code>
   </div>
 
   <!-- Event Endpoint - Add Event --> 
-  <div id="addEvent" class="hid">
+  <div id="addEvent" class="show">
     <h2>TODO: - Currently working on this endpoint</h2>
     <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Event</h3>
       <p><strong>Endpoint:</strong> `/api/events/new`</p>
