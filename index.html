@@ -78,6 +78,9 @@
     .ident1 {
       padding-left: 20px;
     }
+    .comment {
+      color: lightgreen;
+    }
   </style>
 </head>
 
@@ -114,6 +117,7 @@
 
   <h1 onclick="{showContent('developmentBE')}"><button>v</button> Development Back End</h1>
   <div id="developmentBE" class="show">
+
     <h2 class="moreInfo" onclick="{showContent('models')}">Models</h2>
     <div id="models" class="hid">
       <ul>
@@ -148,7 +152,25 @@
         <li class="moreInfo" onclick="{showContent('deleteEvent')}">Delete Event</li>
       </ul>
       </div>
+      
     </div>
+    
+    <h2 class="moreInfo" onclick="{showContent('database')}">Database Structure</h2>
+    <div id="database" class="hid">
+      <ul>
+        <li class="moreInfo" onclick="{showContent('dbUsers')}">User</li>
+        <li class="moreInfo" onclick="{showContent('dbGroups')}">Groups</li>
+        <li class="moreInfo" onclick="{showContent('dbEvents')}">Event</li>
+        <li class="moreInfo" onclick="{showContent('dbLocations')}">Locations</li>
+        <li class="moreInfo" onclick="{showContent('dbFood')}">Food</li>
+        <li class="moreInfo" onclick="{showContent('dbCategories')}">Categories</li>
+        <li class="moreInfo" onclick="{showContent('dbGuests')}">Guests</li>
+        <li class="moreInfo" onclick="{showContent('dbGuestsEvents')}">Guests/Events</li>
+        <li class="moreInfo" onclick="{showContent('dbFoodEvents')}">Food/Events</li>
+        <li class="moreInfo" onclick="{showContent('dbFoodneededGuests')}">Food/Guests</li>
+      </ul>
+    </div>
+
   </div>
 </div>
 
@@ -483,7 +505,7 @@
   </div>
 
   <!-- Event Endpoint - Get Event --> 
-  <div id="getEvent" class="show">
+  <div id="getEvent" class="hid">
     <h3 onclick="{showContent('getEvent')}">Event Endpoints - Get Event </h3>
       <p><strong>Endpoint:</strong> `/api/events/{id}`</p>
       <p><strong>Type:</strong> `GET`</p>
@@ -660,7 +682,6 @@
       </code>
   </div>
 
-</div>
 
   <!-- replaceThis --> 
   <!-- Sample
@@ -694,6 +715,174 @@
   </div>
   --> 
 
+  
+<!-- Database Structure --> 
+  <!-- User Table --> 
+  <div id="dbUsers" class="hid">
+    <h3 onclick="{showContent('dbUsers')}">Database Structure - User Table</h3>
+      <h4>users</h4>
+      <code>
+        { <br />
+        <div class="ident1">
+          "id": 1, <span class="comment">// auto increments (no input required, will auto populate) </span> <br />
+          "username": "user", <span class="comment">// Cannot be null, Unique </span> <br />
+          "password": "examplepass", <span class="comment">// Cannot be null </span> <br />
+          "firstname": "Johnathan", <span class="comment">// not required </span> <br />
+          "lastname": "Doe", <span class="comment">// not required </span> <br />
+          "preferredname": "John", <span class="comment">// not required </span> <br />
+          "email": "user@email.com", <span class="comment">// Cannot be null, Unique </span> <br />
+          "group_id": 1 <span class="comment">// not required, References `id` in table `groups`. </span> <br />
+        </div>
+        }
+      </code>
+  </div>
+
+  <!-- Groups Table --> 
+  <div id="dbGroups" class="hid">
+    <h3 onclick="{showContent('dbGroups')}">Database Structure - Groups Table</h3>
+      <h4>groups</h4>
+      <code>
+        { <br />
+        <div class="ident1">
+          "id": 1, <span class="comment">// auto increments (no input required, will auto populate) </span> <br />
+          "groupname": "Developers",  <span class="comment">// Cannot be null, Unique </span> <br />
+          "description": "Description of the group" <span class="comment">// not required </span> <br />
+        </div>
+        }
+      </code>
+  </div>
+  
+  <!-- Event Table --> 
+  <div id="dbEvents" class="hid">
+    <h3 onclick="{showContent('dbEvents')}">Database Structure - Event Table</h3> 
+      <h4>events</h4>
+      <code>
+      { <br />
+      <div class="ident1">
+        "id": 1, <span class="comment">// auto increments (no input required, will auto populate) </span> <br />
+        "eventname": "John's First Potluck", <span class="comment">// Cannot be null, Unique </span> <br />
+        "description": "Birthday Party Potluck for Jane." <span class="comment">// not required </span> <br />
+        "eventdate": "8-23-2019" <span class="comment">// not required </span> <br />
+        "eventtime": "6:00 PM" <span class="comment">// not required </span> <br />
+        "location_id": 1 <span class="comment">// not required, References `id` in table `locations`.  </span> <br />
+        "user_id": 2 <span class="comment">// not required, References `id` in table `users`.  </span> <br />
+      </div>
+      }
+    </code>
+  </div>
+
+  <!-- Locations Table --> 
+  <div id="dbLocations" class="hid">
+    <h3 onclick="{showContent('dbLocations')}">Database Structure - Locations Table</h3> 
+    <h4>locations</h4>
+    <code>
+      { <br />
+      <div class="ident1">
+        "id": 1,  <span class="comment">// auto increments (no input required, will auto populate) </span> <br />
+        "location": "John's Backyard", <span class="comment">// Cannot be null </span> <br />
+        "description": "At John and Jane's house" <span class="comment">// not required </span> <br />
+      </div>
+      }
+    </code>
+  </div>
+
+  <!-- Food Table --> 
+  <div id="dbFood" class="hid">
+    <h3 onclick="{showContent('dbFood')}">Database Structure - Food Table</h3>
+    <h4>foods</h4>
+    <code>
+      { <br />
+      <div class="ident1">
+        "id": 1, <span class="comment">// auto increments (no input required, will auto populate) </span> <br />
+        "foodname": "Hamburger Buns", <span class="comment">// Cannot be null </span> <br />
+        "description": null, <span class="comment">// not required </span> <br />
+        "category_id": 1, <span class="comment">// not required, References `id` in table `categories`.  </span> <br />
+        "vegetarian" : true, <span class="comment">// not required </span> <br />
+        "vegan" : null, <span class="comment">// not required </span> <br />
+        "gutenfree" : false <span class="comment">// not required </span> <br />
+      </div>
+      }
+    </code>
+  </div>
+
+  <!-- Categories Table --> 
+  <div id="dbCategories" class="hid">
+    <h3 onclick="{showContent('dbCategories')}">Database Structure - Categories Table</h3> 
+      <h4>categories</h4>
+      <code>
+      { <br />
+      <div class="ident1">
+        "id": 1, <span class="comment">// auto increments (no input required, will auto populate) </span> <br />
+        "category": "bread", <span class="comment">// Cannot be null </span> <br />
+        "description": "breads made from either flour, oats, rye, etc" <span class="comment">// not required </span> <br />
+      </div>
+      }
+    </code>
+  </div>
+
+  <!-- Guest Table --> 
+  <div id="dbGuests" class="hid">
+      <h3 onclick="{showContent('dbGuests')}">Database Structure - Guests Table</h3> 
+        <h4>guests</h4>
+        <code>
+        { <br />
+        <div class="ident1">
+          "id": 1, <span class="comment">// auto increments (no input required, will auto populate) </span> <br />
+          "guestname": "guest1", <span class="comment">// Cannot be null </span> <br />
+          "guestemail": "jane@email.com", <span class="comment">// Cannot be null </span> <br />
+          "user_id": null <span class="comment">// not required, References `id` in table `users`.  </span> 
+        </div>
+        }
+      </code>
+    </div>
+
+  <!-- Table relationships --> 
+  <div id="dbGuestsEvents" class="hid">
+    <h2>Table Relationships</h2>
+    <h3 onclick="{showContent('dbGuestsEvents')}">Database Structure - Guests/Events Table</h3> 
+      <h4>guests_events</h4>
+      <code>
+      { <br />
+      <div class="ident1">
+        "event_id": 1, <span class="comment">// Required, References `id` in table `events`. </span> <br />
+        "guest_id": 1, <span class="comment">// Required, References `id` in table `guests`. </span> <br />
+        "attending": boolean, <span class="comment">// not required </span> <br />
+      </div>
+      }
+    </code>
+  </div>
+  
+  <div id="dbFoodEvents" class="hid">
+    <h2>Table Relationships</h2>
+    <h3 onclick="{showContent('dbFoodEvents')}">Database Structure - Food/Events Table</h3> 
+      <h4>food_needed</h4>
+      <code>
+      { <br />
+      <div class="ident1">
+        "event_id": 1, <span class="comment">// Required, References `id` in table `events`. </span> <br />
+        "food_id": 1, <span class="comment">// Required, References `id` in table `foods`. </span> <br />
+        "quantity_needed": 1, <span class="comment">// not required </span> <br />
+      </div>
+      }
+    </code>
+  </div>
+  
+  <div id="dbFoodneededGuests" class="hid">
+    <h2>Table Relationships</h2>
+    <h3 onclick="{showContent('dbFoodEvents')}">Database Structure - Food/Guests Table</h3> 
+      <h4>food_bringing</h4>
+      <code>
+      { <br />
+      <div class="ident1">
+        "food_needed_id": 1, <span class="comment">// Required, References `id` in table `food_needed`. </span> <br />
+        "guest_id": 1, <span class="comment">// Required, References `id` in table `guests`. </span> <br />
+        "quantity": 1, <span class="comment">// not required </span> <br />
+      </div>
+      }
+    </code>
+  </div>
+
+</div>
   <script>
     function showContent(e) {
       const select = document.getElementById(e);

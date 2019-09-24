@@ -104,3 +104,8 @@ function getGuestsbyEvent(id) {
 //#endregion - Get functions
 
 //#region - CREATE
+
+async function addEvent(input) {
+  const results = await db('events').insert(input);
+  return getProjectByID(ids[0]);
+}
