@@ -91,7 +91,7 @@ router.post('/', async (req, res) => {
     const results = await Events.addEvent(input);
     res.status(201).json(results);
   } catch (err) {
-    res.status(500).json({ message: 'Failed to create new project' });
+    res.status(500).json({ message: 'Failed to create new event.' });
   }
 });
 
