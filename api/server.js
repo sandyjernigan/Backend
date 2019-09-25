@@ -22,5 +22,6 @@ server.get('/', (req, res) => {
 // Routes
 server.use('/api/auth', authRouter);
 server.use('/api/events', eventsRouter);
+server.use('/api/:username/events', eventsRouter);
 
 module.exports = server;

@@ -163,7 +163,7 @@
         <li class="moreInfo" onclick="{showContent('dbUsers')}">User</li>
         <li class="moreInfo" onclick="{showContent('dbGroups')}">Groups</li>
         <li class="moreInfo" onclick="{showContent('dbEvents')}">Event</li>
-        <li class="moreInfo" onclick="{showContent('dbLocations')}">Locations</li>
+        <!-- <li class="moreInfo" onclick="{showContent('dbLocations')}">Locations</li> -->
         <li class="moreInfo" onclick="{showContent('dbFood')}">Food</li>
         <li class="moreInfo" onclick="{showContent('dbCategories')}">Categories</li>
         <li class="moreInfo" onclick="{showContent('dbGuests')}">Guests</li>
@@ -179,9 +179,17 @@
 <!-- Open to the Side -->
 <div id="#content" class="moreContent">
   <div style="color: lightgoldenrodyellow; text-align: center">Click on the list items to the left to open and close sections. <br />
-    Click on the Header below to close a section.</div>
+    Click on the Header below to close a section. <br /><br />
+  </div>
+  <div style="color: lightgreen;">
+    <strong>Latest changes include: </strong>
+    <ul>
+      <li>changed "attending" in the events model to "RVSP"</li>
+      <li>changed locations in the events model from linking to the locations table to a string.</li>
+    </ul>
+  </div>
 
-<!-- Models --> 
+<!-- #region - Models -->
   <!-- User Model --> 
   <div id="modelsUsers" class="hid">
     <h3 onclick="{showContent('modelsUsers')}">User Model</h3>
@@ -252,20 +260,33 @@
           },
         ],
         "guests": [ // array of guests 
-          "guest_id": 1,
-          "guest_id": 2
+          {
+            "guestname": "Jane",
+            "guestemail": "jane@email.com",
+            "RSVP": "going"
+          },
+          {
+            "guestname": "Jack",
+            "guestemail": "jack@email.com",
+            "RSVP": "not going"
+          },
+          {
+            "guestname": "Jill",
+            "guestemail": "jill@email.com",
+            "RSVP": null
+          }
         ]
       }
     </code>
 
-    <h4>Locations Model</h4>
+    <!-- <h4>Locations Model</h4>
     <code>
       {
         "locationid": 1, <br />
         "location": "John's Backyard", <br />
         "description": "At John and Jane's house" <br />
       }
-    </code>
+    </code> -->
   </div>
 
   <!-- Food Model --> 
@@ -305,8 +326,9 @@
         }
       </code>
   </div>
+<!-- #endregion - Models -->
 
-<!-- Endpoints --> 
+<!-- #region - User Endpoints --> 
   <!-- User Endpoint - SignUp --> 
   <div id="signup" class="hid">
     <h3 onclick="{showContent('signup')}">User Endpoints - Signup</h3>
@@ -448,7 +470,9 @@
           <br />
       </code>
   </div>
+<!-- #endregion - User Endpoints -->
 
+<!-- #region - Event Endpoints --> 
   <!-- Event Endpoint - Get All --> 
   <div id="getEvents" class="hid">
     <h3 onclick="{showContent('getEvents')}">Event Endpoints - Get All Events - Simple</h3>
@@ -464,15 +488,17 @@
       <p><strong>Expected Return:</strong> </p>
       <code>
         [ <br />
+        <div class="ident1">
           { <br />
             "id": 1, <br />
             "eventname": "John's First Potluck", <br />
             "description": "Birthday Party Potluck for Jane.", <br />
             "eventdate": "8-23-2019", <br />
             "eventtime": "6:00 PM", <br />
-            "location_id": 1, <br />
+            "location": "John's Backyard", <br />
             "user_id": 2 <br />
           } <br />
+        </div>
         ]
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
@@ -483,27 +509,35 @@
   </div>
 
   <!-- Event Endpoint - Get All - Detailed --> 
-  <!--  I want this endpoint to return detailed event information for each event, 
-        but I'd like this limited to only return list of events by user. --> 
   <div id="getAllEvents" class="hid">
-    <h2>TODO - this is not active yet</h2>
     <h3 onclick="{showContent('getAllEvents')}">Event Endpoints - Get All Events - Detailed</h3>
-      <p><strong>Endpoint:</strong> `/api/events/all`</p>
+      <p><strong>Endpoint:</strong> `/api/events/:username/all`</p>
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
       <code>
         Get a list of all event objects -detailed return <br />
-        TODO: <br />
-        I want this endpoint to return detailed event information for each event, 
-        but I'd like this limited to only return list of events by username so only users events return.
+        This endpoint should return detailed event information for each event, <br />
+        limited to only the user's events based on the username supplied in the endpoint.
       </code>
       <p><strong>Sample Request:</strong> </p>
       <code>
         <br />
       </code>
-      <p><strong>Expected Return:</strong> </p>
+      <p><strong>Expected Return:</strong> <span class="comment">for username = user</span></p>
       <code>
-        <br />
+        [ <br />
+        <div class="ident1">
+        { <br />
+          "eventid": 2, <br />
+          "eventname": "Our Autumn Bash", <br />
+          "description": "Company party for Autumn and September birthdays!", <br />
+          "eventdate": "9-25-2019", <br />
+          "eventtime": "2:00 PM", <br />
+          "location": null, <br />
+          "username": "user" <br />
+        } <br />
+        </div>
+        ]
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
@@ -659,7 +693,7 @@
           "description": "Company party for end of Summer, start of fall, and September birthdays!", <br />
           "eventdate": "9-25-2019", <br />
           "eventtime": "2:00 PM", <br />
-          "location_id": null, <span class="comment"> // may consider making this a dropdown </span><br />
+          "location": null, <br />
           "user_id": 1 <span class="comment"> // User_id should be the id of the user creating the event.</span> <br />
         </div>
         }
@@ -678,7 +712,7 @@
           "description": "Company party for end of Summer, start of fall, and September birthdays!", <br />
           "eventdate": "9-25-2019", <br />
           "eventtime": "2:00 PM", <br />
-          "location_id": null, <br />
+          "location": null, <br />
           "user_id": 1 <br />
         </div>
         }
@@ -723,7 +757,7 @@
           "description": "Company party for Autumn and September birthdays!", <br />
           "eventdate": "9-25-2019", <br />
           "eventtime": "2:00 PM", <br />
-          "location_id": null, <br />
+          "location": null, <br />
           "user_id": 1 <br />
         </div>
         }
@@ -766,7 +800,7 @@
             "description": "Company party for Autumn and September birthdays!", <br />
             "eventdate": "9-25-2019", <br />
             "eventtime": "2:00 PM", <br />
-            "location_id": null, <br />
+            "location": null, <br />
             "user_id": 1 <br />
           </div>
           }
@@ -782,6 +816,7 @@
           { message: 'Failed to delete event.' }
       </code>
   </div>
+<!-- #endregion - Event Endpoints -->
 
 
   <!-- replaceThis --> 
@@ -816,8 +851,8 @@
   </div>
   --> 
 
-  
-<!-- Database Structure --> 
+ 
+<!-- #region - Database Structure -->  
   <!-- User Table --> 
   <div id="dbUsers" class="hid">
     <h3 onclick="{showContent('dbUsers')}">Database Structure - User Table</h3>
@@ -865,7 +900,8 @@
         "description": "Birthday Party Potluck for Jane." <span class="comment">// not required </span> <br />
         "eventdate": "8-23-2019" <span class="comment">// not required </span> <br />
         "eventtime": "6:00 PM" <span class="comment">// not required </span> <br />
-        "location_id": 1 <span class="comment">// not required, References `id` in table `locations`.  </span> <br />
+        "location": "John's Backyard" <span class="comment">// not required, string  </span> <br />
+        <!-- "location_id": 1 <span class="comment">// not required, References `id` in table `locations`.  </span> <br /> -->
         "user_id": 2 <span class="comment">// not required, References `id` in table `users`.  </span> <br />
       </div>
       }
@@ -873,7 +909,7 @@
   </div>
 
   <!-- Locations Table --> 
-  <div id="dbLocations" class="hid">
+  <!-- <div id="dbLocations" class="hid">
     <h3 onclick="{showContent('dbLocations')}">Database Structure - Locations Table</h3> 
     <h4>locations</h4>
     <code>
@@ -885,7 +921,7 @@
       </div>
       }
     </code>
-  </div>
+  </div> -->
 
   <!-- Food Table --> 
   <div id="dbFood" class="hid">
@@ -982,6 +1018,7 @@
       }
     </code>
   </div>
+<!-- #endregion - Database Structure --> 
 
 </div>
   <script>
