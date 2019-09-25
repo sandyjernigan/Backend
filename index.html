@@ -186,6 +186,7 @@
     <ul>
       <li>changed "attending" in the events model to "RVSP"</li>
       <li>changed locations in the events model from linking to the locations table to a string.</li>
+      <li>Added endpoint - GET all events the user created -> "Get All Events - Detailed"</li>
     </ul>
   </div>
 
@@ -509,7 +510,7 @@
   </div>
 
   <!-- Event Endpoint - Get All - Detailed --> 
-  <div id="getAllEvents" class="hid">
+  <div id="getAllEvents" class="show">
     <h3 onclick="{showContent('getAllEvents')}">Event Endpoints - Get All Events - Detailed</h3>
       <p><strong>Endpoint:</strong> `/api/events/:username/all`</p>
       <p><strong>Type:</strong> `GET`</p>
@@ -523,18 +524,37 @@
       <code>
         <br />
       </code>
-      <p><strong>Expected Return:</strong> <span class="comment">for username = user</span></p>
+      <p><strong>Expected Return:</strong> <span class="comment">for username = john</span></p>
       <code>
         [ <br />
         <div class="ident1">
         { <br />
-          "eventid": 2, <br />
-          "eventname": "Our Autumn Bash", <br />
-          "description": "Company party for Autumn and September birthdays!", <br />
-          "eventdate": "9-25-2019", <br />
-          "eventtime": "2:00 PM", <br />
-          "location": null, <br />
-          "username": "user" <br />
+          "id": 1, <br />
+          "eventname": "John's First Potluck", <br />
+          "description": "Birthday Party Potluck for Jane.", <br />
+          "eventdate": "8-23-2019", <br />
+          "eventtime": "6:00 PM", <br />
+          "location": "John's Backyard", <br />
+          "username": "john", <br />
+          "guests": [ <br />
+            <div class="ident1">
+            { <br />
+              "guestname": "Jane", <br />
+              "guestemail": "jane@email.com", <br />
+              "RSVP": "Yes" <br />
+            }, <br />
+            { <br />
+              "guestname": "Jack", <br />
+              "guestemail": "jack@email.com", <br />
+              "RSVP": "No" <br />
+            }, <br />
+            { <br />
+              "guestname": "Jill", <br />
+              "guestemail": "jill@email.com", <br />
+              "RSVP": null <br />
+            } <br />
+            </div>
+          ] <br />
         } <br />
         </div>
         ]
