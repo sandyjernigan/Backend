@@ -11,7 +11,8 @@ module.exports = {
   getGuests,
   getGuest,
   getGuestsbyEvent,
-  addEvent
+  addEvent,
+  updateEvent
 };
 
 //#region READ - Get functions
@@ -104,7 +105,7 @@ function getGuest(id) {
 function getGuestsbyEvent(id) {
   return db('guests_events')
     .join('guests', 'guests.id', 'guests_events.guest_id')
-    .select( 'guests.guestname', 'guests.guestemail' )
+    .select( 'guests.guestname', 'guests.guestemail', 'guests_events.attending' )
     .where({ 'guests_events.event_id': id });
 }
 
@@ -116,3 +117,16 @@ async function addEvent(input) {
   const results = await db('events').insert(input);
   return getjustEvent(results[0]);
 }
+
+//#endregion
+
+//#region - Update
+
+function updateEvent(changes, id) {
+  return db('events').where({ id }).update(changes)
+  .then(count => {
+    return getjustEvent(id);
+  });
+}
+
+//#endregion

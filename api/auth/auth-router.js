@@ -53,6 +53,17 @@ router.get('/logout', (req, res) => {
   // Checking to see if possible to edit token, right now this does nothing
 });
 
+// View Users **Endpoint:** `/api/auth/users` 
+router.get('/users', async (req, res) => {
+  // lookup list of all users - testing only - this endpoint should be not be public.
+  try {
+    const results = await Users.find();
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
+  }
+});
+
 // Update User **Endpoint:** `/api/auth/user/{id}` 
 router.put('/user/{id}', (req, res) => {
   // TODO: Add function to update user

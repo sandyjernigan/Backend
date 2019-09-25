@@ -482,6 +482,8 @@
   </div>
 
   <!-- Event Endpoint - Get All - Detailed --> 
+  <!--  I want this endpoint to return detailed event information for each event, 
+        but I'd like this limited to only return list of events by user. --> 
   <div id="getAllEvents" class="hid">
     <h2>TODO - this is not active yet</h2>
     <h3 onclick="{showContent('getAllEvents')}">Event Endpoints - Get All Events - Detailed</h3>
@@ -489,7 +491,10 @@
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
       <code>
-        Get a list of all event objects -detailed return
+        Get a list of all event objects -detailed return <br />
+        TODO: <br />
+        I want this endpoint to return detailed event information for each event, 
+        but I'd like this limited to only return list of events by username so only users events return.
       </code>
       <p><strong>Sample Request:</strong> </p>
       <code>
@@ -637,8 +642,7 @@
   </div>
 
   <!-- Event Endpoint - Add Event --> 
-  <div id="addEvent" class="show">
-    <h2>TODO: - Currently working on this endpoint</h2>
+  <div id="addEvent" class="hid">
     <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Event</h3>
       <p><strong>Endpoint:</strong> `/api/events/new`</p>
       <p><strong>Type:</strong> `POST`</p>
@@ -681,13 +685,12 @@
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
         status code: 500 <br />
-        { message: 'Failed to get guests.' }
+        { message: 'Failed to create new event.' }
       </code>
   </div>
 
   <!-- Event Endpoint - Update Event --> 
   <div id="updateEvent" class="hid">
-    <h2>TODO: - this is not active yet</h2>
     <h3 onclick="{showContent('updateEvent')}">Event Endpoints - Update Event</h3>
       <p><strong>Endpoint:</strong> `/api/events/edit/{id}`</p>
       <p><strong>Type:</strong> `PUT`</p>
@@ -698,8 +701,12 @@
       </code>
       <p><strong>Expected Input:</strong> </p>
       <code>
-        {
-          <br />
+        <span class="comment"> // Only have to submit information that is requested to change.</span> <br />
+        { <br />
+        <div class="ident1">
+          "eventname": "Autumn Bash", <br />
+          "description": "Company party for Autumn and September birthdays!", <br />
+        </div>
         }
       </code>
       <p><strong>Sample Request:</strong> </p>
@@ -708,11 +715,27 @@
       </code>
       <p><strong>Expected Return:</strong> </p>
       <code>
-        <br />
+        { <br />
+        <div class="ident1">
+          "id": 3, <br />
+          "eventname": "Our Autumn Bash", <br />
+          "description": "Company party for Autumn and September birthdays!", <br />
+          "eventdate": "9-25-2019", <br />
+          "eventtime": "2:00 PM", <br />
+          "location_id": null, <br />
+          "user_id": 1 <br />
+        </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails to find event by id:</strong> </p>
+      <code>
+          status code: 404 <br />
+          { message: 'Could not find event with given id.' }
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
-        <br />
+          status code: 500 <br />
+          { message: 'Failed to update event.' }
       </code>
   </div>
 
