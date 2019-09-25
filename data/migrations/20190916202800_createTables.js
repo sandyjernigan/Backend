@@ -33,9 +33,8 @@ exports.up = function(knex) {
     tbl.string('lastname');
     tbl.string('preferredname');
     tbl.string('email').notNullable().unique();
-    tbl.integer('group_id').unsigned().notNullable()
-      .references('id').inTable('groups')
-      .onDelete('CASCADE').onUpdate('CASCADE');
+    tbl.integer('group_id').unsigned()
+      .references('id').inTable('groups');
   })
 
   // events
@@ -46,11 +45,9 @@ exports.up = function(knex) {
     tbl.date('eventdate');
     tbl.time('eventtime');
     tbl.integer('location_id').unsigned()
-      .references('id').inTable('locations')
-      .onDelete('CASCADE').onUpdate('CASCADE');
+      .references('id').inTable('locations');
     tbl.integer('user_id').unsigned().notNullable()
-      .references('id').inTable('users')
-      .onDelete('CASCADE').onUpdate('CASCADE');
+      .references('id').inTable('users');
   })
 
   // foods
@@ -59,8 +56,7 @@ exports.up = function(knex) {
     tbl.string('foodname').notNullable();
     tbl.string('description');
     tbl.integer('category_id').unsigned().notNullable()
-      .references('id').inTable('categories')
-      .onDelete('CASCADE').onUpdate('CASCADE');
+      .references('id').inTable('categories');
     tbl.string('vegetarian');
     tbl.string('vegan');
     tbl.string('gutenfree');
@@ -80,8 +76,7 @@ exports.up = function(knex) {
   // guests_events
   .createTable('guests_events', tbl => {
     tbl.integer('event_id').unsigned().notNullable()
-      .references('id').inTable('events')
-      .onDelete('CASCADE').onUpdate('CASCADE');
+      .references('id').inTable('events');
     tbl.integer('guest_id').unsigned().notNullable()
       .references('id').inTable('guests');
     tbl.primary(['event_id', 'guest_id']);

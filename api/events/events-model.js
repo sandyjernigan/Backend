@@ -5,12 +5,16 @@ module.exports = {
   getEvents,
   getAllEvents,
   getEvent,
+  getjustEvent,
   getFoodforEvent,
   getBringingbyFood,
   getGuests,
   getGuest,
-  getGuestsbyEvent
+  getGuestsbyEvent,
+  addEvent
 };
+
+//#region READ - Get functions
 
 // getEvents() - return all events 
 function getEvents() {
@@ -50,6 +54,11 @@ function getEvent(id) {
   .where({ 'events.id': id }).first();
 }
 
+// getEvent(id) - return 1 event by id - simple only details from event table
+function getjustEvent(id) {
+  return db('events').where({ id }).first();
+}
+
 // getFoodforEvent() - return list of food by event id
 function getFoodforEvent(id) {
   return db('food_needed')
@@ -69,7 +78,7 @@ function getFoodforEvent(id) {
   .where({ 'food_needed.event_id': id });
 }
 
-// getFoodforEvent() - return list of food by event id
+// getBringingbyFood() - return list of guestname and quanity of food items guest is bringing
 function getBringingbyFood(id) {
   return db('food_needed')
   .join('food_bringing', 'food_needed.id', 'food_bringing.food_needed_id')
@@ -91,9 +100,19 @@ function getGuest(id) {
   return db('guests').where({ id });
 }
 
+// getGuestsbyEvent(id) - returns an array of guests for an event by event id
 function getGuestsbyEvent(id) {
   return db('guests_events')
     .join('guests', 'guests.id', 'guests_events.guest_id')
     .select( 'guests.guestname', 'guests.guestemail' )
     .where({ 'guests_events.event_id': id });
+}
+
+//#endregion - Get functions
+
+//#region - CREATE
+
+async function addEvent(input) {
+  const results = await db('events').insert(input);
+  return getjustEvent(results[0]);
 }
