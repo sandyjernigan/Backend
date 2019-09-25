@@ -482,6 +482,8 @@
   </div>
 
   <!-- Event Endpoint - Get All - Detailed --> 
+  <!--  I want this endpoint to return detailed event information for each event, 
+        but I'd like this limited to only return list of events by user. --> 
   <div id="getAllEvents" class="hid">
     <h2>TODO - this is not active yet</h2>
     <h3 onclick="{showContent('getAllEvents')}">Event Endpoints - Get All Events - Detailed</h3>
@@ -489,7 +491,10 @@
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
       <code>
-        Get a list of all event objects -detailed return
+        Get a list of all event objects -detailed return <br />
+        TODO: <br />
+        I want this endpoint to return detailed event information for each event, 
+        but I'd like this limited to only return list of events by username so only users events return.
       </code>
       <p><strong>Sample Request:</strong> </p>
       <code>
@@ -637,8 +642,7 @@
   </div>
 
   <!-- Event Endpoint - Add Event --> 
-  <div id="addEvent" class="show">
-    <h2>TODO: - Currently working on this endpoint</h2>
+  <div id="addEvent" class="hid">
     <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Event</h3>
       <p><strong>Endpoint:</strong> `/api/events/new`</p>
       <p><strong>Type:</strong> `POST`</p>
