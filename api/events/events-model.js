@@ -105,7 +105,7 @@ function getGuest(id) {
 function getGuestsbyEvent(id) {
   return db('guests_events')
     .join('guests', 'guests.id', 'guests_events.guest_id')
-    .select( 'guests.guestname', 'guests.guestemail' )
+    .select( 'guests.guestname', 'guests.guestemail', 'guests_events.attending' )
     .where({ 'guests_events.event_id': id });
 }
 
