@@ -34,28 +34,20 @@ router.get('/:username/all', async (req, res) => {
     const events = await Events.getEventsByUsername(username);
 
     // This map function returns an array of Promises. 
-    const eventswithGuests = events.map((x) => {
+    const eventswithGuests = events.map( async (event) => {
       try {
-        
-        console.log(x.id);
-        const guests = Events.getGuestsbyEvent(1);
-        console.log(guests);
-        x.guests = guests;
-        //console.log(x);
-        return x
+        const guests = await Events.getGuestsbyEvent(event.id);
+        event.guests = guests;
+        return event
       } catch (err) {
         console.log("No results.");
       }
     }); 
     
-    //console.log(eventswithGuests);
-    res.json(eventswithGuests);
-
-    // Promise.all(eventswithGuests).then((x) => {  
-    //   res.json(eventswithGuests);
-    // });
-
-    //res.json(results);
+    Promise.all(eventswithGuests).then((results) => {  
+      res.json(results);
+    });
+    
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
   }
