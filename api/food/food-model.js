@@ -6,6 +6,7 @@ module.exports = {
   addCategory,
   // Read
   getFood,
+  getFoodbyID,
   getCategory,
   getCategories,
   // Update
@@ -27,6 +28,10 @@ async function addCategory(input) {
 
 function getFood() {
   return db('foods');
+}
+
+function getFoodbyID(id) {
+  return db('foods').where({ id }).first();
 }
 
 function getCategories() {

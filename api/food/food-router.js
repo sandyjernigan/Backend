@@ -6,10 +6,22 @@ const router = express.Router();
 
 //#region - READ
 
-// GET all categories
+// GET all food
 router.get('/', async (req, res) => {
   try {
     const results = await Router.getFood();
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
+  }
+});
+
+// GET food by id
+router.get('/:id/', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const results = await Router.getFoodbyID(id);
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });

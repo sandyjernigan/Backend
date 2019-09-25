@@ -153,6 +153,7 @@
           <li class="moreInfo" onclick="{showContent('getEvent')}">Get Event</li>
           <li class="moreInfo" onclick="{showContent('getGuestsbyEvent')}">Get Guests by Event</li>
           <li class="moreInfo" onclick="{showContent('getFood')}">Get Food</li>
+          <li class="moreInfo" onclick="{showContent('getFoodbyID')}">Get Food by ID</li>
           <li class="moreInfo" onclick="{showContent('getCategories')}">Get Categories</li>
           <li class="moreInfo" onclick="{showContent('getCategory')}">Get Category</li>
         </ul>
@@ -221,7 +222,8 @@
       <li>changed locations in the events model from linking to the locations table to a string.</li>
       <li>Added endpoint - GET all events the user created -> "Get All Events - Detailed"</li>
       <li>Categories endpoints for getCategory, getCategories, addCategory, updateCategory, and deleteCategory</li>
-      <li>Working on Endpoints for Food items</li>
+      <li>Enpdoints active for getFood and getFoodbyID </li>
+      <li>Working on Endpoints for Food items: add, update, and delete</li>
     </ul>
   </div>
 
@@ -736,6 +738,62 @@
 </div>
 
 <div id="get_Food_Endpoints">
+    <!-- Event Endpoint - Get Categories --> 
+    <div id="getFood" class="hid">
+      <h3 onclick="{showContent('getFood')}">Event Endpoints - Get Food </h3>
+        <p><strong>Endpoint:</strong> `/api/food/`</p>
+        <p><strong>Type:</strong> `GET`</p>
+        <p><strong>Description:</strong> </p>
+        <code>
+          Get list of Categories.
+        </code>
+        <p><strong>Expected Input:</strong> </p>
+        <code>
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code> <span class="comment">// Should return an array of food objects</span>
+          [ <br />
+          <div class="ident1"> 
+          </div>
+          ]
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+          status code: 500<br />
+          { message: 'Failed to get results.' }
+        </code>
+    </div>
+  
+    <!-- Event Endpoint - Get Food by ID --> 
+    <div id="getFoodbyID" class="hid">
+      <h3 onclick="{showContent('getFoodbyID')}">Event Endpoints - Get Food by ID </h3>
+        <p><strong>Endpoint:</strong> `/api/food/:id/`</p>
+        <p><strong>Type:</strong> `GET`</p>
+        <p><strong>Description:</strong> </p>
+        <code>
+          Get info on a Food by its id in database.
+        </code>
+        <p><strong>Expected Input:</strong> </p>
+        <code>
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code> <span class="comment">// Should return an object</span>
+          { <br />
+          }
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+          status code: 500<br />
+          { message: 'Failed to get results.' }
+        </code>
+    </div>
+
   <!-- Event Endpoint - Get Categories --> 
   <div id="getCategories" class="hid">
     <h3 onclick="{showContent('getCategories')}">Event Endpoints - Get Categories </h3>
