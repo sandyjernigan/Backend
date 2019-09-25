@@ -152,6 +152,7 @@
           <li class="moreInfo" onclick="{showContent('getAllEvents')}">Get All Events - Detailed</li>
           <li class="moreInfo" onclick="{showContent('getEvent')}">Get Event</li>
           <li class="moreInfo" onclick="{showContent('getGuestsbyEvent')}">Get Guests by Event</li>
+          <li class="moreInfo" onclick="{showContent('getFood')}">Get Food</li>
           <li class="moreInfo" onclick="{showContent('getCategories')}">Get Categories</li>
           <li class="moreInfo" onclick="{showContent('getCategory')}">Get Category</li>
         </ul>
@@ -175,6 +176,7 @@
         <div id="updateEndpoints" class="hid">
         <ul>
           <li class="moreInfo" onclick="{showContent('updateEvent')}">Update Event</li>
+          <li class="moreInfo" onclick="{showContent('updateCategory')}">Update Category</li>
         </ul>
         </div>
         
@@ -182,6 +184,7 @@
         <div id="deleteEndpoints" class="hid">
         <ul>
           <li class="moreInfo" onclick="{showContent('deleteEvent')}">Delete Event</li>
+          <li class="moreInfo" onclick="{showContent('deleteCategory')}">Delete Category</li>
         </ul>
       </div>
       
@@ -217,6 +220,8 @@
       <li>changed "attending" in the events model to "RVSP"</li>
       <li>changed locations in the events model from linking to the locations table to a string.</li>
       <li>Added endpoint - GET all events the user created -> "Get All Events - Detailed"</li>
+      <li>Categories endpoints for getCategory, getCategories, addCategory, updateCategory, and deleteCategory</li>
+      <li>Working on Endpoints for Food items</li>
     </ul>
   </div>
 
@@ -888,7 +893,7 @@
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
         status code: 500 <br />
-        { message: 'Failed to create new event.' }
+        { message: 'Failed to create new cateogory.' }
       </code>
   </div>
 
@@ -944,8 +949,8 @@
       <p><strong>Type:</strong> `PUT`</p>
       <p><strong>Description:</strong> </p>
       <code>
-        Update event with given id. <br />
-        Use this to access and update and sub categories like food list or guest list.
+        Update event with given id.
+        <!-- Use this to access and update and sub categories like food list or guest list. -->
       </code>
       <p><strong>Expected Input:</strong> </p>
       <code>
@@ -987,9 +992,54 @@
       </code>
   </div>
 
+  <!-- Event Endpoint - Update Category --> 
+  <div id="updateCategory" class="hid">
+    <h3 onclick="{showContent('updateCategory')}">Event Endpoints - Update Category</h3>
+      <p><strong>Endpoint:</strong> `/api/food/categories/{id}`</p>
+      <p><strong>Type:</strong> `PUT`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Update category with given id.
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        <span class="comment"> // Only have to submit information that is requested to change.</span> <br />
+        { <br />
+        <div class="ident1">
+          "description": "meats"
+        </div>
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        { <br />
+        <div class="ident1">
+          "id": 2, <br />
+          "category": "meat", <br />
+          "description": "animal flesh that is eaten as food." <br />
+        </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails to find event by id:</strong> </p>
+      <code>
+          status code: 404 <br />
+          { message: 'Could not find cateogory with given id.' }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to update cateogory.' }
+      </code>
+  </div>
+
 </div>
 
 <div id="delete_Endpoints">
+
   <!-- Event Endpoint - Delete Event --> 
   <div id="deleteEvent" class="hid">
     <h3 onclick="{showContent('deleteEvent')}">Event Endpoints - DELETE Event</h3>
@@ -1009,6 +1059,7 @@
       </code>
       <p><strong>Expected Return:</strong> </p>
       <code>
+          <span class="comment"> // object that has been deleted </span>
           { <br />
           <div class="ident1">
             "id": 3, <br />
@@ -1032,6 +1083,48 @@
           { message: 'Failed to delete event.' }
       </code>
   </div>
+
+  <!-- Event Endpoint - Delete Category --> 
+  <div id="deleteCategory" class="hid">
+    <h3 onclick="{showContent('deleteCategory')}">Event Endpoints - DELETE Category</h3>
+      <p><strong>Endpoint:</strong> `/api/food/categories/{id}`</p>
+      <p><strong>Type:</strong> `DELETE`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Deletes Category with given ID
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        <span class="comment"> // {id} supplied in the endpoint</span> <br />  
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+          <span class="comment"> // object that has been deleted </span> <br />
+          { <br />
+          <div class="ident1">
+            "id": 4,
+            "category": "fruit",
+            "description": "The fleshy seed-associated structures of a plant that are sweet or sour, and edible in the raw state, such as apples, bananas, grapes, lemons, oranges, and strawberries."
+          </div>
+          }
+      </code>
+      <p><strong>Expected Return if Fails to find event by id:</strong> </p>
+      <code>
+          status code: 404 <br />
+          { message: 'Could not find cateogory with given id.' }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to delete cateogory.' }
+      </code>
+  </div>
+
+</div>
 
 </div>
 <!-- #endregion - Event Endpoints -->

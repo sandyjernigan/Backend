@@ -5,6 +5,7 @@ module.exports = {
   // Create
   addCategory,
   // Read
+  getFood,
   getCategory,
   getCategories,
   // Update
@@ -24,6 +25,10 @@ async function addCategory(input) {
 
 //#region READ - Get functions
 
+function getFood() {
+  return db('foods');
+}
+
 function getCategories() {
   return db('categories');
 }
@@ -37,10 +42,10 @@ function getCategory(id) {
 //#region - Update
 
 function updateCategory(changes, id) {
-  // return db('events').where({ id }).update(changes)
-  // .then(count => {
-  //   return getjustEvent(id);
-  // });
+  return db('categories').where({ id }).update(changes)
+  .then(count => {
+    return getCategory(id);
+  });
 }
 
 //#endregion
@@ -48,11 +53,11 @@ function updateCategory(changes, id) {
 //#region - Delete
 
 async function deleteCategory(id) {
-  // const results = await getjustEvent(id);
-  // const removeEvent = db('events').where({ id }).del();
-  // if (removeEvent){
-  //   return results;
-  // }
+  const results = await getCategory(id);
+  const removeResults = db('categories').where({ id }).del();
+  if (removeResults){
+    return results;
+  }
 }
 
 //#endregion

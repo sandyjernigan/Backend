@@ -1,15 +1,25 @@
 const express = require('express');
 
-const Events = require('./food-model.js');
+const Router = require('./food-model.js');
 
 const router = express.Router();
 
 //#region - READ
 
 // GET all categories
+router.get('/', async (req, res) => {
+  try {
+    const results = await Router.getFood();
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
+  }
+});
+
+// GET all categories
 router.get('/categories', async (req, res) => {
   try {
-    const results = await Events.getCategories();
+    const results = await Router.getCategories();
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
@@ -37,10 +47,10 @@ router.post('/categories', async (req, res) => {
   const input = req.body;
 
   try {
-    const results = await Events.addCategory(input);
+    const results = await Router.addCategory(input);
     res.status(201).json(results);
   } catch (err) {
-    res.status(500).json({ message: 'Failed to create new event.' });
+    res.status(500).json({ message: 'Failed to create new cateogory.' });
   }
 });
 
@@ -49,19 +59,19 @@ router.post('/categories', async (req, res) => {
 //#region - Update - PUT endpoints
 
 // update Event
-router.put('/:id', async (req, res) => {
+router.put('/categories/:id', async (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
   try {
-    const results = await Events.updateEvent(changes, id);
+    const results = await Router.updateCategory(changes, id);
     if (results) {
       res.json(results);
     } else {
-      res.status(404).json({ message: 'Could not find event with given id.' });
+      res.status(404).json({ message: 'Could not find cateogory with given id.' });
     }
   } catch (err) {
-    res.status(500).json({ message: 'Failed to update event.' });
+    res.status(500).json({ message: 'Failed to update cateogory.' });
   }
 });
 
@@ -70,19 +80,19 @@ router.put('/:id', async (req, res) => {
 //#region - Delete - delete endpoints
 
 // delete Event
-router.delete('/:id', async (req, res) => {
+router.delete('/categories/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const results = await Events.deleteEvent(id);
+    const results = await Router.deleteCategory(id);
     console.log(id)
     if (results) {
       res.json(results);
     } else {
-      res.status(404).json({ message: 'Could not find event with given id.' });
+      res.status(404).json({ message: 'Could not find cateogory with given id.' });
     }
   } catch (err) {
-    res.status(500).json({ message: 'Failed to delete event.' });
+    res.status(500).json({ message: 'Failed to delete cateogory.' });
   }
 });
 
