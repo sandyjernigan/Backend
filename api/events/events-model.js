@@ -7,6 +7,7 @@ module.exports = {
   // Read
   getEvents,
   getAllEvents,
+  getEventsByUsername,
   getEvent,
   getjustEvent,
   getFoodforEvent,
@@ -29,7 +30,7 @@ async function addEvent(input) {
 
 //#endregion
 
-//#region READ - Get functions
+//#region - READ 
 
 // getEvents() - return all events 
 function getEvents() {
@@ -39,7 +40,7 @@ function getEvents() {
 // getAllEvents() - return all events - detailed return
 function getAllEvents() {
   return db('events')
-  .join('locations', 'locations.id', 'events.location_id')
+  //.leftJoin('locations', 'events.location_id', 'locations.id')
   .join('users', 'users.id', 'events.user_id')
   .select(
     'events.id as eventid',
@@ -47,15 +48,33 @@ function getAllEvents() {
     'events.description', 
     'events.eventdate', 
     'events.eventtime',
-    'locations.location',
+    'events.location',
+    // 'locations.location',
     'users.username'
   );
+}
+
+// getEventsByUsername(username) - return all events the user created
+function getEventsByUsername(username) {
+  return db('events')
+  //.join('locations', 'locations.id', 'events.location_id')
+  .join('users', 'users.id', 'events.user_id')
+  .select(
+    'events.id',
+    'events.eventname', 
+    'events.description', 
+    'events.eventdate', 
+    'events.eventtime',
+    'events.location',
+    //'locations.location',
+    'users.username'
+  ).where({ 'users.username': username });
 }
 
 // getEvent(id) - return 1 event by id
 function getEvent(id) {
   return db('events')
-  .join('locations', 'locations.id', 'events.location_id')
+  //.join('locations', 'locations.id', 'events.location_id')
   .join('users', 'users.id', 'events.user_id')
   .select(
     'events.id as eventid',
@@ -63,7 +82,8 @@ function getEvent(id) {
     'events.description', 
     'events.eventdate', 
     'events.eventtime',
-    'locations.location',
+    'events.location',
+    //'locations.location',
     'users.username'
   )
   .where({ 'events.id': id }).first();
@@ -119,11 +139,11 @@ function getGuest(id) {
 function getGuestsbyEvent(id) {
   return db('guests_events')
     .join('guests', 'guests.id', 'guests_events.guest_id')
-    .select( 'guests.guestname', 'guests.guestemail', 'guests_events.attending' )
+    .select( 'guests.guestname', 'guests.guestemail', 'guests_events.RSVP' )
     .where({ 'guests_events.event_id': id });
 }
 
-//#endregion - Get functions
+//#endregion - Get
 
 //#region - Update
 
@@ -140,7 +160,6 @@ function updateEvent(changes, id) {
 
 async function deleteEvent(id) {
   const results = await getjustEvent(id);
-  console.log(results)
   const removeEvent = db('events').where({ id }).del();
   if (removeEvent){
     return results;

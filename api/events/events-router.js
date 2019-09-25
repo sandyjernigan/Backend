@@ -16,11 +16,38 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET all events - detailed TODO: Working on this endpoint, need to add foreach loop
+// GET all events - detailed
 router.get('/all', async (req, res) => {
   try {
     const results = await Events.getAllEvents();
     res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
+  }
+});
+
+// GET all events the user created
+router.get('/:username/all', async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const events = await Events.getEventsByUsername(username);
+
+    // This map function returns an array of Promises. 
+    const eventswithGuests = events.map( async (event) => {
+      try {
+        const guests = await Events.getGuestsbyEvent(event.id);
+        event.guests = guests;
+        return event
+      } catch (err) {
+        console.log("No results.");
+      }
+    }); 
+    
+    Promise.all(eventswithGuests).then((results) => {  
+      res.json(results);
+    });
+    
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
   }

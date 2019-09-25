@@ -44,8 +44,9 @@ exports.up = function(knex) {
     tbl.string('description');
     tbl.date('eventdate');
     tbl.time('eventtime');
-    tbl.integer('location_id').unsigned()
-      .references('id').inTable('locations');
+    tbl.string('location'); 
+    //tbl.integer('location_id').unsigned() // changing location to a string
+      //.references('id').inTable('locations');
     tbl.integer('user_id').unsigned().notNullable()
       .references('id').inTable('users');
   })
@@ -80,7 +81,7 @@ exports.up = function(knex) {
     tbl.integer('guest_id').unsigned().notNullable()
       .references('id').inTable('guests');
     tbl.primary(['event_id', 'guest_id']);
-    tbl.string('attending');
+    tbl.string('RSVP');
   })
 
   // food_needed

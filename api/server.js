@@ -7,6 +7,7 @@ const path = require('path');
 const authenticate = require('./auth/authenticate-middleware.js');
 const authRouter = require('./auth/auth-router.js');
 const eventsRouter = require('./events/events-router.js');
+const foodRouter = require('./food/food-router.js');
 
 const server = express();
 
@@ -22,5 +23,7 @@ server.get('/', (req, res) => {
 // Routes
 server.use('/api/auth', authRouter);
 server.use('/api/events', eventsRouter);
+server.use('/api/:username/events', eventsRouter);
+server.use('/api/food', foodRouter);
 
 module.exports = server;

@@ -8,7 +8,7 @@ exports.seed = function(knex, Promise) {
       description: "Birthday Party Potluck for Jane.",
       eventdate: "8-23-2019",
       eventtime: "6:00 PM",
-      location_id: 1,
+      location: "John's Backyard",
       user_id: 2
     }
   ]);
