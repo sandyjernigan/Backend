@@ -118,4 +118,25 @@ router.put('/:id', async (req, res) => {
 
 //#endregion
 
+//#region - Delete - delete endpoints
+
+// delete Event
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const results = await Events.deleteEvent(id);
+    console.log(id)
+    if (results) {
+      res.json(results);
+    } else {
+      res.status(404).json({ message: 'Could not find event with given id.' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to delete event.' });
+  }
+});
+
+//#endregion
+
 module.exports = router; 

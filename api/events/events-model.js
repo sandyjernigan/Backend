@@ -2,6 +2,9 @@ const db = require('../../data/dbConfig.js');
 
 
 module.exports = {
+  // Create
+  addEvent,
+  // Read
   getEvents,
   getAllEvents,
   getEvent,
@@ -11,9 +14,20 @@ module.exports = {
   getGuests,
   getGuest,
   getGuestsbyEvent,
-  addEvent,
-  updateEvent
+  // Update
+  updateEvent,
+  // Delete
+  deleteEvent
 };
+
+//#region - CREATE
+
+async function addEvent(input) {
+  const results = await db('events').insert(input);
+  return getjustEvent(results[0]);
+}
+
+//#endregion
 
 //#region READ - Get functions
 
@@ -111,15 +125,6 @@ function getGuestsbyEvent(id) {
 
 //#endregion - Get functions
 
-//#region - CREATE
-
-async function addEvent(input) {
-  const results = await db('events').insert(input);
-  return getjustEvent(results[0]);
-}
-
-//#endregion
-
 //#region - Update
 
 function updateEvent(changes, id) {
@@ -127,6 +132,19 @@ function updateEvent(changes, id) {
   .then(count => {
     return getjustEvent(id);
   });
+}
+
+//#endregion
+
+//#region - Delete
+
+async function deleteEvent(id) {
+  const results = await getjustEvent(id);
+  console.log(results)
+  const removeEvent = db('events').where({ id }).del();
+  if (removeEvent){
+    return results;
+  }
 }
 
 //#endregion
