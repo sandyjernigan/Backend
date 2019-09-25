@@ -150,6 +150,8 @@
           <li class="moreInfo" onclick="{showContent('getAllEvents')}">Get All Events - Detailed</li>
           <li class="moreInfo" onclick="{showContent('getEvent')}">Get Event</li>
           <li class="moreInfo" onclick="{showContent('getGuestsbyEvent')}">Get Guests by Event</li>
+          <li>getCategories</li>
+          <li>getCategory</li>
         </ul>
         <ul>
           <li class="moreInfo" onclick="{showContent('addEvent')}">Add Event</li>
@@ -710,14 +712,14 @@
       </code>
   </div>
 
-  <!-- Event Endpoint - Get Event --> 
-  <div id="getEvent" class="hid">
-    <h3 onclick="{showContent('getEvent')}">Event Endpoints - Get Event </h3>
-      <p><strong>Endpoint:</strong> `/api/events/{id}`</p>
+  <!-- Event Endpoint - Get Categories --> 
+  <div id="getCategories" class="hid">
+    <h3 onclick="{showContent('getCategories')}">Event Endpoints - Get Categories </h3>
+      <p><strong>Endpoint:</strong> `/api/food/categories`</p>
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
       <code>
-        Get detailed information about an event
+        Get list of Categories.
       </code>
       <p><strong>Expected Input:</strong> </p>
       <code>
@@ -727,10 +729,20 @@
       </code>
       <p><strong>Expected Return:</strong> </p>
       <code>
-        { <br />
+        [ <br />
         <div class="ident1"> 
+        { <br />
+          "id": 1, <br />
+          "category": "bread", <br />
+          "description": "breads made from either flour, oats, rye, etc" <br />
+        }, <br />
+        { <br />
+          "id": 2, <br />
+          "category": "meat", <br />
+          "description": "meats" <br />
+        } <br />
         </div>
-        }
+        ]
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
@@ -738,6 +750,46 @@
         { message: 'Failed to get results.' }
       </code>
   </div>
+
+  <!-- Event Endpoint - Get Category --> 
+  <div id="getCategory" class="hid">
+    <h3 onclick="{showContent('getCategory')}">Event Endpoints - Get Category </h3>
+      <p><strong>Endpoint:</strong> `/api/food/categories`</p>
+      <p><strong>Type:</strong> `GET`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Get info on a Category.
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        [ <br />
+        <div class="ident1"> 
+        { <br />
+          "id": 1, <br />
+          "category": "bread", <br />
+          "description": "breads made from either flour, oats, rye, etc" <br />
+        }, <br />
+        { <br />
+          "id": 2, <br />
+          "category": "meat", <br />
+          "description": "meats" <br />
+        } <br />
+        </div>
+        ]
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        status code: 500<br />
+        { message: 'Failed to get results.' }
+      </code>
+  </div>
+
 </div>
 
 <div id="addEndpoints">

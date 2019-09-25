@@ -6,7 +6,7 @@ const router = express.Router();
 
 //#region - READ
 
-// GET all food
+// GET all categories
 router.get('/categories', async (req, res) => {
   try {
     const results = await Events.getCategories();
@@ -16,12 +16,12 @@ router.get('/categories', async (req, res) => {
   }
 });
 
-// GET food by id
-router.get('/:id/', async (req, res) => {
+// GET category by id
+router.get('/categories/:id/', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const results = await Events.getCategories();
+    const results = await Events.getCategory(id);
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
