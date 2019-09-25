@@ -144,15 +144,27 @@
 
       <h3 class="moreInfo" onclick="{showContent('eventEndpoints')}">Event Endpoints</h3>
       <div id="eventEndpoints" class="show">
-      <ul>
-        <li class="moreInfo" onclick="{showContent('getEvents')}">Get All Events - Simple</li>
-        <li class="moreInfo" onclick="{showContent('getAllEvents')}">Get All Events - Detailed</li>
-        <li class="moreInfo" onclick="{showContent('getEvent')}">Get Event</li>
-        <li class="moreInfo" onclick="{showContent('getGuestsbyEvent')}">Get Guests by Event</li>
-        <li class="moreInfo" onclick="{showContent('addEvent')}">Add Event</li>
-        <li class="moreInfo" onclick="{showContent('updateEvent')}">Update Event</li>
-        <li class="moreInfo" onclick="{showContent('deleteEvent')}">Delete Event</li>
-      </ul>
+        
+        <ul>
+          <li class="moreInfo" onclick="{showContent('getEvents')}">Get All Events - Simple</li>
+          <li class="moreInfo" onclick="{showContent('getAllEvents')}">Get All Events - Detailed</li>
+          <li class="moreInfo" onclick="{showContent('getEvent')}">Get Event</li>
+          <li class="moreInfo" onclick="{showContent('getGuestsbyEvent')}">Get Guests by Event</li>
+        </ul>
+        <ul>
+          <li class="moreInfo" onclick="{showContent('addEvent')}">Add Event</li>
+          <li class="moreInfo" onclick="{showContent('addCategory')}">Add Category</li>
+          <li class="moreInfo" onclick="{showContent('addFood')}">Add Food</li>
+          <li class="moreInfo" onclick="{showContent('addFoodNeeded')}">Add Food Needed for Event</li>
+          <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest</li>
+          <li class="moreInfo" onclick="{showContent('addBringing')}">Add Guest Bringing Item</li>
+        </ul>
+        <ul>
+          <li class="moreInfo" onclick="{showContent('updateEvent')}">Update Event</li>
+        </ul>
+        <ul>
+          <li class="moreInfo" onclick="{showContent('deleteEvent')}">Delete Event</li>
+        </ul>
       </div>
       
     </div>
@@ -474,6 +486,8 @@
 <!-- #endregion - User Endpoints -->
 
 <!-- #region - Event Endpoints --> 
+<div id="getEndpoints">
+
   <!-- Event Endpoint - Get All --> 
   <div id="getEvents" class="hid">
     <h3 onclick="{showContent('getEvents')}">Event Endpoints - Get All Events - Simple</h3>
@@ -510,7 +524,7 @@
   </div>
 
   <!-- Event Endpoint - Get All - Detailed --> 
-  <div id="getAllEvents" class="show">
+  <div id="getAllEvents" class="hid">
     <h3 onclick="{showContent('getAllEvents')}">Event Endpoints - Get All Events - Detailed</h3>
       <p><strong>Endpoint:</strong> `/api/events/:username/all`</p>
       <p><strong>Type:</strong> `GET`</p>
@@ -696,10 +710,42 @@
       </code>
   </div>
 
+  <!-- Event Endpoint - Get Event --> 
+  <div id="getEvent" class="hid">
+    <h3 onclick="{showContent('getEvent')}">Event Endpoints - Get Event </h3>
+      <p><strong>Endpoint:</strong> `/api/events/{id}`</p>
+      <p><strong>Type:</strong> `GET`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Get detailed information about an event
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        { <br />
+        <div class="ident1"> 
+        </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        status code: 500<br />
+        { message: 'Failed to get results.' }
+      </code>
+  </div>
+</div>
+
+<div id="addEndpoints">
+
   <!-- Event Endpoint - Add Event --> 
   <div id="addEvent" class="hid">
     <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Event</h3>
-      <p><strong>Endpoint:</strong> `/api/events/new`</p>
+      <p><strong>Endpoint:</strong> `/api/events/`</p>
       <p><strong>Type:</strong> `POST`</p>
       <p><strong>Description:</strong> </p>
       <code>
@@ -743,6 +789,52 @@
         { message: 'Failed to create new event.' }
       </code>
   </div>
+
+  <!-- Event Endpoint - Add Category --> 
+  <div id="addEvent" class="hid">
+    <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Category</h3>
+      <p><strong>Endpoint:</strong> `/api/events/new`</p>
+      <p><strong>Type:</strong> `POST`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Add a new event to database
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        { <br />
+        <div class="ident1">
+          "user_id": 1 <span class="comment"> // comment</span> <br />
+        </div>
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        <span class="comment"> // should return the object added to database. </span> <br />
+        status code: 201 <br />
+        { <br />
+        <div class="ident1">
+        </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        status code: 500 <br />
+        { message: 'Failed to create new event.' }
+      </code>
+  </div>
+  
+  <!-- <li class="moreInfo" onclick="{showContent('addCategory')}">Add </li>
+  <li class="moreInfo" onclick="{showContent('addFood')}">Add Food</li>
+  <li class="moreInfo" onclick="{showContent('addFoodNeeded')}">Add Food Needed for Event</li>
+  <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest</li>
+  <li class="moreInfo" onclick="{showContent('addBringing')}">Add Guest Bringing Item</li> -->
+</div>
+
+<div id="updateEndpoints">
 
   <!-- Event Endpoint - Update Event --> 
   <div id="updateEvent" class="hid">
@@ -794,6 +886,9 @@
       </code>
   </div>
 
+</div>
+
+<div id="deleteEndpoints">
   <!-- Event Endpoint - Delete Event --> 
   <div id="deleteEvent" class="hid">
     <h3 onclick="{showContent('deleteEvent')}">Event Endpoints - DELETE Event</h3>
@@ -836,6 +931,8 @@
           { message: 'Failed to delete event.' }
       </code>
   </div>
+
+</div>
 <!-- #endregion - Event Endpoints -->
 
 

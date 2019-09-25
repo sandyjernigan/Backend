@@ -30,7 +30,7 @@ async function addEvent(input) {
 
 //#endregion
 
-//#region READ - Get functions
+//#region - READ 
 
 // getEvents() - return all events 
 function getEvents() {
@@ -143,7 +143,7 @@ function getGuestsbyEvent(id) {
     .where({ 'guests_events.event_id': id });
 }
 
-//#endregion - Get functions
+//#endregion - Get
 
 //#region - Update
 
