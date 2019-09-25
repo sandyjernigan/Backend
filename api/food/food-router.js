@@ -33,7 +33,7 @@ router.get('/categories/:id/', async (req, res) => {
 //#region - CREATE - POST endpoints
 
 // add category
-router.post('/food/category', async (req, res) => {
+router.post('/categories', async (req, res) => {
   const input = req.body;
 
   try {
