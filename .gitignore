@@ -81,3 +81,5 @@ typings/
 
 #Testing Files
 _testing/
+data/db.db3
+*.db3
