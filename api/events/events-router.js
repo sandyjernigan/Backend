@@ -97,5 +97,25 @@ router.post('/', async (req, res) => {
 
 //#endregion
 
-module.exports = router; 
+//#region - Update - PUT endpoints
 
+// update Event
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+
+  try {
+    const results = await Events.updateEvent(changes, id);
+    if (results) {
+      res.json(results);
+    } else {
+      res.status(404).json({ message: 'Could not find event with given id.' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to update event.' });
+  }
+});
+
+//#endregion
+
+module.exports = router; 

@@ -11,7 +11,8 @@ module.exports = {
   getGuests,
   getGuest,
   getGuestsbyEvent,
-  addEvent
+  addEvent,
+  updateEvent
 };
 
 //#region READ - Get functions
@@ -116,3 +117,16 @@ async function addEvent(input) {
   const results = await db('events').insert(input);
   return getjustEvent(results[0]);
 }
+
+//#endregion
+
+//#region - Update
+
+function updateEvent(changes, id) {
+  return db('events').where({ id }).update(changes)
+  .then(count => {
+    return getjustEvent(id);
+  });
+}
+
+//#endregion

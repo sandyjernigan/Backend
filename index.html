@@ -685,13 +685,12 @@
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
         status code: 500 <br />
-        { message: 'Failed to get guests.' }
+        { message: 'Failed to create new event.' }
       </code>
   </div>
 
   <!-- Event Endpoint - Update Event --> 
-  <div id="updateEvent" class="hid">
-    <h2>TODO: - this is not active yet</h2>
+  <div id="updateEvent" class="show">
     <h3 onclick="{showContent('updateEvent')}">Event Endpoints - Update Event</h3>
       <p><strong>Endpoint:</strong> `/api/events/edit/{id}`</p>
       <p><strong>Type:</strong> `PUT`</p>
@@ -702,8 +701,12 @@
       </code>
       <p><strong>Expected Input:</strong> </p>
       <code>
-        {
-          <br />
+        <span class="comment"> // Only have to submit information that is requested to change.</span> <br />
+        { <br />
+        <div class="ident1">
+          "eventname": "Autumn Bash", <br />
+          "description": "Company party for Autumn and September birthdays!", <br />
+        </div>
         }
       </code>
       <p><strong>Sample Request:</strong> </p>
@@ -712,11 +715,27 @@
       </code>
       <p><strong>Expected Return:</strong> </p>
       <code>
-        <br />
+        { <br />
+        <div class="ident1">
+          "id": 3, <br />
+          "eventname": "Our Autumn Bash", <br />
+          "description": "Company party for Autumn and September birthdays!", <br />
+          "eventdate": "9-25-2019", <br />
+          "eventtime": "2:00 PM", <br />
+          "location_id": null, <br />
+          "user_id": 1 <br />
+        </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails to find event by id:</strong> </p>
+      <code>
+          status code: 404 <br />
+          { message: 'Could not find event with given id.' }
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
-        <br />
+          status code: 500 <br />
+          { message: 'Failed to update event.' }
       </code>
   </div>
 
