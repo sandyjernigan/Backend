@@ -118,7 +118,20 @@ router.get('/:id/foodneeded', async (req, res) => {
   }
 });
 
-//#endregion
+// GET Guest Bringing Item - returns an array of foods a guest is brining by guestid
+router.get('/:id/:guestid/bringing', async (req, res) => {
+  const { id, guestid } = req.params;
+  console.log(id)
+  
+  try {
+    const results = await Events.getBringingbyGuest(id, guestid);
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
+  }
+});
+
+//#endregion 
 
 //#region - CREATE - POST endpoints
 

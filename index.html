@@ -10,7 +10,6 @@
       background-color: #202020; 
       color: #ebebeb; 
       margin: 30px 80px;
-      padding-bottom: 100px;
     }
     a {
       color: #d4d4d4;
@@ -67,11 +66,13 @@
     }
     #main {
       max-width: 400px;
+      padding-bottom: 100px;
     }
     .moreContent {
       position: absolute;
       left: 500px;
       top: 20px;
+      padding-bottom: 100px;
     }
     code {
       color: #d7eaf6;
@@ -873,11 +874,37 @@
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
           status code: 500 <br />
-          { message: 'Failed to get guest.' }
+          { message: 'Failed to get results.' }
       </code>
   </div>
 
-  <!-- TODO: Event Endpoint - Get Guest Bringing Item - getBringingbyGuest  -->
+  <!-- Event Endpoint - Get Guest Bringing Item  --> 
+  <div id="getBringingbyGuest" class="show">
+      <h3 onclick="{showContent('getBringingbyGuest')}">Event Endpoints - Get Guest Bringing Item</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/foodneeded`</p>
+        <p><strong>Type:</strong> `GET`</p>
+        <p><strong>Description:</strong> </p>
+        <code>
+          returns an array of foods a guest is brining by guestid
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+          <br />
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code>
+        [ <br />
+          <div class="ident1">
+          </div>
+        ]
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+            status code: 500 <br />
+            { message: 'Failed to get results.' }
+        </code>
+    </div>
+
 </div>
 
 <div id="get_Food_Endpoints">

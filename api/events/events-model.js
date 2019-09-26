@@ -124,9 +124,19 @@ function getBringingbyFood(id) {
   .where({ 'food_needed.id': id });
 }
 
-// TODO: getBringingbyGuest(id, guestid) - returns an array of foods a guest is brining by guestid
+// getBringingbyGuest(id, guestid) - returns an array of foods a guest is brining by guestid
 function getBringingbyGuest(id, guestid) {
-  // return
+  return db('food_bringing')
+  .join('food_needed', 'food_needed.id', 'food_bringing.food_needed_id')
+  .join('guests', 'guests.id', 'food_bringing.guest_id')
+  .join('foods', 'foods.id', 'food_needed.food_id')
+  .select(
+    'guests.guestname',
+    'foods.foodname',
+    'food_bringing.quantity'
+  )
+  .where({ 'food_needed.event_id': id })
+  .andWhere({ 'guests.id': guestid });
 }
 
 // getGuestsbyEvent(id) - returns an array of guests for an event by event id
