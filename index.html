@@ -235,11 +235,9 @@
       <li>changed locations in the events model from linking to the locations table to a string.</li>
       <li>Added endpoint - GET all events the user created -> "Get All Events - Detailed"</li>
       <li>Enpdoints active for Food, Categories, and Guests - get, add, update, and delete </li>
-      <li>Enpdoints active for: `Get Food Needed for Event`, </li>
+      <li>Get Enpdoints active for: `Get Food Needed for Event`, `Get Guest Bringing Item`</li>
+      <li>Add Enpdoints active for: `Add Guest to an Event`, `Add Food Needed for Event`,</li>
       <li>Working on Endpoints: 
-        `Get Guest Bringing Item`, 
-        `Add Guest to an Event`,
-        `Add Food Needed for Event`,
         `Add Guest Bringing Item`,
         `Remove Guest from an Event`,
         `Remove Food Needed for Event`,
@@ -1192,39 +1190,37 @@
       </code>
   </div>
   
-
-  <!-- TODO: Add Guest Bringing Item - addBringing -->
-  <!-- replaceThis -->  
-  <!-- Sample <div class="ident1">
-  <div id="replaceThis" class="hid">
-    <h2>TODO - this is not active yet</h2>
-    <h3 onclick="{showContent('replaceThis')}">Event Endpoints - CreateReadUpdateDelete Event</h3>
-      <p><strong>Endpoint:</strong> `/api/auth/user/{id}`</p>
-      <p><strong>Type:</strong> `DELETE`</p> (GET, POST, PUT, DELETE)
-      <p><strong>Description:</strong> </p>
-      <code>
-          Description
-      </code>
-      <p><strong>Expected Input:</strong> </p>
-      <code>
-        {
+  <!-- Add Guest Bringing Item -->
+  <div id="addBringing" class="hid">
+      <h3 onclick="{showContent('addBringing')}">Event Endpoints - Add Guest Bringing Item</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/addBringing`</p>
+        <p><strong>Type:</strong> `POST`</p> 
+        <p><strong>Description:</strong> </p>
+        <code>
+            Add Guest Bringing Item for an event
+        </code>
+        <p><strong>Expected Input:</strong> </p>
+        <code>
+          { 
+            "food_needed_id": 3, 
+            "guest_id": 4 , 
+            "quantity": 6 
+          }
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
           <br />
-        }
-      </code>
-      <p><strong>Sample Request:</strong> </p>
-      <code>
-        <br />
-      </code>
-      <p><strong>Expected Return:</strong> </p>
-      <code>
-          <br />
-      </code>
-      <p><strong>Expected Return if Fails:</strong> </p>
-      <code>
-          <br />
-      </code>
-  </div>
-  --> 
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code>
+          Should return an array of food the guest is bringing to the event.
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+            <br />
+        </code>
+    </div>
+<!-- replaceThis -->  
 
   <!-- Food Endpoint - Add Food --> 
   <div id="addFood" class="hid">

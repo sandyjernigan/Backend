@@ -173,6 +173,19 @@ router.post('/:id/addfood', async (req, res) => {
   }
 });
 
+// Add Guest Bringing Item<
+router.post('/:id/addBringing', async (req, res) => {
+  // input should be an object with food_needed_id, guest_id, and quantity
+  const input = req.body;
+
+  try {
+    const results = await Events.addBringing(input, req.params.id);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to add food guest is bringing to the event.' });
+  }
+});
+
 //#endregion
 
 //#region - Update - PUT endpoints
