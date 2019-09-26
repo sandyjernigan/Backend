@@ -34,17 +34,17 @@ router.get('/:id/', async (req, res) => {
 
 //#region - CREATE - POST endpoints
 
-// add Event
-// router.post('/', async (req, res) => {
-//   const input = req.body;
+// add Guest
+router.post('/', async (req, res) => {
+  const input = req.body;
 
-//   try {
-//     const results = await Events.addEvent(input);
-//     res.status(201).json(results);
-//   } catch (err) {
-//     res.status(500).json({ message: 'Failed to create new event.' });
-//   }
-// });
+  try {
+    const results = await Guests.addGuest(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to create new guest.' });
+  }
+});
 
 //#endregion
 

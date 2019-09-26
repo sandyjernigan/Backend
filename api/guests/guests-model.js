@@ -17,7 +17,7 @@ module.exports = {
 
 async function addGuest(input) {
   const results = await db('guests').insert(input);
-  return getjustEvent(results[0]);
+  return getGuest(results[0]);
 }
 
 //#endregion
@@ -32,7 +32,7 @@ function getGuests() {
 
 // getGuest(id) - return a guest by id
 function getGuest(id) {
-  return db('guests').where({ id });
+  return db('guests').where({ id }).first();
 }
 
 //#endregion - Get

@@ -750,7 +750,7 @@
   <!-- Event Endpoint - Get Guests --> 
   <div id="getGuests" class="hid">
     <h3 onclick="{showContent('getGuests')}">Event Endpoints - Get All Guests </h3>
-      <p><strong>Endpoint:</strong> `/api/events/guests/all`</p>
+      <p><strong>Endpoint:</strong> `/api/guests/`</p>
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
       <code>
@@ -791,7 +791,7 @@
   <!-- Event Endpoint - Get Guest --> 
   <div id="getGuest" class="hid">
     <h3 onclick="{showContent('getGuests')}">Event Endpoints - Get Guest by id </h3>
-      <p><strong>Endpoint:</strong> `/api/events/guests/{id}`</p>
+      <p><strong>Endpoint:</strong> `/api/guests/{id}`</p>
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
       <code>
@@ -1004,19 +1004,21 @@
       </code>
   </div>
 
-  <!-- <div id="addFood" class="hid">
-    <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Category</h3>
-      <p><strong>Endpoint:</strong> `/api/events/new`</p>
+  <!-- Event Endpoint - Add Guest --> 
+  <div id="addGuest" class="hid">
+    <h3 onclick="{showContent('addGuest')}">Event Endpoints - Add Guest</h3>
+      <p><strong>Endpoint:</strong> `/api/guests/`</p>
       <p><strong>Type:</strong> `POST`</p>
       <p><strong>Description:</strong> </p>
       <code>
-        Add a new event to database
+        Add a new guest to database
       </code>
       <p><strong>Expected Input:</strong> </p>
       <code>
         { <br />
         <div class="ident1">
-          "user_id": 1 <span class="comment"> // comment</span> <br />
+          "guestname": "May", <br />
+          "guestemail": "may@email.com"<br />
         </div>
         }
       </code>
@@ -1030,20 +1032,23 @@
         status code: 201 <br />
         { <br />
         <div class="ident1">
+          "id": 5,<br />
+          "guestname": "May",<br />
+          "guestemail": "may@email.com",<br />
+          "user_id": null<br />
         </div>
         }
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
         status code: 500 <br />
-        { message: 'Failed to create new event.' }
+        { message: 'Failed to create new guest.' }
       </code>
-  </div> -->
+  </div>
   
   <!-- TODO:
           <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest to an Event</li>
   <li class="moreInfo" onclick="{showContent('addFoodNeeded')}">Add Food Needed for Event</li>
-  <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest</li>
   <li class="moreInfo" onclick="{showContent('addBringing')}">Add Guest Bringing Item</li> -->
 
   <!-- Food Endpoint - Add Food --> 
