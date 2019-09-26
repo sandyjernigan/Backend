@@ -82,7 +82,24 @@ router.post('/categories', async (req, res) => {
 
 //#region - Update - PUT endpoints
 
-// update Event
+// update Food
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+
+  try {
+    const results = await FoodRouter.updateFood(changes, id);
+    if (results) {
+      res.json(results);
+    } else {
+      res.status(404).json({ message: 'Could not find food with given id.' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to update food.' });
+  }
+});
+
+// update Cateogory
 router.put('/categories/:id', async (req, res) => {
   const { id } = req.params;
   const changes = req.body;
@@ -103,7 +120,7 @@ router.put('/categories/:id', async (req, res) => {
 
 //#region - Delete - delete endpoints
 
-// delete Event
+// delete cateogory
 router.delete('/categories/:id', async (req, res) => {
   const { id } = req.params;
 

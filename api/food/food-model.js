@@ -10,6 +10,7 @@ module.exports = {
   getCategory,
   getCategories,
   // Update
+  updateFood,
   updateCategory,
   // Delete
   deleteCategory
@@ -50,6 +51,11 @@ function getCategory(id) {
 //#endregion - Get functions
 
 //#region - Update
+
+async function updateFood(changes, id) {
+  const count = await db('foods').where({ id }).update(changes);
+  return getFoodbyID(id);
+}
 
 async function updateCategory(changes, id) {
   const count = await db('categories').where({ id }).update(changes);

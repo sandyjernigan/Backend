@@ -177,6 +177,7 @@
         <div id="updateEndpoints" class="hid">
         <ul>
           <li class="moreInfo" onclick="{showContent('updateEvent')}">Update Event</li>
+          <li class="moreInfo" onclick="{showContent('updateFood')}">Update Food</li>
           <li class="moreInfo" onclick="{showContent('updateCategory')}">Update Category</li>
         </ul>
         </div>
@@ -1096,6 +1097,54 @@
       <code>
           status code: 500 <br />
           { message: 'Failed to update event.' }
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Update Food --> 
+  <div id="updateFood" class="hid">
+    <h3 onclick="{showContent('updateFood')}">Event Endpoints - Update Food</h3>
+      <p><strong>Endpoint:</strong> `/api/food/{id}`</p>
+      <p><strong>Type:</strong> `PUT`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Update food with given id.
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        <span class="comment"> // Only have to submit information that is requested to change.</span> <br />
+        { <br />
+        <div class="ident1">
+            "description": "Sweet fruit"
+        </div>
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        { <br />
+        <div class="ident1">
+          "id": 3,
+          "foodname": "Apples",
+          "description": "Sweet fruit",
+          "category_id": 3,
+          "vegetarian": "1",
+          "vegan": "1",
+          "gutenfree": null
+        </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails to find by id:</strong> </p>
+      <code>
+          status code: 404 <br />
+          { message: 'Could not find food with given id.' }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to update food.' }
       </code>
   </div>
 
