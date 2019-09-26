@@ -159,10 +159,14 @@ function updateEvent(changes, id) {
 //#region - Delete
 
 async function deleteEvent(id) {
-  const results = await getjustEvent(id);
-  const removeEvent = db('events').where({ id }).del();
-  if (removeEvent){
-    return results;
+  try {
+    const results = await getjustEvent(id);
+    const removeEvent = await db('events').where({ id }).del();
+    if (removeEvent){
+      return results;
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to delete event.' });
   }
 }
 
