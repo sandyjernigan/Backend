@@ -881,7 +881,7 @@
   <!-- Event Endpoint - Get Guest Bringing Item  --> 
   <div id="getBringingbyGuest" class="show">
       <h3 onclick="{showContent('getBringingbyGuest')}">Event Endpoints - Get Guest Bringing Item</h3>
-        <p><strong>Endpoint:</strong> `/api/events/{id}/foodneeded`</p>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/{guestid}/bringing`</p>
         <p><strong>Type:</strong> `GET`</p>
         <p><strong>Description:</strong> </p>
         <code>
@@ -895,6 +895,13 @@
         <code>
         [ <br />
           <div class="ident1">
+              [<br />
+              {<br />
+                "guestname": "Jack",<br />
+                "foodname": "Hamburgers",<br />
+                "quantity": 12<br />
+              }<br />
+            ]<br />
           </div>
         ]
         </code>
