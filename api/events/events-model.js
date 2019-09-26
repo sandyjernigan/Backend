@@ -19,6 +19,7 @@ module.exports = {
   getGuestsbyEvent,
   // Update
   updateEvent,
+  updateBringing,
   // Delete
   deleteEvent,
   removeGuestfromEvent,
@@ -161,6 +162,8 @@ function getBringingbyGuest(id, guestid) {
   .join('guests', 'guests.id', 'food_bringing.guest_id')
   .join('foods', 'foods.id', 'food_needed.food_id')
   .select(
+    'food_bringing.food_needed_id',
+    'food_bringing.guest_id',
     'guests.guestname',
     'foods.foodname',
     'food_bringing.quantity'
@@ -186,6 +189,21 @@ function updateEvent(changes, id) {
   .then(count => {
     return getjustEvent(id);
   });
+}
+
+async function updateBringing(input, event_id) {
+  // input should be an object with food_needed_id and guest_id
+  const { food_needed_id, guest_id, quantity } = input;
+  const changes = { quantity }
+
+  const results = await db('food_bringing')
+    .where({ food_needed_id })
+    .andWhere({ guest_id })
+    .update(changes);
+
+  if (results) {
+    return getBringingbyGuest(event_id, guest_id);
+  }
 }
 
 //#endregion
@@ -230,4 +248,4 @@ async function removeFoodNeeded(input) {
   }
 }
 
-//#endregion
+//#endregion 

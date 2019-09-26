@@ -121,7 +121,6 @@ router.get('/:id/foodneeded', async (req, res) => {
 // GET Guest Bringing Item - returns an array of foods a guest is brining by guestid
 router.get('/:id/:guestid/bringing', async (req, res) => {
   const { id, guestid } = req.params;
-  console.log(id)
   
   try {
     const results = await Events.getBringingbyGuest(id, guestid);
@@ -207,6 +206,19 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// Update Guest Bringing Item<
+router.put('/:id/updateBringing', async (req, res) => {
+  // input should be an object with food_needed_id and guest_id
+  const input = req.body;
+
+  try {
+    const results = await Events.updateBringing(input, req.params.id);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to update food guest is bringing to the event.' });
+  }
+});
+
 //#endregion
 
 //#region - Delete - delete endpoints
@@ -250,7 +262,7 @@ router.delete('/:id/removefood', async (req, res) => {
     const results = await Events.removeFoodNeeded(input);
     res.status(201).json(results);
   } catch (err) {
-    res.status(500).json({ message: 'Failed to remove food needed to the event.' });
+    res.status(500).json({ message: 'Failed to remove food needed for the event.' });
   }
 });
 
