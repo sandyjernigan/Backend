@@ -236,9 +236,11 @@
       <li>Added endpoint - GET all events the user created -> "Get All Events - Detailed"</li>
       <li>Enpdoints active for Food, Categories, and Guests - get, add, update, and delete </li>
       <li>Get Enpdoints active for: `Get Food Needed for Event`, `Get Guest Bringing Item`</li>
-      <li>Add Enpdoints active for: `Add Guest to an Event`, `Add Food Needed for Event`,</li>
+      <li>Add Enpdoints active for: `Add Guest to an Event`, `Add Food Needed for Event`, `Add Guest Bringing Item`</li>
+      <li>Delete Enpdoints active for: 
+
+      </li>
       <li>Working on Endpoints: 
-        `Add Guest Bringing Item`,
         `Remove Guest from an Event`,
         `Remove Food Needed for Event`,
         `Remove Guest Bringing Item`
@@ -1219,8 +1221,7 @@
         <code>
             <br />
         </code>
-    </div>
-<!-- replaceThis -->  
+    </div> 
 
   <!-- Food Endpoint - Add Food --> 
   <div id="addFood" class="hid">
@@ -1586,7 +1587,35 @@
       </code>
   </div>
 
-  <!-- TODO: Event Endpoint - Remove Guest from an Event (removeGuestfromEvent) --> 
+  <!-- Event Endpoint - Remove Guest from an Event --> 
+  <div id="removeGuestfromEvent" class="hid">
+      <h3 onclick="{showContent('removeGuestfromEvent')}">Event Endpoints - Remove Guest from an Eventt</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}`</p>
+        <p><strong>Type:</strong> `DELETE`</p>
+        <p><strong>Description:</strong> </p>
+        <code>
+          Deletes Guest with given ID
+        </code>
+        <p><strong>Expected Input:</strong> </p>
+        <code>
+          { 
+          "guest_id": 3
+          }
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code>
+            <span class="comment"> // an updated array of the guests for the event. </span>
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+            status code: 500 <br />
+            { message: 'Failed to remove guest from the event..' }
+        </code>
+    </div>
+    
   <!-- TODO: Event Endpoint - Remove Food Needed for Event< (removeFoodNeeded) --> 
   <!-- TODO: Event Endpoint - Remove Guest Bringing Item (removeBringing) --> 
 

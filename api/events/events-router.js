@@ -228,6 +228,19 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// Remove Guest from an Event
+router.delete('/:id/removeguest', async (req, res) => {
+  const input = req.body;
+  input.event_id = req.params.id;
+
+  try {
+    const results = await Events.removeGuestfromEvent(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to remove guest from the event.' });
+  }
+});
+
 //#endregion
 
 module.exports = router; 

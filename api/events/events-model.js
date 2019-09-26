@@ -20,7 +20,8 @@ module.exports = {
   // Update
   updateEvent,
   // Delete
-  deleteEvent
+  deleteEvent,
+  removeGuestfromEvent
 };
 
 //#region - CREATE
@@ -200,6 +201,18 @@ async function deleteEvent(id) {
   } catch (err) {
     res.status(500).json({ message: 'Failed to delete event.' });
   }
+}
+
+async function removeGuestfromEvent(input) {
+  // input should be an object with event_id, guest_id
+  const { event_id, guest_id } = input;
+
+  const results = await db('guests_events')
+    .where({ event_id })
+    .andWhere({ guest_id })
+    .del();
+    
+  return getGuestsbyEvent(event_id);
 }
 
 //#endregion
