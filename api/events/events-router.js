@@ -26,6 +26,18 @@ router.get('/all', async (req, res) => {
   }
 });
 
+// GET Guests - returns an array of all guests
+router.get('/all/guests', async (req, res) => {
+
+  try {
+    const guests = await Events.getGuests();
+
+    res.json(guests);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get guests.' });
+  }
+});
+
 // GET all events the user created
 router.get('/:username/all', async (req, res) => {
   const { username } = req.params;
