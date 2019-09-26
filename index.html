@@ -10,7 +10,6 @@
       background-color: #202020; 
       color: #ebebeb; 
       margin: 30px 80px;
-      padding-bottom: 100px;
     }
     a {
       color: #d4d4d4;
@@ -67,11 +66,13 @@
     }
     #main {
       max-width: 400px;
+      padding-bottom: 100px;
     }
     .moreContent {
       position: absolute;
       left: 500px;
       top: 20px;
+      padding-bottom: 100px;
     }
     code {
       color: #d7eaf6;
@@ -130,7 +131,7 @@
     </div>
 
     <h2 class="moreInfo" onclick="{showContent('endpoints')}">Endpoints</h2>
-    <div id="endpoints" class="show">
+    <div id="endpoints" class="hid">
 
       <h3 class="moreInfo" onclick="{showContent('userEndpoints')}">User Endpoints</h3>
       <div id="userEndpoints" class="hid">
@@ -143,7 +144,7 @@
       </div>
 
       <h3 class="moreInfo" onclick="{showContent('eventEndpoints')}">Event Endpoints</h3>
-      <div id="eventEndpoints" class="show">
+      <div id="eventEndpoints" class="hid">
         
         <h4 class="moreInfo" onclick="{showContent('getEndpoints')}">Get</h4>
         <div id="getEndpoints" class="hid">
@@ -195,7 +196,6 @@
           <li class="moreInfo" onclick="{showContent('deleteGuest')}">Add Guest</li>
           <li class="moreInfo" onclick="{showContent('removeGuestfromEvent')}">Remove Guest from an Event</li>
           <li class="moreInfo" onclick="{showContent('removeFoodNeeded')}">Remove Food Needed for Event</li>
-          <li class="moreInfo" onclick="{showContent('removeBringing')}">Remove Guest Bringing Item</li>
           <li class="moreInfo" onclick="{showContent('deleteFood')}">Delete Food</li>
           <li class="moreInfo" onclick="{showContent('deleteCategory')}">Delete Category</li>
         </ul>
@@ -233,19 +233,11 @@
       <li>changed "attending" in the events model to "RVSP"</li>
       <li>changed locations in the events model from linking to the locations table to a string.</li>
       <li>Added endpoint - GET all events the user created -> "Get All Events - Detailed"</li>
-      <li>Categories endpoints for getCategory, <strong>getCategories</strong>, addCategory, updateCategory, and deleteCategory</li>
-      <li>Enpdoints active for Food get, add, update, and delete </li>
-      <li>Enpdoints active for Guests get, add, update, and delete </li>
-      <li>Working on Endpoints: 
-        `Get Food Needed for Event`, 
-        `Get Guest Bringing Item`, 
-        `Add Guest to an Event`,
-        `Add Food Needed for Event`,
-        `Add Guest Bringing Item`,
-        `Remove Guest from an Event`,
-        `Remove Food Needed for Event`,
-        `Remove Guest Bringing Item`
-      </li>
+      <li>Enpdoints active for Food, Categories, and Guests - get, add, update, and delete </li>
+      <li>Get Enpdoints active for: `Get Food Needed for Event`, `Get Guest Bringing Item`</li>
+      <li>Add Enpdoints active for: `Add Guest to an Event`, `Add Food Needed for Event`, `Add Guest Bringing Item`</li>
+      <li>Delete Enpdoints active for: `Remove Guest from an Event` and `Remove Food Needed for Event`</li>
+      <li>Update Enpdoints active for: `Update Food Needed for Event`</li>
     </ul>
   </div>
 
@@ -830,9 +822,89 @@
       </code>
   </div>
 
+  <!-- Event Endpoint - Get Food Needed for Event  --> 
+  <div id="getFoodNeeded" class="hid">
+    <h3 onclick="{showContent('getFoodNeeded')}">Event Endpoints - Get Food Needed for Event </h3>
+      <p><strong>Endpoint:</strong> `/api/events/{id}/foodneeded`</p>
+      <p><strong>Type:</strong> `GET`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Get Food Needed for Event
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+      [ <br />
+        <div class="ident1">
+        { <br />
+          "id": 1, <br />
+          "foodname": "Hamburgers", <br />
+          "food_needed_id": 1, <br />
+          "quantity_needed": 24, <br />
+          "description": "hamburger meat", <br />
+          "category": "meat", <br />
+          "vegetarian": "0", <br />
+          "vegan": "0", <br />
+          "gutenfree": null <br />
+        }, <br />
+        { <br />
+          "id": 2, <br />
+          "foodname": "Hamburger Buns", <br />
+          "food_needed_id": 2, <br />
+          "quantity_needed": 24, <br />
+          "description": null, <br />
+          "category": "bread", <br />
+          "vegetarian": "1", <br />
+          "vegan": null, <br />
+          "gutenfree": "0" <br />
+        } <br />
+        </div>
+      ]
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to get results.' }
+      </code>
+  </div>
 
-  <!-- TODO: Event Endpoint - Get Food Needed for Event - getFoodNeeded --> 
-  <!-- TODO: Event Endpoint - Get Guest Bringing Item - getBringingbyGuest  -->
+  <!-- Event Endpoint - Get Guest Bringing Item  --> 
+  <div id="getBringingbyGuest" class="hid">
+      <h3 onclick="{showContent('getBringingbyGuest')}">Event Endpoints - Get Guest Bringing Item</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/{guestid}/bringing`</p>
+        <p><strong>Type:</strong> `GET`</p>
+        <p><strong>Description:</strong> </p>
+        <code>
+          returns an array of foods a guest is brining by guestid
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+          <br />
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code>
+        [ <br />
+          <div class="ident1">
+              [<br />
+              {<br />
+                "guestname": "Jack",<br />
+                "foodname": "Hamburgers",<br />
+                "quantity": 12<br />
+              }<br />
+            ]<br />
+          </div>
+        ]
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+            status code: 500 <br />
+            { message: 'Failed to get results.' }
+        </code>
+    </div>
+
 </div>
 
 <div id="get_Food_Endpoints">
@@ -1055,9 +1127,94 @@
       </code>
   </div>
   
-  <!-- TODO: Add Guest to an Event - addGuesttoEvent -->
-  <!-- TODO: Add Food Needed for Event - addFoodNeeded -->
-  <!-- TODO: Add Guest Bringing Item - addBringing -->
+  <!-- Add Guest to an Event --> 
+  <div id="addGuesttoEvent" class="hid">
+    <h3 onclick="{showContent('addGuesttoEvent')}">Event Endpoints - Add Guest to an Event</h3>
+      <p><strong>Endpoint:</strong> `/api/events/{id}/addguest`</p>
+      <p><strong>Type:</strong> `POST`</p> 
+      <p><strong>Description:</strong> </p>
+      <code>
+          Add Guest to an Event
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        { "guest_id": 4 }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        Should return an array of guests for the event.
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to add guest to the event.' }
+      </code>
+  </div>
+
+  <!-- Add Food Needed for Event -->
+  <div id="addFoodNeeded" class="hid">
+    <h3 onclick="{showContent('addFoodNeeded')}">Event Endpoints - Add Food Needed for Event</h3>
+      <p><strong>Endpoint:</strong> `/api/events/{id}/addfood`</p>
+      <p><strong>Type:</strong> `POST`</p> 
+      <p><strong>Description:</strong> </p>
+      <code>
+          Add Food Needed for Event
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        { 
+          "food_id": 3, 
+          "quantity_needed": 6 
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        Should return an array of food needed for the event.
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          <br />
+      </code>
+  </div>
+  
+  <!-- Add Guest Bringing Item -->
+  <div id="addBringing" class="hid">
+      <h3 onclick="{showContent('addBringing')}">Event Endpoints - Add Guest Bringing Item</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/addBringing`</p>
+        <p><strong>Type:</strong> `POST`</p> 
+        <p><strong>Description:</strong> </p>
+        <code>
+            Add Guest Bringing Item for an event
+        </code>
+        <p><strong>Expected Input:</strong> </p>
+        <code>
+          { 
+            "food_needed_id": 3, 
+            "guest_id": 4 , 
+            "quantity": 6 
+          }
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+          <br />
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code>
+          Should return an array of food the guest is bringing to the event.
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+            <br />
+        </code>
+    </div> 
 
   <!-- Food Endpoint - Add Food --> 
   <div id="addFood" class="hid">
@@ -1200,6 +1357,37 @@
           { message: 'Failed to update event.' }
       </code>
   </div>
+
+  <!-- Event Endpoint - Update Food Needed for Event --> 
+  <div id="updateBringing" class="hid">
+      <h3 onclick="{showContent('updateBringing')}">Event Endpoints - Update Guest Bringing Item</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/updateBringing`</p>
+        <p><strong>Type:</strong> `PUT`</p>
+        <p><strong>Description:</strong> </p>
+        <code>
+            Update Guest Bringing Item
+        </code>
+        <p><strong>Expected Input:</strong> </p>
+        <code>
+          { 
+            "food_needed_id": 1, 
+            "guest_id": 2,
+            "quantity": 6
+          }
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code>
+            <span class="comment"> // an updated array of the foods the guest is bringing to the event. </span>
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+            status code: 500 <br />
+            { message: 'Failed to update food guest is bringing to the event.' }
+        </code>
+    </div>
 
   <!-- Event Endpoint - Update Guest --> 
   <div id="updateGuest" class="hid">
@@ -1423,9 +1611,61 @@
       </code>
   </div>
 
-  <!-- TODO: Event Endpoint - Remove Guest from an Event (removeGuestfromEvent) --> 
-  <!-- TODO: Event Endpoint - Remove Food Needed for Event< (removeFoodNeeded) --> 
-  <!-- TODO: Event Endpoint - Remove Guest Bringing Item (removeBringing) --> 
+  <!-- Event Endpoint - Remove Guest from an Event --> 
+  <div id="removeGuestfromEvent" class="hid">
+      <h3 onclick="{showContent('removeGuestfromEvent')}">Event Endpoints - Remove Guest from an Event</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/removeguest`</p>
+        <p><strong>Type:</strong> `DELETE`</p>
+        <p><strong>Description:</strong> </p>
+        <code>
+          Removes Guest from an Event
+        </code>
+        <p><strong>Expected Input:</strong> </p>
+        <code>
+          { 
+          "guest_id": 3
+          }
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code>
+            <span class="comment"> // an updated array of the guests for the event. </span>
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+            status code: 500 <br />
+            { message: 'Failed to remove guest from the event.' }
+        </code>
+    </div>
+
+  <!-- Event Endpoint - Remove Food Needed for Event --> 
+  <div id="removeFoodNeeded" class="hid">
+      <h3 onclick="{showContent('removeFoodNeeded')}">Event Endpoints - Remove Food Needed for Event</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/removefood`</p>
+        <p><strong>Type:</strong> `DELETE`</p>
+        <p><strong>Description:</strong> </p>
+        <code>
+          Remove Food Needed for Event
+        </code>
+        <p><strong>Expected Input:</strong> </p>
+        <code>
+          { "food_id": 3 }
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code>
+            <span class="comment"> // an updated array of the foods needed for the event. </span>
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+            status code: 500 <br />
+            { message: 'Failed to remove food needed for the event.' }
+        </code>
+    </div>
 
   <!-- Event Endpoint - Delete Food --> 
   <div id="deleteFood" class="hid">
@@ -1670,7 +1910,7 @@
       <div class="ident1">
         "event_id": 1, <span class="comment">// Required, References `id` in table `events`. </span> <br />
         "guest_id": 1, <span class="comment">// Required, References `id` in table `guests`. </span> <br />
-        "attending": boolean, <span class="comment">// not required </span> <br />
+        "RVSP": boolean, <span class="comment">// not required </span> <br />
       </div>
       }
     </code>

@@ -26,18 +26,6 @@ router.get('/all', async (req, res) => {
   }
 });
 
-// GET Guests - returns an array of all guests
-router.get('/all/guests', async (req, res) => {
-
-  try {
-    const guests = await Events.getGuests();
-
-    res.json(guests);
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to get guests.' });
-  }
-});
-
 // GET all events the user created
 router.get('/:username/all', async (req, res) => {
   const { username } = req.params;
@@ -118,7 +106,31 @@ router.get('/:id/guests', async (req, res) => {
   }
 });
 
-//#endregion
+// GET Food Needed for Event
+router.get('/:id/foodneeded', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const results = await Events.getFoodforEvent(id);
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
+  }
+});
+
+// GET Guest Bringing Item - returns an array of foods a guest is brining by guestid
+router.get('/:id/:guestid/bringing', async (req, res) => {
+  const { id, guestid } = req.params;
+  
+  try {
+    const results = await Events.getBringingbyGuest(id, guestid);
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
+  }
+});
+
+//#endregion 
 
 //#region - CREATE - POST endpoints
 
@@ -131,6 +143,45 @@ router.post('/', async (req, res) => {
     res.status(201).json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to create new event.' });
+  }
+});
+
+// Add Guest to an Event
+router.post('/:id/addguest', async (req, res) => {
+  const input = req.body;
+  input.event_id = req.params.id;
+
+  try {
+    const results = await Events.addGuesttoEvent(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to add guest to the event.' });
+  }
+});
+
+// Add Food Needed for Event
+router.post('/:id/addfood', async (req, res) => {
+  const input = req.body;
+  input.event_id = req.params.id;
+
+  try {
+    const results = await Events.addFoodNeeded(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to add food needed to the event.' });
+  }
+});
+
+// Add Guest Bringing Item<
+router.post('/:id/addBringing', async (req, res) => {
+  // input should be an object with food_needed_id, guest_id, and quantity
+  const input = req.body;
+
+  try {
+    const results = await Events.addBringing(input, req.params.id);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to add food guest is bringing to the event.' });
   }
 });
 
@@ -155,6 +206,19 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// Update Guest Bringing Item<
+router.put('/:id/updateBringing', async (req, res) => {
+  // input should be an object with food_needed_id and guest_id
+  const input = req.body;
+
+  try {
+    const results = await Events.updateBringing(input, req.params.id);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to update food guest is bringing to the event.' });
+  }
+});
+
 //#endregion
 
 //#region - Delete - delete endpoints
@@ -173,6 +237,32 @@ router.delete('/:id', async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({ message: 'Failed to delete event.' });
+  }
+});
+
+// Remove Guest from an Event
+router.delete('/:id/removeguest', async (req, res) => {
+  const input = req.body;
+  input.event_id = req.params.id;
+
+  try {
+    const results = await Events.removeGuestfromEvent(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to remove guest from the event.' });
+  }
+});
+
+// Remove Food Needed for Event
+router.delete('/:id/removefood', async (req, res) => {
+  const input = req.body;
+  input.event_id = req.params.id;
+
+  try {
+    const results = await Events.removeFoodNeeded(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to remove food needed for the event.' });
   }
 });
 

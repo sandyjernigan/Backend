@@ -4,6 +4,9 @@ const db = require('../../data/dbConfig.js');
 module.exports = {
   // Create
   addEvent,
+  addGuesttoEvent,
+  addFoodNeeded,
+  addBringing,
   // Read
   getEvents,
   getAllEvents,
@@ -14,11 +17,13 @@ module.exports = {
   getBringingbyFood,
   getBringingbyGuest,
   getGuestsbyEvent,
-  getFoodNeeded,
   // Update
   updateEvent,
+  updateBringing,
   // Delete
-  deleteEvent
+  deleteEvent,
+  removeGuestfromEvent,
+  removeFoodNeeded
 };
 
 //#region - CREATE
@@ -26,6 +31,31 @@ module.exports = {
 async function addEvent(input) {
   const results = await db('events').insert(input);
   return getjustEvent(results[0]);
+}
+
+async function addGuesttoEvent(input) {
+  // input should be an object with event_id, guest_id
+  const { event_id } = input;
+  const results = await db('guests_events').insert(input);
+  return getGuestsbyEvent(event_id);
+}
+
+async function addFoodNeeded(input) {
+  // input should be an object with event_id, food_id, and quantity_needed
+  const { event_id } = input;
+  const results = await db('food_needed').insert(input);
+  if (results) {
+    return getFoodforEvent(event_id);
+  }
+}
+
+async function addBringing(input, event_id) {
+  // input should be an object with food_needed_id, guest_id, and quantity
+  const { guest_id } = input;
+  const results = await db('food_bringing').insert(input);
+  if (results) {
+    return getBringingbyGuest(event_id, guest_id);
+  }
 }
 
 //#endregion
@@ -125,9 +155,21 @@ function getBringingbyFood(id) {
   .where({ 'food_needed.id': id });
 }
 
-// TODO: getBringingbyGuest(id, guestid) - returns an array of foods a guest is brining by guestid
+// getBringingbyGuest(id, guestid) - returns an array of foods a guest is brining by guestid
 function getBringingbyGuest(id, guestid) {
-  // return
+  return db('food_bringing')
+  .join('food_needed', 'food_needed.id', 'food_bringing.food_needed_id')
+  .join('guests', 'guests.id', 'food_bringing.guest_id')
+  .join('foods', 'foods.id', 'food_needed.food_id')
+  .select(
+    'food_bringing.food_needed_id',
+    'food_bringing.guest_id',
+    'guests.guestname',
+    'foods.foodname',
+    'food_bringing.quantity'
+  )
+  .where({ 'food_needed.event_id': id })
+  .andWhere({ 'guests.id': guestid });
 }
 
 // getGuestsbyEvent(id) - returns an array of guests for an event by event id
@@ -136,11 +178,6 @@ function getGuestsbyEvent(id) {
     .join('guests', 'guests.id', 'guests_events.guest_id')
     .select( 'guests.guestname', 'guests.guestemail', 'guests_events.RSVP' )
     .where({ 'guests_events.event_id': id });
-}
-
-// TODO: getFoodNeeded(id) - returns an array of foods needed for an event by eventid
-function getFoodNeeded(id) {
-  // return
 }
 
 //#endregion - Get
@@ -152,6 +189,21 @@ function updateEvent(changes, id) {
   .then(count => {
     return getjustEvent(id);
   });
+}
+
+async function updateBringing(input, event_id) {
+  // input should be an object with food_needed_id and guest_id
+  const { food_needed_id, guest_id, quantity } = input;
+  const changes = { quantity }
+
+  const results = await db('food_bringing')
+    .where({ food_needed_id })
+    .andWhere({ guest_id })
+    .update(changes);
+
+  if (results) {
+    return getBringingbyGuest(event_id, guest_id);
+  }
 }
 
 //#endregion
@@ -170,4 +222,30 @@ async function deleteEvent(id) {
   }
 }
 
-//#endregion
+async function removeGuestfromEvent(input) {
+  // input should be an object with event_id, guest_id
+  const { event_id, guest_id } = input;
+
+  const results = await db('guests_events')
+    .where({ event_id })
+    .andWhere({ guest_id })
+    .del();
+
+  return getGuestsbyEvent(event_id);
+}
+
+async function removeFoodNeeded(input) {
+  // input should be an object with event_id, food_id, and quantity_needed
+  const { event_id, food_id } = input;
+
+  const results = await db('food_needed')
+    .where({ event_id })
+    .andWhere({ food_id })
+    .del();
+
+  if (results) {
+    return getFoodforEvent(event_id);
+  }
+}
+
+//#endregion 
