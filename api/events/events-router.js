@@ -151,7 +151,6 @@ router.post('/', async (req, res) => {
 router.post('/:id/addguest', async (req, res) => {
   const input = req.body;
   input.event_id = req.params.id;
-  console.log(input);
 
   try {
     const results = await Events.addGuesttoEvent(input);
@@ -161,6 +160,18 @@ router.post('/:id/addguest', async (req, res) => {
   }
 });
 
+// Add Food Needed for Event
+router.post('/:id/addfood', async (req, res) => {
+  const input = req.body;
+  input.event_id = req.params.id;
+
+  try {
+    const results = await Events.addFoodNeeded(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to add food needed to the event.' });
+  }
+});
 
 //#endregion
 

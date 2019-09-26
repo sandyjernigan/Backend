@@ -5,6 +5,7 @@ module.exports = {
   // Create
   addEvent,
   addGuesttoEvent,
+  addFoodNeeded,
   // Read
   getEvents,
   getAllEvents,
@@ -33,6 +34,15 @@ async function addGuesttoEvent(input) {
   const { event_id } = input;
   const results = await db('guests_events').insert(input);
   return getGuestsbyEvent(event_id);
+}
+
+async function addFoodNeeded(input) {
+  // input should be an object with event_id, food_id, and quantity_needed
+  const { event_id } = input;
+  const results = await db('food_needed').insert(input);
+  if (results) {
+    return getFoodforEvent(event_id);
+  }
 }
 
 //#endregion

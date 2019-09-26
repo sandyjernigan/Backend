@@ -1136,7 +1136,6 @@
   
   <!-- Add Guest to an Event --> 
   <div id="addGuesttoEvent" class="hid">
-    <h2>TODO - this is not active yet</h2>
     <h3 onclick="{showContent('addGuesttoEvent')}">Event Endpoints - Add Guest to an Event</h3>
       <p><strong>Endpoint:</strong> `/api/events/{id}/addguest`</p>
       <p><strong>Type:</strong> `POST`</p> 
@@ -1163,22 +1162,20 @@
       </code>
   </div>
 
-  <!-- TODO: Add Food Needed for Event - addFoodNeeded -->
-  <!-- replaceThis --> 
-  <!-- Sample
-  <div id="replaceThis" class="hid">
-    <h2>TODO - this is not active yet</h2>
-    <h3 onclick="{showContent('replaceThis')}">Event Endpoints - CreateReadUpdateDelete Event</h3>
-      <p><strong>Endpoint:</strong> `/api/auth/user/{id}`</p>
-      <p><strong>Type:</strong> `DELETE`</p> (GET, POST, PUT, DELETE)
+  <!-- Add Food Needed for Event -->
+  <div id="addFoodNeeded" class="hid">
+    <h3 onclick="{showContent('addFoodNeeded')}">Event Endpoints - Add Food Needed for Event</h3>
+      <p><strong>Endpoint:</strong> `/api/events/{id}/addfood`</p>
+      <p><strong>Type:</strong> `POST`</p> 
       <p><strong>Description:</strong> </p>
       <code>
-          Description
+          Add Food Needed for Event
       </code>
       <p><strong>Expected Input:</strong> </p>
       <code>
-        {
-          <br />
+        { 
+          "food_id": 3, 
+          "quantity_needed": 6 
         }
       </code>
       <p><strong>Sample Request:</strong> </p>
@@ -1187,14 +1184,14 @@
       </code>
       <p><strong>Expected Return:</strong> </p>
       <code>
-          <br />
+        Should return an array of food needed for the event.
       </code>
       <p><strong>Expected Return if Fails:</strong> </p>
       <code>
           <br />
       </code>
   </div>
-  --> 
+  
 
   <!-- TODO: Add Guest Bringing Item - addBringing -->
   <!-- replaceThis -->  
