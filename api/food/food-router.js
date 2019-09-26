@@ -1,6 +1,6 @@
 const express = require('express');
 
-const Router = require('./food-model.js');
+const FoodRouter = require('./food-model.js');
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const router = express.Router();
 // GET all food
 router.get('/', async (req, res) => {
   try {
-    const results = await Router.getFood();
+    const results = await FoodRouter.getFood();
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
@@ -21,7 +21,7 @@ router.get('/:id/', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const results = await Router.getFoodbyID(id);
+    const results = await FoodRouter.getFoodbyID(id);
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
@@ -29,9 +29,9 @@ router.get('/:id/', async (req, res) => {
 });
 
 // GET all categories
-router.get('/categories', async (req, res) => {
+router.get('/categories/all', async (req, res) => {
   try {
-    const results = await Router.getCategories();
+    const results = await FoodRouter.getCategories();
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
@@ -41,9 +41,9 @@ router.get('/categories', async (req, res) => {
 // GET category by id
 router.get('/categories/:id/', async (req, res) => {
   const { id } = req.params;
-
+  
   try {
-    const results = await Events.getCategory(id);
+    const results = await FoodRouter.getCategory(id);
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get results.' });
@@ -54,12 +54,24 @@ router.get('/categories/:id/', async (req, res) => {
 
 //#region - CREATE - POST endpoints
 
+// add food
+router.post('/', async (req, res) => {
+  const input = req.body;
+
+  try {
+    const results = await FoodRouter.addFood(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to create new food.' });
+  }
+});
+
 // add category
 router.post('/categories', async (req, res) => {
   const input = req.body;
 
   try {
-    const results = await Router.addCategory(input);
+    const results = await FoodRouter.addCategory(input);
     res.status(201).json(results);
   } catch (err) {
     res.status(500).json({ message: 'Failed to create new cateogory.' });
@@ -76,7 +88,7 @@ router.put('/categories/:id', async (req, res) => {
   const changes = req.body;
 
   try {
-    const results = await Router.updateCategory(changes, id);
+    const results = await FoodRouter.updateCategory(changes, id);
     if (results) {
       res.json(results);
     } else {
@@ -96,8 +108,7 @@ router.delete('/categories/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const results = await Router.deleteCategory(id);
-    console.log(id)
+    const results = await FoodRouter.deleteCategory(id);
     if (results) {
       res.json(results);
     } else {

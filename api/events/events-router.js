@@ -153,7 +153,7 @@ router.delete('/:id', async (req, res) => {
 
   try {
     const results = await Events.deleteEvent(id);
-    console.log(id)
+    
     if (results) {
       res.json(results);
     } else {

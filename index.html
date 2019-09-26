@@ -163,9 +163,9 @@
         <div id="addEndpoints" class="hid">
         <ul>
           <li class="moreInfo" onclick="{showContent('addEvent')}">Add Event</li>
+          <li class="moreInfo" onclick="{showContent('addFood')}">Add Food</li>
           <li class="moreInfo" onclick="{showContent('addCategory')}">Add Category</li>
           <!-- 
-          <li class="moreInfo" onclick="{showContent('addFood')}">Add Food</li>
           <li class="moreInfo" onclick="{showContent('addFoodNeeded')}">Add Food Needed for Event</li>
           <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest</li>
           <li class="moreInfo" onclick="{showContent('addBringing')}">Add Guest Bringing Item</li> 
@@ -221,7 +221,7 @@
       <li>changed "attending" in the events model to "RVSP"</li>
       <li>changed locations in the events model from linking to the locations table to a string.</li>
       <li>Added endpoint - GET all events the user created -> "Get All Events - Detailed"</li>
-      <li>Categories endpoints for getCategory, getCategories, addCategory, updateCategory, and deleteCategory</li>
+      <li>Categories endpoints for getCategory, <strong>getCategories</strong>, addCategory, updateCategory, and deleteCategory</li>
       <li>Enpdoints active for getFood and getFoodbyID </li>
       <li>Working on Endpoints for Food items: add, update, and delete</li>
     </ul>
@@ -797,7 +797,7 @@
   <!-- Event Endpoint - Get Categories --> 
   <div id="getCategories" class="hid">
     <h3 onclick="{showContent('getCategories')}">Event Endpoints - Get Categories </h3>
-      <p><strong>Endpoint:</strong> `/api/food/categories`</p>
+      <p><strong>Endpoint:</strong> `/api/food/categories/all`</p>
       <p><strong>Type:</strong> `GET`</p>
       <p><strong>Description:</strong> </p>
       <code>
@@ -912,6 +912,55 @@
       <code>
         status code: 500 <br />
         { message: 'Failed to create new event.' }
+      </code>
+  </div>
+
+  <!-- Food Endpoint - Add Food --> 
+  <div id="addFood" class="hid">
+    <h3 onclick="{showContent('addFood')}">Food Endpoints - Add Food</h3>
+      <p><strong>Endpoint:</strong> `/api/food/`</p>
+      <p><strong>Type:</strong> `POST`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Add a new food to database
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        { <br />
+        <div class="ident1">
+          "foodname": "Apples", <br />
+          "description": null, <br />
+          "category_id": 3, <br />
+          "vegetarian": true, <br />
+          "vegan": true, <br />
+          "gutenfree": null <br />
+        </div>
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        <span class="comment"> // should return the object added to database. </span> <br />
+        status code: 201 <br />
+        { <br />
+          <div class="ident1">
+            "id": 3, <br />
+            "foodname": "Apples", <br />
+            "description": null, <br />
+            "category_id": 3, <br />
+            "vegetarian": "1", <br />
+            "vegan": "1", <br />
+            "gutenfree": null <br />
+          </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        status code: 500 <br />
+        { message: 'Failed to create new food.' }
       </code>
   </div>
 

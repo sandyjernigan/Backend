@@ -1,8 +1,8 @@
 const db = require('../../data/dbConfig.js');
 
-
 module.exports = {
   // Create
+  addFood, 
   addCategory,
   // Read
   getFood,
@@ -16,6 +16,11 @@ module.exports = {
 };
 
 //#region - CREATE
+
+async function addFood(input) {
+  const results = await db('foods').insert(input);
+  return getFoodbyID(results[0]);
+}
 
 async function addCategory(input) {
   const results = await db('categories').insert(input);
@@ -46,11 +51,9 @@ function getCategory(id) {
 
 //#region - Update
 
-function updateCategory(changes, id) {
-  return db('categories').where({ id }).update(changes)
-  .then(count => {
-    return getCategory(id);
-  });
+async function updateCategory(changes, id) {
+  const count = await db('categories').where({ id }).update(changes);
+  return getCategory(id);
 }
 
 //#endregion
@@ -59,8 +62,8 @@ function updateCategory(changes, id) {
 
 async function deleteCategory(id) {
   const results = await getCategory(id);
-  const removeResults = db('categories').where({ id }).del();
-  if (removeResults){
+  const removeResults = await db('categories').where({ id }).del();
+  if (removeResults > 0){
     return results;
   }
 }
