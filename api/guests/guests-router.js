@@ -71,22 +71,22 @@ router.put('/:id', async (req, res) => {
 
 //#region - Delete - delete endpoints
 
-// delete Event
-// router.delete('/:id', async (req, res) => {
-//   const { id } = req.params;
+// delete Guest
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
 
-//   try {
-//     const results = await Events.deleteEvent(id);
+  try {
+    const results = await Guests.deleteGuest(id);
     
-//     if (results) {
-//       res.json(results);
-//     } else {
-//       res.status(404).json({ message: 'Could not find event with given id.' });
-//     }
-//   } catch (err) {
-//     res.status(500).json({ message: 'Failed to delete event.' });
-//   }
-// });
+    if (results) {
+      res.json(results);
+    } else {
+      res.status(404).json({ message: 'Could not find Guest with given id.' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to delete Guest.' });
+  }
+});
 
 //#endregion
 

@@ -1378,8 +1378,44 @@
       </code>
   </div>
 
+  <!-- Event Endpoint - Delete Guest --> 
+  <div id="deleteGuest" class="hid">
+    <h3 onclick="{showContent('deleteGuest')}">Event Endpoints - DELETE Guest</h3>
+      <p><strong>Endpoint:</strong> `/api/events/{id}`</p>
+      <p><strong>Type:</strong> `DELETE`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Deletes Guest with given ID
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        <span class="comment"> // {id} supplied in the endpoint</span> <br />  
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+          <span class="comment"> // object that has been deleted </span>
+          { <br />
+          <div class="ident1">
+          </div>
+          }
+      </code>
+      <p><strong>Expected Return if Fails to find event by id:</strong> </p>
+      <code>
+          status code: 404 <br />
+          { message: 'Could not find Guest with given id.' }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to delete Guest.' }
+      </code>
+  </div>
+
   <!-- TODO:
-  <li class="moreInfo" onclick="{showContent('deleteGuest')}">Add Guest</li>
   <li class="moreInfo" onclick="{showContent('removeGuestfromEvent')}">Remove Guest from an Event</li>
   <li class="moreInfo" onclick="{showContent('removeFoodNeeded')}">Remove Food Needed for Event</li>
   <li class="moreInfo" onclick="{showContent('removeBringing')}">Remove Guest Bringing Item</li> -->
