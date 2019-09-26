@@ -152,6 +152,10 @@
           <li class="moreInfo" onclick="{showContent('getAllEvents')}">Get All Events - Detailed</li>
           <li class="moreInfo" onclick="{showContent('getEvent')}">Get Event</li>
           <li class="moreInfo" onclick="{showContent('getGuestsbyEvent')}">Get Guests by Event</li>
+          <li class="moreInfo" onclick="{showContent('getGuests')}">Get all Guests</li>
+          <li class="moreInfo" onclick="{showContent('getGuest')}">Get Guest by ID</li>
+          <li class="moreInfo" onclick="{showContent('getFoodNeeded')}">Get Food Needed for Event</li>
+          <li class="moreInfo" onclick="{showContent('getBringingbyGuest')}">Get Guest Bringing Item</li> 
           <li class="moreInfo" onclick="{showContent('getFood')}">Get Food</li>
           <li class="moreInfo" onclick="{showContent('getFoodbyID')}">Get Food by ID</li>
           <li class="moreInfo" onclick="{showContent('getCategories')}">Get Categories</li>
@@ -163,13 +167,12 @@
         <div id="addEndpoints" class="hid">
         <ul>
           <li class="moreInfo" onclick="{showContent('addEvent')}">Add Event</li>
+          <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest</li>
+          <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest to an Event</li>
+          <li class="moreInfo" onclick="{showContent('addFoodNeeded')}">Add Food Needed for Event</li>
+          <li class="moreInfo" onclick="{showContent('addBringing')}">Add Guest Bringing Item</li> 
           <li class="moreInfo" onclick="{showContent('addFood')}">Add Food</li>
           <li class="moreInfo" onclick="{showContent('addCategory')}">Add Category</li>
-          <!-- 
-          <li class="moreInfo" onclick="{showContent('addFoodNeeded')}">Add Food Needed for Event</li>
-          <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest</li>
-          <li class="moreInfo" onclick="{showContent('addBringing')}">Add Guest Bringing Item</li> 
-          -->
         </ul>
         </div>
         
@@ -177,6 +180,9 @@
         <div id="updateEndpoints" class="hid">
         <ul>
           <li class="moreInfo" onclick="{showContent('updateEvent')}">Update Event</li>
+          <li class="moreInfo" onclick="{showContent('updateGuest')}">Update Guest</li>
+          <li class="moreInfo" onclick="{showContent('updateFoodNeeded')}">Update Food Needed for Event</li>
+          <li class="moreInfo" onclick="{showContent('updateBringing')}">Update Guest Bringing Item</li>
           <li class="moreInfo" onclick="{showContent('updateFood')}">Update Food</li>
           <li class="moreInfo" onclick="{showContent('updateCategory')}">Update Category</li>
         </ul>
@@ -186,6 +192,10 @@
         <div id="deleteEndpoints" class="hid">
         <ul>
           <li class="moreInfo" onclick="{showContent('deleteEvent')}">Delete Event</li>
+          <li class="moreInfo" onclick="{showContent('deleteGuest')}">Add Guest</li>
+          <li class="moreInfo" onclick="{showContent('removeGuestfromEvent')}">Remove Guest from an Event</li>
+          <li class="moreInfo" onclick="{showContent('removeFoodNeeded')}">Remove Food Needed for Event</li>
+          <li class="moreInfo" onclick="{showContent('removeBringing')}">Remove Guest Bringing Item</li>
           <li class="moreInfo" onclick="{showContent('deleteFood')}">Delete Food</li>
           <li class="moreInfo" onclick="{showContent('deleteCategory')}">Delete Category</li>
         </ul>
@@ -737,6 +747,83 @@
       </code>
   </div>
 
+  <!-- Event Endpoint - Get Guests --> 
+  <div id="getGuests" class="hid">
+    <h3 onclick="{showContent('getGuests')}">Event Endpoints - Get All Guests </h3>
+      <p><strong>Endpoint:</strong> `/api/events/guests/all`</p>
+      <p><strong>Type:</strong> `GET`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Get a list of all guests
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        [<br /><div class="ident1">
+            { <br />
+              "guestname": "Jane", <br />
+              "guestemail": "jane@email.com" <br />
+            }, <br />
+            { <br />
+              "guestname": "Jack", <br />
+              "guestemail": "jack@email.com" <br />
+            }, <br />
+            { <br />
+              "guestname": "Jill", <br />
+              "guestemail": "jill@email.com" <br />
+            } <br />
+        </div>
+        ]
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to get guests.' }
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Get Guest --> 
+  <div id="getGuest" class="hid">
+    <h3 onclick="{showContent('getGuests')}">Event Endpoints - Get Guest by id </h3>
+      <p><strong>Endpoint:</strong> `/api/events/guests/{id}`</p>
+      <p><strong>Type:</strong> `GET`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Get a guest by id
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        {<br />
+        <div class="ident1">
+          "guestname": "Jane", <br />
+          "guestemail": "jane@email.com" <br />
+        </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to get guest.' }
+      </code>
+  </div>
+
+  <!-- TODO: 
+  <li class="moreInfo" onclick="{showContent('getFoodNeeded')}">Get Food Needed for Event</li>
+  <li class="moreInfo" onclick="{showContent('getBringingbyGuest')}">Get Guest Bringing Item</li> 
+  -->
 </div>
 
 <div id="get_Food_Endpoints">
@@ -917,6 +1004,48 @@
       </code>
   </div>
 
+  <!-- <div id="addFood" class="hid">
+    <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Category</h3>
+      <p><strong>Endpoint:</strong> `/api/events/new`</p>
+      <p><strong>Type:</strong> `POST`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Add a new event to database
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        { <br />
+        <div class="ident1">
+          "user_id": 1 <span class="comment"> // comment</span> <br />
+        </div>
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        <span class="comment"> // should return the object added to database. </span> <br />
+        status code: 201 <br />
+        { <br />
+        <div class="ident1">
+        </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+        status code: 500 <br />
+        { message: 'Failed to create new event.' }
+      </code>
+  </div> -->
+  
+  <!-- TODO:
+          <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest to an Event</li>
+  <li class="moreInfo" onclick="{showContent('addFoodNeeded')}">Add Food Needed for Event</li>
+  <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest</li>
+  <li class="moreInfo" onclick="{showContent('addBringing')}">Add Guest Bringing Item</li> -->
+
   <!-- Food Endpoint - Add Food --> 
   <div id="addFood" class="hid">
     <h3 onclick="{showContent('addFood')}">Food Endpoints - Add Food</h3>
@@ -1005,48 +1134,6 @@
         { message: 'Failed to create new cateogory.' }
       </code>
   </div>
-
-  <!-- <div id="addFood" class="hid">
-    <h3 onclick="{showContent('addEvent')}">Event Endpoints - Add Category</h3>
-      <p><strong>Endpoint:</strong> `/api/events/new`</p>
-      <p><strong>Type:</strong> `POST`</p>
-      <p><strong>Description:</strong> </p>
-      <code>
-        Add a new event to database
-      </code>
-      <p><strong>Expected Input:</strong> </p>
-      <code>
-        { <br />
-        <div class="ident1">
-          "user_id": 1 <span class="comment"> // comment</span> <br />
-        </div>
-        }
-      </code>
-      <p><strong>Sample Request:</strong> </p>
-      <code>
-        <br />
-      </code>
-      <p><strong>Expected Return:</strong> </p>
-      <code>
-        <span class="comment"> // should return the object added to database. </span> <br />
-        status code: 201 <br />
-        { <br />
-        <div class="ident1">
-        </div>
-        }
-      </code>
-      <p><strong>Expected Return if Fails:</strong> </p>
-      <code>
-        status code: 500 <br />
-        { message: 'Failed to create new event.' }
-      </code>
-  </div> -->
-  
-  <!-- 
-  <li class="moreInfo" onclick="{showContent('addFood')}">Add Food</li>
-  <li class="moreInfo" onclick="{showContent('addFoodNeeded')}">Add Food Needed for Event</li>
-  <li class="moreInfo" onclick="{showContent('addGuest')}">Add Guest</li>
-  <li class="moreInfo" onclick="{showContent('addBringing')}">Add Guest Bringing Item</li> -->
 </div>
 
 <div id="update_Endpoints">
@@ -1100,6 +1187,8 @@
           { message: 'Failed to update event.' }
       </code>
   </div>
+
+<!-- TODO: <li class="moreInfo" onclick="{showContent('updateGuest')}">Update Guest</li> -->
 
   <!-- Event Endpoint - Update Food --> 
   <div id="updateFood" class="hid">
@@ -1240,6 +1329,12 @@
           { message: 'Failed to delete event.' }
       </code>
   </div>
+
+  <!-- TODO:
+  <li class="moreInfo" onclick="{showContent('deleteGuest')}">Add Guest</li>
+  <li class="moreInfo" onclick="{showContent('removeGuestfromEvent')}">Remove Guest from an Event</li>
+  <li class="moreInfo" onclick="{showContent('removeFoodNeeded')}">Remove Food Needed for Event</li>
+  <li class="moreInfo" onclick="{showContent('removeBringing')}">Remove Guest Bringing Item</li> -->
 
   <!-- Event Endpoint - Delete Food --> 
   <div id="deleteFood" class="hid">

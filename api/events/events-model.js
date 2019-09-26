@@ -12,9 +12,9 @@ module.exports = {
   getjustEvent,
   getFoodforEvent,
   getBringingbyFood,
-  getGuests,
-  getGuest,
+  getBringingbyGuest,
   getGuestsbyEvent,
+  getFoodNeeded,
   // Update
   updateEvent,
   // Delete
@@ -125,14 +125,9 @@ function getBringingbyFood(id) {
   .where({ 'food_needed.id': id });
 }
 
-// getGuests() - return a list of all guests
-function getGuests() {
-  return db('guests');
-}
-
-// getGuest(id) - return a guest by id
-function getGuest(id) {
-  return db('guests').where({ id });
+// TODO: getBringingbyGuest(id, guestid) - returns an array of foods a guest is brining by guestid
+function getBringingbyGuest(id, guestid) {
+  // return
 }
 
 // getGuestsbyEvent(id) - returns an array of guests for an event by event id
@@ -141,6 +136,11 @@ function getGuestsbyEvent(id) {
     .join('guests', 'guests.id', 'guests_events.guest_id')
     .select( 'guests.guestname', 'guests.guestemail', 'guests_events.RSVP' )
     .where({ 'guests_events.event_id': id });
+}
+
+// TODO: getFoodNeeded(id) - returns an array of foods needed for an event by eventid
+function getFoodNeeded(id) {
+  // return
 }
 
 //#endregion - Get
