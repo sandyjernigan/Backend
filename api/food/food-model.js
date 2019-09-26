@@ -13,6 +13,7 @@ module.exports = {
   updateFood,
   updateCategory,
   // Delete
+  deleteFood,
   deleteCategory
 };
 
@@ -64,7 +65,15 @@ async function updateCategory(changes, id) {
 
 //#endregion
 
-//#region - Delete
+//#region - Delete 
+
+async function deleteFood(id) {
+  const results = await getFoodbyID(id);
+  const removeResults = await db('foods').where({ id }).del();
+  if (removeResults > 0){
+    return results;
+  }
+}
 
 async function deleteCategory(id) {
   const results = await getCategory(id);

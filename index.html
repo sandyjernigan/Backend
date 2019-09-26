@@ -186,6 +186,7 @@
         <div id="deleteEndpoints" class="hid">
         <ul>
           <li class="moreInfo" onclick="{showContent('deleteEvent')}">Delete Event</li>
+          <li class="moreInfo" onclick="{showContent('deleteFood')}">Delete Food</li>
           <li class="moreInfo" onclick="{showContent('deleteCategory')}">Delete Category</li>
         </ul>
       </div>
@@ -223,8 +224,8 @@
       <li>changed locations in the events model from linking to the locations table to a string.</li>
       <li>Added endpoint - GET all events the user created -> "Get All Events - Detailed"</li>
       <li>Categories endpoints for getCategory, <strong>getCategories</strong>, addCategory, updateCategory, and deleteCategory</li>
-      <li>Enpdoints active for getFood and getFoodbyID </li>
-      <li>Working on Endpoints for Food items: add, update, and delete</li>
+      <li>Enpdoints active for Food get, add, update, and delete </li>
+      <li>Working on Endpoints for Guests: get, add, update, and delete </li>
     </ul>
   </div>
 
@@ -1237,6 +1238,39 @@
       <code>
           status code: 500 <br />
           { message: 'Failed to delete event.' }
+      </code>
+  </div>
+
+  <!-- Event Endpoint - Delete Food --> 
+  <div id="deleteFood" class="hid">
+    <h3 onclick="{showContent('deleteFood')}">Event Endpoints - DELETE Food</h3>
+      <p><strong>Endpoint:</strong> `/api/food/{id}`</p>
+      <p><strong>Type:</strong> `DELETE`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Deletes Food with given ID
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        <span class="comment"> // {id} supplied in the endpoint</span> <br />  
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+          <span class="comment"> // object that has been deleted </span> <br />
+      </code>
+      <p><strong>Expected Return if Fails to find food by id:</strong> </p>
+      <code>
+          status code: 404 <br />
+          { message: 'Could not find food with given id.' }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to delete food.' }
       </code>
   </div>
 

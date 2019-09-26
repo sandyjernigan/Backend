@@ -121,6 +121,22 @@ router.put('/categories/:id', async (req, res) => {
 //#region - Delete - delete endpoints
 
 // delete cateogory
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const results = await FoodRouter.deleteFood(id);
+    if (results) {
+      res.json(results);
+    } else {
+      res.status(404).json({ message: 'Could not find food with given id.' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to delete cateogory.' });
+  }
+});
+
+// delete cateogory
 router.delete('/categories/:id', async (req, res) => {
   const { id } = req.params;
 
