@@ -1193,7 +1193,50 @@
       </code>
   </div>
 
-<!-- TODO: <li class="moreInfo" onclick="{showContent('updateGuest')}">Update Guest</li> -->
+  <!-- Event Endpoint - Update Guest --> 
+  <div id="updateGuest" class="hid">
+    <h3 onclick="{showContent('updateGuest')}">Event Endpoints - Update Guest</h3>
+      <p><strong>Endpoint:</strong> `/api/guests/{id}`</p>
+      <p><strong>Type:</strong> `PUT`</p>
+      <p><strong>Description:</strong> </p>
+      <code>
+        Update Guest with given id.
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        <span class="comment"> // Only have to submit information that is requested to change.</span> <br />
+        { <br />
+        <div class="ident1">
+          "guestemail": "maysNewEmail@email.com" <br />
+        </div>
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+        { <br />
+        <div class="ident1">
+          "id": 5, <br />
+          "guestname": "May", <br />
+          "guestemail": "maysNewEmail@email.com", <br />
+          "user_id <br />
+        </div>
+        }
+      </code>
+      <p><strong>Expected Return if Fails to find event by id:</strong> </p>
+      <code>
+          status code: 404 <br />
+          { message: 'Could not find Guest with given id.' }
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          status code: 500 <br />
+          { message: 'Failed to update Guest.' }
+      </code>
+  </div>
 
   <!-- Event Endpoint - Update Food --> 
   <div id="updateFood" class="hid">
