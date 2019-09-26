@@ -4,6 +4,7 @@ const db = require('../../data/dbConfig.js');
 module.exports = {
   // Create
   addEvent,
+  addGuesttoEvent,
   // Read
   getEvents,
   getAllEvents,
@@ -25,6 +26,13 @@ module.exports = {
 async function addEvent(input) {
   const results = await db('events').insert(input);
   return getjustEvent(results[0]);
+}
+
+async function addGuesttoEvent(input) {
+  // input should be an object with event_id, guest_id
+  const { event_id } = input;
+  const results = await db('guests_events').insert(input);
+  return getGuestsbyEvent(event_id);
 }
 
 //#endregion

@@ -147,6 +147,21 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Add Guest to an Event
+router.post('/:id/addguest', async (req, res) => {
+  const input = req.body;
+  input.event_id = req.params.id;
+  console.log(input);
+
+  try {
+    const results = await Events.addGuesttoEvent(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to add guest to the event.' });
+  }
+});
+
+
 //#endregion
 
 //#region - Update - PUT endpoints
