@@ -26,18 +26,6 @@ router.get('/all', async (req, res) => {
   }
 });
 
-// GET Guests - returns an array of all guests
-router.get('/all/guests', async (req, res) => {
-
-  try {
-    const guests = await Events.getGuests();
-
-    res.json(guests);
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to get guests.' });
-  }
-});
-
 // GET all events the user created
 router.get('/:username/all', async (req, res) => {
   const { username } = req.params;
@@ -115,6 +103,18 @@ router.get('/:id/guests', async (req, res) => {
     res.json(guests);
   } catch (err) {
     res.status(500).json({ message: 'Failed to get guests.' });
+  }
+});
+
+// GET Food Needed for Event
+router.get('/:id/foodneeded', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const results = await Events.getFoodforEvent(id);
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get results.' });
   }
 });
 

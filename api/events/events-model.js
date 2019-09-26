@@ -14,7 +14,6 @@ module.exports = {
   getBringingbyFood,
   getBringingbyGuest,
   getGuestsbyEvent,
-  getFoodNeeded,
   // Update
   updateEvent,
   // Delete
@@ -136,11 +135,6 @@ function getGuestsbyEvent(id) {
     .join('guests', 'guests.id', 'guests_events.guest_id')
     .select( 'guests.guestname', 'guests.guestemail', 'guests_events.RSVP' )
     .where({ 'guests_events.event_id': id });
-}
-
-// TODO: getFoodNeeded(id) - returns an array of foods needed for an event by eventid
-function getFoodNeeded(id) {
-  // return
 }
 
 //#endregion - Get
