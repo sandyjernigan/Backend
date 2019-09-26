@@ -21,7 +21,8 @@ module.exports = {
   updateEvent,
   // Delete
   deleteEvent,
-  removeGuestfromEvent
+  removeGuestfromEvent,
+  removeFoodNeeded
 };
 
 //#region - CREATE
@@ -211,8 +212,22 @@ async function removeGuestfromEvent(input) {
     .where({ event_id })
     .andWhere({ guest_id })
     .del();
-    
+
   return getGuestsbyEvent(event_id);
+}
+
+async function removeFoodNeeded(input) {
+  // input should be an object with event_id, food_id, and quantity_needed
+  const { event_id, food_id } = input;
+
+  const results = await db('food_needed')
+    .where({ event_id })
+    .andWhere({ food_id })
+    .del();
+
+  if (results) {
+    return getFoodforEvent(event_id);
+  }
 }
 
 //#endregion

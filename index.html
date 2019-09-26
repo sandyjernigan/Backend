@@ -1589,12 +1589,12 @@
 
   <!-- Event Endpoint - Remove Guest from an Event --> 
   <div id="removeGuestfromEvent" class="hid">
-      <h3 onclick="{showContent('removeGuestfromEvent')}">Event Endpoints - Remove Guest from an Eventt</h3>
-        <p><strong>Endpoint:</strong> `/api/events/{id}`</p>
+      <h3 onclick="{showContent('removeGuestfromEvent')}">Event Endpoints - Remove Guest from an Event</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/removeguest`</p>
         <p><strong>Type:</strong> `DELETE`</p>
         <p><strong>Description:</strong> </p>
         <code>
-          Deletes Guest with given ID
+          Removes Guest from an Event
         </code>
         <p><strong>Expected Input:</strong> </p>
         <code>
@@ -1612,11 +1612,36 @@
         <p><strong>Expected Return if Fails:</strong> </p>
         <code>
             status code: 500 <br />
-            { message: 'Failed to remove guest from the event..' }
+            { message: 'Failed to remove guest from the event.' }
         </code>
     </div>
-    
-  <!-- TODO: Event Endpoint - Remove Food Needed for Event< (removeFoodNeeded) --> 
+
+  <!-- Event Endpoint - Remove Food Needed for Event --> 
+  <div id="removeFoodNeeded" class="hid">
+      <h3 onclick="{showContent('removeFoodNeeded')}">Event Endpoints - Remove Food Needed for Event</h3>
+        <p><strong>Endpoint:</strong> `/api/events/{id}/removefood`</p>
+        <p><strong>Type:</strong> `DELETE`</p>
+        <p><strong>Description:</strong> </p>
+        <code>
+          Remove Food Needed for Event
+        </code>
+        <p><strong>Expected Input:</strong> </p>
+        <code>
+          { "food_id": 3 }
+        </code>
+        <p><strong>Sample Request:</strong> </p>
+        <code>
+        </code>
+        <p><strong>Expected Return:</strong> </p>
+        <code>
+            <span class="comment"> // an updated array of the foods needed for the event. </span>
+        </code>
+        <p><strong>Expected Return if Fails:</strong> </p>
+        <code>
+            status code: 500 <br />
+            { message: 'Failed to remove food needed for the event.' }
+        </code>
+    </div>
   <!-- TODO: Event Endpoint - Remove Guest Bringing Item (removeBringing) --> 
 
   <!-- Event Endpoint - Delete Food --> 

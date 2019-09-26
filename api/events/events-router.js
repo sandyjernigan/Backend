@@ -241,6 +241,19 @@ router.delete('/:id/removeguest', async (req, res) => {
   }
 });
 
+// Remove Food Needed for Event
+router.delete('/:id/removefood', async (req, res) => {
+  const input = req.body;
+  input.event_id = req.params.id;
+
+  try {
+    const results = await Events.removeFoodNeeded(input);
+    res.status(201).json(results);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to remove food needed to the event.' });
+  }
+});
+
 //#endregion
 
 module.exports = router; 
