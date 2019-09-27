@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET || 'secret should be set in env';
+const authenticate = require('./authenticate-middleware.js');
 
 // User Models
 const Users = require('./users-model.js');
@@ -32,8 +33,10 @@ router.post('/login', (req, res) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
+
         // jwt should be generated
         const token = generateToken(user);
+
         res.status(200).json({
           message: `Welcome ${user.username}!`,
           token
@@ -49,12 +52,17 @@ router.post('/login', (req, res) => {
 
 // Log Out **Endpoint:** `/api/auth/logout` 
 router.get('/logout', (req, res) => {
-  // TODO: implement logout
-  // Checking to see if possible to edit token, right now this does nothing
+  // this generates a new token, but doesn't really do anything
+  
+  const token = jwt.sign({ sub: 'logout' }, jwtSecret, { expiresIn: '1s' });
+
+  res.status(200).json({
+    message: `Goodbye`, token
+  });
 });
 
 // View Users **Endpoint:** `/api/auth/users` 
-router.get('/users', async (req, res) => {
+router.get('/users', authenticate, async (req, res) => {
   // lookup list of all users - testing only - this endpoint should be not be public.
   try {
     const results = await Users.find();
@@ -65,12 +73,12 @@ router.get('/users', async (req, res) => {
 });
 
 // Update User **Endpoint:** `/api/auth/user/{id}` 
-router.put('/user/{id}', (req, res) => {
+router.put('/user/{id}', authenticate, (req, res) => {
   // TODO: Add function to update user
 });
 
 // Delete User **Endpoint:** `/api/auth/user/{id}` 
-router.delete('/user/{id}', (req, res) => {
+router.delete('/user/{id}', authenticate, (req, res) => {
   // TODO: Add function to delete user
 });
 
