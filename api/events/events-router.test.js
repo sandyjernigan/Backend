@@ -1,4 +1,4 @@
-// Testing for events model
+// Testing for events router
 const request = require('supertest');
 const db = require('../../data/dbConfig.js');
 const Events = require('./events-model.js');

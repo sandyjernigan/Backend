@@ -275,17 +275,3 @@ describe('Events Model', () => {
   //#endregion
 
 })
-
-/*
-describe('function functionName', () => {
-  it('shouldDoThis', async () => {
-
-    // Expected Input
-
-    // call function -> 
-
-    // expected results -> 
-    
-  })
-})
-*/
