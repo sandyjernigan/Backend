@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET || 'secret should be set in env';
 
 module.exports = (req, res, next) => {
+
   const token = req.headers.authorization;
   
   // see if there is a token
@@ -26,3 +27,15 @@ module.exports = (req, res, next) => {
   }
 
 };
+
+function fetchToken(){
+  fetch('/user/data', {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer' + authToken
+    }
+  })
+  .then(res => res.json())
+  .then(data => { console.log(data) })
+  .catch(err => { console.log(err) })  
+}

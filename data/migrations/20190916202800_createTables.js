@@ -121,3 +121,5 @@ exports.down = function(knex, Promise) {
 
 // npx knex migrate:latest
 // npx knex migrate:latest --env=testing
+
+// npx knex migrate:rollback

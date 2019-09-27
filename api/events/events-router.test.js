@@ -1,9 +1,10 @@
-// Testing for events model
+// Testing for events router
 const request = require('supertest');
 const db = require('../../data/dbConfig.js');
 const Events = require('./events-model.js');
 
 // This is in the testing layout stages Not sure if I should test all endpoints since I'm testing the models. 
+// Mostly setting up to see about looking for glitches. Or see if something needs touching up to prevent errors.
 
 describe('Events Router', () => {
 
@@ -135,8 +136,8 @@ describe('Events Router', () => {
     })
   })
 
-  //TODO: 
-  describe('test `/api/events/` ', () => {
+  //TODO: Add Food Needed for Event
+  describe('test post `/api/events/:id/addfood` ', () => {
     it('shouldDoThis', async () => {
 
       // Expected Input
@@ -147,88 +148,93 @@ describe('Events Router', () => {
       
     })
   })
+
+  //TODO: Add Guest Bringing Item
+  describe('test post `/api/events/:id/addBringing` ', () => {
+    it('shouldDoThis', async () => {
+
+      // Expected Input
+
+      // call function -> 
+
+      // expected results -> 
+      
+    })
+  })
+
+  //#endregion
+
+  //#region - Update
+
+  //TODO: update Event
+  describe('test put `/api/events/:id` ', () => {
+    it('shouldDoThis', async () => {
+
+      // Expected Input
+
+      // call function -> 
+
+      // expected results -> 
+      
+    })
+  })
+
+  //TODO: Update Guest Bringing Item
+  describe('test put `/api/events/:id/updateBringing` ', () => {
+    it('shouldDoThis', async () => {
+
+      // Expected Input
+
+      // call function -> 
+
+      // expected results -> 
+      
+    })
+  })
+
+  //#endregion
+  
+  //#region - Delete 
+
+  //TODO: delete Event
+  describe('test delete `/api/events/:id` ', () => {
+    it('shouldDoThis', async () => {
+
+      // Expected Input
+
+      // call function -> 
+
+      // expected results -> 
+      
+    })
+  }) 
+
+  //TODO: Remove Guest from an Event
+  describe('test delete `/api/events/:id/removeguest` ', () => {
+    it('shouldDoThis', async () => {
+
+      // Expected Input
+
+      // call function -> 
+
+      // expected results -> 
+      
+    })
+  })  
+
+  //TODO: Remove Food Needed for Event
+  describe('test delete `/api/events/:id/removefood` ', () => {
+    it('shouldDoThis', async () => {
+
+      // Expected Input
+
+      // call function -> 
+
+      // expected results -> 
+      
+    })
+  })  
+
+  //#endregion
+
 })
-/* 
-
-
-// 
-router.post('/'
-
-// 
-router.post('/'
-
-// Add Food Needed for Event
-router.post('/:id/addfood'
-
-// Add Guest Bringing Item<
-router.post('/:id/addBringing',
-
-//#endregion
-
-//#region - Update - PUT endpoints
-
-// update Event
-router.put('/:id'
-
-// Update Guest Bringing Item<
-router.put('/:id/updateBringing', async (req, res) => {
-  // input should be an object with food_needed_id and guest_id
-  const input = req.body;
-
-  try {
-    const results = await Events.updateBringing(input, req.params.id);
-    res.status(201).json(results);
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to update food guest is bringing to the event.' });
-  }
-});
-
-//#endregion
-
-//#region - Delete - delete endpoints
-
-// delete Event
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const results = await Events.deleteEvent(id);
-    
-    if (results) {
-      res.json(results);
-    } else {
-      res.status(404).json({ message: 'Could not find event with given id.' });
-    }
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to delete event.' });
-  }
-});
-
-// Remove Guest from an Event
-router.delete('/:id/removeguest', async (req, res) => {
-  const input = req.body;
-  input.event_id = req.params.id;
-
-  try {
-    const results = await Events.removeGuestfromEvent(input);
-    res.status(201).json(results);
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to remove guest from the event.' });
-  }
-});
-
-// Remove Food Needed for Event
-router.delete('/:id/removefood', async (req, res) => {
-  const input = req.body;
-  input.event_id = req.params.id;
-
-  try {
-    const results = await Events.removeFoodNeeded(input);
-    res.status(201).json(results);
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to remove food needed for the event.' });
-  }
-});
-
-//#endregion
-*/

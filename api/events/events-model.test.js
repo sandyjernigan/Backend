@@ -3,6 +3,8 @@ const request = require('supertest');
 const db = require('../../data/dbConfig.js');
 const Events = require('./events-model.js');
 
+// Mostly setting up to look for glitches. Or see if something needs touching up to prevent errors.
+
 describe('Events Model', () => {
 
   beforeEach(async () => {
@@ -273,17 +275,3 @@ describe('Events Model', () => {
   //#endregion
 
 })
-
-/*
-describe('function functionName', () => {
-  it('shouldDoThis', async () => {
-
-    // Expected Input
-
-    // call function -> 
-
-    // expected results -> 
-    
-  })
-})
-*/
