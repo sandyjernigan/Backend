@@ -89,6 +89,7 @@
 <body>
 
 <div id="main">
+  <!-- #region - Left Side Content -->
   <h1 onclick="{showContent('pitch')}"><button>v</button> Pitch</h1>
   <p id='pitch' class="hid">If you have ever tried to organize a potluck through text messages, online to-do lists or spreadsheets you get why this app is important. In the world of social gatherings and potlucks the "Potluck Planner" is king. This is your place for all things pot luck. </p>
 
@@ -220,9 +221,10 @@
     </div>
 
   </div>
-</div>
+  </div>
+  <!-- #endregion - Left Side Content -->
 
-<!-- Open to the Side -->
+<!-- Open to the Right Side -->
 <div id="#content" class="moreContent">
   <div style="color: lightgoldenrodyellow; text-align: center">Click on the list items to the left to open and close sections. <br />
     Click on the Header below to close a section. <br /><br />
@@ -1741,44 +1743,8 @@
   </div>
 
 </div>
-
-</div>
 <!-- #endregion - Event Endpoints -->
-
-
-  <!-- replaceThis --> 
-  <!-- Sample
-  <div id="replaceThis" class="hid">
-    <h2>TODO - this is not active yet</h2>
-    <h3 onclick="{showContent('replaceThis')}">Event Endpoints - CreateReadUpdateDelete Event</h3>
-      <p><strong>Endpoint:</strong> `/api/auth/user/{id}`</p>
-      <p><strong>Type:</strong> `DELETE`</p> (GET, POST, PUT, DELETE)
-      <p><strong>Description:</strong> </p>
-      <code>
-          Description
-      </code>
-      <p><strong>Expected Input:</strong> </p>
-      <code>
-        {
-          <br />
-        }
-      </code>
-      <p><strong>Sample Request:</strong> </p>
-      <code>
-        <br />
-      </code>
-      <p><strong>Expected Return:</strong> </p>
-      <code>
-          <br />
-      </code>
-      <p><strong>Expected Return if Fails:</strong> </p>
-      <code>
-          <br />
-      </code>
-  </div>
-  --> 
-
- 
+  
 <!-- #region - Database Structure -->  
   <!-- User Table --> 
   <div id="dbUsers" class="hid">
@@ -1946,6 +1912,37 @@
     </code>
   </div>
 <!-- #endregion - Database Structure --> 
+
+<!-- Sample 
+  <div id="replaceThis" class="hid">
+    <h2>TODO - this is not active yet</h2>
+    <h3 onclick="{showContent('replaceThis')}">Event Endpoints - CreateReadUpdateDelete Event</h3>
+      <p><strong>Endpoint:</strong> `/api/auth/user/{id}`</p>
+      <p><strong>Type:</strong> `DELETE`</p> (GET, POST, PUT, DELETE)
+      <p><strong>Description:</strong> </p>
+      <code>
+          Description
+      </code>
+      <p><strong>Expected Input:</strong> </p>
+      <code>
+        {
+          <br />
+        }
+      </code>
+      <p><strong>Sample Request:</strong> </p>
+      <code>
+        <br />
+      </code>
+      <p><strong>Expected Return:</strong> </p>
+      <code>
+          <br />
+      </code>
+      <p><strong>Expected Return if Fails:</strong> </p>
+      <code>
+          <br />
+      </code>
+  </div>
+  --> 
 
 </div>
   <script>
