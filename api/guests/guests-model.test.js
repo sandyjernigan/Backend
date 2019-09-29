@@ -12,80 +12,82 @@ describe('Guests Model', () => {
     await db('guests').truncate()
   })
   
-//#region - CREATE
+  //#region - CREATE
 
-describe('function addGuest(input)', () => {
-  it('shouldDoThis', async () => {
+  /* work in progress
 
-    // Expected Input
+  describe('function addGuest(input)', () => {
+    it('shouldDoThis', async () => {
 
-    // call function -> 
+      // Expected Input
 
-    // expected results -> 
-    
+      // call function -> 
+
+      // expected results -> 
+      
+    })
   })
-})
 
-//#endregion
+  //#endregion
 
-//#region - READ 
+  //#region - READ 
 
-describe('function getGuests()', () => {
-  it('return a list of all guests', async () => {
+  describe('function getGuests()', () => {
+    it('return a list of all guests', async () => {
 
-    // Expected Input
+      // Expected Input
 
-    // call function -> 
+      // call function -> 
 
-    // expected results -> 
-    
+      // expected results -> 
+      
+    })
   })
-})
 
-describe('function getGuest(id)', () => {
-  it('return a guest by id', async () => {
+  describe('function getGuest(id)', () => {
+    it('return a guest by id', async () => {
 
-    // Expected Input
+      // Expected Input
 
-    // call function -> 
+      // call function -> 
 
-    // expected results -> 
-    
+      // expected results -> 
+      
+    })
   })
-})
 
-//#endregion - Get
+  //#endregion - Get
 
-//#region - Update
+  //#region - Update
 
-describe('function updateGuest(changes, id)', () => {
-  it('shouldDoThis', async () => {
+  describe('function updateGuest(changes, id)', () => {
+    it('shouldDoThis', async () => {
 
-    // Expected Input
+      // Expected Input
 
-    // call function -> 
+      // call function -> 
 
-    // expected results -> 
-    
+      // expected results -> 
+      
+    })
   })
-})
 
-//#endregion
+  //#endregion
 
-//#region - Delete
+  //#region - Delete
 
-describe('function deleteGuest(id)', () => {
-  it('shouldDoThis', async () => {
+  describe('function deleteGuest(id)', () => {
+    it('shouldDoThis', async () => {
 
-    // Expected Input
+      // Expected Input
 
-    // call function -> 
+      // call function -> 
 
-    // expected results -> 
-    
+      // expected results -> 
+      
+    })
   })
-})
 
-//#endregion
-  
+  //#endregion
+*/
 })

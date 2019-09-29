@@ -56,6 +56,8 @@ describe('Events Model', () => {
     })
   })
 
+  /* work in progress
+
   // TODO:
   describe('function addFoodNeeded', () => {
     
@@ -273,5 +275,7 @@ describe('Events Model', () => {
   })
 
   //#endregion
+
+  */
 
 })

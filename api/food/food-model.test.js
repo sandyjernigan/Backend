@@ -11,7 +11,9 @@ describe('Food Model', () => {
     // wipe the database
     await db('foods').truncate()
   })
-  
+
+  /* work in progress
+
   //#region - CREATE
 
   describe('function addFood(input)', () => {
@@ -147,5 +149,7 @@ describe('Food Model', () => {
   })
   
   //#endregion
-  
+
+  */
+ 
 })

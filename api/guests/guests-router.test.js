@@ -15,6 +15,8 @@ describe('Guests Router', () => {
 
   //#region - READ
 
+/* work in progress
+
   // TODO: GET Guests - returns an array of all guests
   describe('test get `/api/guests` ', () => {
     it('shouldDoThis', async () => {
@@ -58,40 +60,42 @@ describe('Guests Router', () => {
     })
   })
 
-//#endregion
+  //#endregion
 
-//#region - Update
+  //#region - Update
 
-  // TODO: update Guest
-  describe('test get`/api/guests/:id` ', () => {
-    it('shouldDoThis', async () => {
+    // TODO: update Guest
+    describe('test get`/api/guests/:id` ', () => {
+      it('shouldDoThis', async () => {
 
-      // Expected Input
+        // Expected Input
 
-      // call function -> 
+        // call function -> 
 
-      // expected results -> 
-      
+        // expected results -> 
+        
+      })
     })
-  })
 
-//#endregion
+  //#endregion
 
-//#region - Delete 
+  //#region - Delete 
 
-  // TODO: delete Guest
-  describe('test get`/api/guests/:id` ', () => {
-    it('shouldDoThis', async () => {
+    // TODO: delete Guest
+    describe('test get`/api/guests/:id` ', () => {
+      it('shouldDoThis', async () => {
 
-      // Expected Input
+        // Expected Input
 
-      // call function -> 
+        // call function -> 
 
-      // expected results -> 
-      
+        // expected results -> 
+        
+      })
     })
-  })
 
-//#endregion
+  //#endregion
+  
+*/
 
 })
