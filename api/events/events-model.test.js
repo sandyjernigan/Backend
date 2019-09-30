@@ -47,11 +47,10 @@ describe('Events Model', () => {
   })
 
   /* work in progress
-
-  // TODO:
+  
   describe('Events Model - function addGuesttoEvent', () => {
 
-    it('shouldDoSomething', async () => {
+    it('Add a new guest to the event', async () => {
   
       // Expected Input
   
