@@ -14,8 +14,6 @@ describe('Guests Model', () => {
   
   //#region - CREATE
 
-  /* work in progress
-
   describe('function addGuest(input)', () => {
     it('shouldDoThis', async () => {
 
@@ -27,6 +25,8 @@ describe('Guests Model', () => {
       
     })
   })
+
+  /* work in progress
 
   //#endregion
 

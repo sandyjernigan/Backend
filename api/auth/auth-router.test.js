@@ -6,7 +6,8 @@ const router = require('./auth-router.js');
 // test setup
 const testUser = {
   username: 'user',
-  password: 'pass'
+  password: 'pass',
+  email: 'email@email.com'
 };
 
 describe('Auth Router', () => {

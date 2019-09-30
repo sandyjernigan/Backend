@@ -15,8 +15,6 @@ describe('Events Router', () => {
 
   //#region - READ
 
-/* work in progress
-
   //TODO: GET all  - simple
   describe('test get`/api/events` ', () => {
     it('shouldDoThis', async () => {
@@ -29,6 +27,8 @@ describe('Events Router', () => {
       
     })
   })
+
+  /* work in progress
 
   //TODO: GET all events - detailed
   describe('test get`/api/events/all` ', () => {

@@ -15,8 +15,6 @@ describe('Foods Router', () => {
 
   //#region - READ
 
-/* work in progress
-
   // TODO: GET all  - simple
   describe('test get`/api/food` ', () => {
     it('shouldDoThis', async () => {
@@ -29,6 +27,8 @@ describe('Foods Router', () => {
       
     })
   })
+
+  /* work in progress
 
   // TODO: GET food by id
   describe('test get`/api/food/:id` ', () => {

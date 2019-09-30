@@ -12,8 +12,6 @@ describe('Food Model', () => {
     await db('foods').truncate()
   })
 
-  /* work in progress
-
   //#region - CREATE
 
   describe('function addFood(input)', () => {
@@ -27,6 +25,8 @@ describe('Food Model', () => {
       
     })
   })
+
+  /* work in progress
 
   describe('function addCategory(input)', () => {
     it('shouldDoThis', async () => {

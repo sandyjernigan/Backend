@@ -15,8 +15,6 @@ describe('Guests Router', () => {
 
   //#region - READ
 
-/* work in progress
-
   // TODO: GET Guests - returns an array of all guests
   describe('test get `/api/guests` ', () => {
     it('shouldDoThis', async () => {
@@ -29,6 +27,8 @@ describe('Guests Router', () => {
       
     })
   })
+
+  /* work in progress
 
   // TODO: Get Guest by id
   describe('test get `/api/guests/:id` ', () => {

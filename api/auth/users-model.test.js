@@ -8,7 +8,8 @@ const Users = require('./users-model.js');
 // test setup content
 const insertData = { 
   username: 'user', 
-  password: 'testpass'
+  password: 'testpass',
+  email: 'email@email.com'
 };
 
 describe('Users Model', () => {
