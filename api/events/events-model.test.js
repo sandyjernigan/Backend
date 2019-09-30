@@ -23,7 +23,7 @@ describe('Events Model', () => {
   };
 
   //#region - CREATE
-  describe('function addEvent', () => {
+  describe('Events Model - function addEvent', () => {
 
     it('Add a new event to database', async () => {
 
@@ -49,7 +49,7 @@ describe('Events Model', () => {
   /* work in progress
 
   // TODO:
-  describe('function addGuesttoEvent', () => {
+  describe('Events Model - function addGuesttoEvent', () => {
 
     it('shouldDoSomething', async () => {
   
