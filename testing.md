@@ -36,6 +36,12 @@ Users.remove(id)
 - should remove the entry from the database
 - should return the user information removed
 
+## Events
+
+### Events Router
+
+### Events Model
+
 <!-- 
 
       <h3 class="moreInfo" onclick="{showContent('eventEndpoints')}">Event Endpoints</h3>
