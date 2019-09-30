@@ -72,8 +72,8 @@ describe('Users Model', () => {
   describe('function findBy(filter)', () => {
     it('findBy(filter) should resolve to 1 user when searching username', async () => {
       const user1 = await db('users').insert(insertData);
-      const user2 = await db('users').insert({username: 'user2', password: 'testpass2'});
-      const user3 = await db('users').insert({username: 'user3', password: 'testpass3'});
+      const user2 = await db('users').insert({username: 'user2', password: 'testpass2', email: 'email2@email.com'});
+      const user3 = await db('users').insert({username: 'user3', password: 'testpass3', email: 'email3@email.com'});
 
       username = { username: 'user' }
 
@@ -98,18 +98,16 @@ describe('Users Model', () => {
 
       const changeData = { 
         username: 'updateduser', 
-        password: 'testpass'
+        password: 'testpass', 
+        email: 'email2@email.com'
       };
 
       await Users.update(changeData, 1);
 
       users = await db('users');
       
-      expect(users[0]).toEqual({ 
-        id: 1, 
-        username: 'updateduser', 
-        password: 'testpass'
-      });
+      expect(users[0].username).toEqual('updateduser');
+      expect(users[0].email).toEqual('email2@email.com');
     });
   });
   
