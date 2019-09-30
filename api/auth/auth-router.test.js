@@ -17,7 +17,7 @@ describe('Auth Router', () => {
     await db('users').truncate();
   })
 
-  // Add Testing for POST /api/auth/register
+  // Testing for POST /api/auth/register
   describe('test register', () => {
         
     it('should add user and return status 201', () => {
@@ -29,7 +29,7 @@ describe('Auth Router', () => {
     })
   });
 
-  // Add Testing for POST /api/auth/login
+  // Testing for POST /api/auth/login
   describe('test login', () => {
         
     it('should return user and return status 200', async () => {

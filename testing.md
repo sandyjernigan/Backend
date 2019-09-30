@@ -4,10 +4,10 @@
 
 ### Router
 
-Add Testing for POST /api/auth/register
+Testing for POST /api/auth/register
 - should add user and return status 201
 
-Add Testing for POST /api/auth/login
+Testing for POST /api/auth/login
 - should return user and return status 200
 
 ### Users Model
