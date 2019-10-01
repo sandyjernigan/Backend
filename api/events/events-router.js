@@ -63,17 +63,17 @@ router.get('/:id', async (req, res) => {
     const guests = await Events.getGuestsbyEvent(id);
 
     // This map function returns an array of Promises. 
-    const foodbringing = food.map(async (x) => {
-      const foodid = x.food_needed_id;
+    const foodbringing = food.map(async (food) => {
+      const foodid = food.food_needed_id;
       try {
         const bringing = await Events.getBringingbyFood(foodid);
-        x.bringing = bringing;
-        return x
+        food.bringing = bringing;
+        return bringing
       } catch (err) {
         console.log("No results.");
       }
-    }); 
-
+    });
+    
     Promise.all(foodbringing).then((bringing) => {      
       const results = { 
         eventname: event.eventname, 
