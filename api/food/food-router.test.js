@@ -28,6 +28,8 @@ describe('Foods Router', () => {
     })
   })
 
+  /* work in progress
+
   // TODO: GET food by id
   describe('test get`/api/food/:id` ', () => {
     it('shouldDoThis', async () => {
@@ -158,5 +160,6 @@ describe('Foods Router', () => {
   })
 
   //#endregion
+*/
 
 })

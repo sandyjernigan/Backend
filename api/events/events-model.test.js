@@ -12,22 +12,25 @@ describe('Events Model', () => {
     await db('events').truncate()
   })
 
+  // Reuseable - Expected Inputs
+  const addInput = { 
+    "eventname": "Autumn Bash",
+    "description": "Company party for end of Summer, start of fall, and September birthdays!",
+    "eventdate": "9-25-2019",
+    "eventtime": "2:00 PM",
+    "location": null,
+    "user_id": 1
+  };
+
   //#region - CREATE
-  describe('function addEvent', () => {
+  describe('Events Model - function addEvent', () => {
+
     it('Add a new event to database', async () => {
 
-      // Expected Input
-      const input = { 
-        "eventname": "Autumn Bash",
-        "description": "Company party for end of Summer, start of fall, and September birthdays!",
-        "eventdate": "9-25-2019",
-        "eventtime": "2:00 PM",
-        "location": null,
-        "user_id": 1
-      };
+      // Expected Input - coming from addInput
       
       // call function -> addEvent()
-      const results = await Events.addEvent(input);
+      const results = await Events.addEvent(addInput);
 
       // expected results -> should return the object added to database.
       expect(results).toEqual({
@@ -40,12 +43,14 @@ describe('Events Model', () => {
         "user_id": 1 
       })
     })
+
   })
 
-  // TODO:
-  describe('function addGuesttoEvent', () => {
+  /* work in progress
+  
+  describe('Events Model - function addGuesttoEvent', () => {
 
-    it('shouldDoSomething', async () => {
+    it('Add a new guest to the event', async () => {
   
       // Expected Input
   
@@ -273,5 +278,7 @@ describe('Events Model', () => {
   })
 
   //#endregion
+
+  */
 
 })

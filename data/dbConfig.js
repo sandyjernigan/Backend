@@ -1,4 +1,4 @@
-// dbConfig.js
+// dbConfig.js 
 
 const knex = require('knex');
 

@@ -1,4 +1,4 @@
-// npx knex init
+// npx knex init 
 
 module.exports = {
   development: {
